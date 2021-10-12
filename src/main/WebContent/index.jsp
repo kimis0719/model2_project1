@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-모델2 프로젝트 깃허브 테스트
+모델2 프로젝트 깃허브 테스트 - 김익수 왔다감
 </body>
 </html>
