@@ -4,7 +4,7 @@ package dto;
 
 import java.sql.Timestamp;
 
-public class boardDTO {
+public class BoardDTO {
 	private int board_num;
 	private String board_title;
 	private String board_content;

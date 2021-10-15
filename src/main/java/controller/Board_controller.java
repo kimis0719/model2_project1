@@ -11,13 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import service.Action;
 import service.ActionForward;
 
-
-
 /**
  * Servlet implementation class board_controller
  */
 @WebServlet("*.do")
-public class board_controller extends HttpServlet {
+public class Board_controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
   // doGet(), doPost() 메소드에서 공통적인 작업을 처리하는 메소드
@@ -33,6 +31,8 @@ public class board_controller extends HttpServlet {
 		
 		Action action = null;
 		ActionForward forward = null;
+		
+		//1번 게시판
 		
 		/*
 		 * //포워딩처리 if(forward != null) { if(forward.isRedirect()) { // redirect 방식으로 포워딩
