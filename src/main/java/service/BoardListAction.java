@@ -28,7 +28,8 @@ public class BoardListAction implements Action {
 		int endRow = page * limit;
 		
 		BoardDAO dao = BoardDAO.getInstance();
-		int listcount = dao.getCount();			// 총 데이터 갯수 구해오는 그룹함수 
+		
+		int listcount = dao.getCount();			// 총 데이터 갯수 구해오는 그룹함수
 		System.out.println("listcount : " + listcount);
 		
 		List<BoardDTO> boardlist = dao.getList(startRow, endRow);

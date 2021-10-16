@@ -35,7 +35,17 @@ public class board_controller extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 
-		// 게시판
+		// 카테고리별 목록 출력
+		if (command.equals("CateListAction.do")) {
+			try {
+				action = new BoardListAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 게시판별 게시글 출력
 		if (command.equals("BoardListAction.do")) {
 			try {
 				action = new BoardListAction();

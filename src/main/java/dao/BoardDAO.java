@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 import dto.BoardDTO;
 
 public class BoardDAO {
-	// 싱글톤
+		// 싱글톤
 		private static BoardDAO instance = new BoardDAO();
 
 		public static BoardDAO getInstance() {
