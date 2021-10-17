@@ -36,7 +36,7 @@ public class board_controller extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 
-		// 카테고리별 목록 출력
+		// 카테고리별 게시판 정보 출력
 		if (command.equals("/CateListAction.do")) {
 			try {
 				action = new CateListAction();

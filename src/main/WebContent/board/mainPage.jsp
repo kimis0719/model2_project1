@@ -218,6 +218,7 @@ input[type=text]:focus {
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">일상●취미 <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <c:forEach var="c" items="${catelist}">
+            	<!-- cate_code가 2(일상취미)에 해당하는 게시판 정보중 이름을 가져온다. -->
 				<c:if test="${c.cate_code == 2}">	
 					<li><a href=""> ${c.cate_name}</a></li>
 				</c:if>

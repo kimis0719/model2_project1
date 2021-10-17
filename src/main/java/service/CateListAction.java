@@ -15,18 +15,22 @@ public class CateListAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("CateListAction");
 		
+		// 게시판 정보를 받을 리스트 생성
 		List<CateDTO> catelist = new ArrayList<CateDTO>();
 		
-		
+		// cate_code 1 ~ 5 까지의 게시판 정보 가져오기
 		for(int i = 1; i <=5; i++) {
 			CateDAO dao = CateDAO.getInstance();
 			int cate = i;
 			
+			// 게시판정보(게시판 번호, 카테고리번호, 게시판 이름) 받아올 리스트 생성
 			List<CateDTO> list = dao.getcatelist(cate);
 			System.out.println("catelist : "+catelist);
 			
+			// 게시판정보 catelist에 추가
 			catelist.addAll(list);
 		}
+		// 게시판정보 공유설정
 		request.setAttribute("catelist", catelist);
 		
 		

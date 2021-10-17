@@ -27,7 +27,7 @@ public class CateDAO {
 		  		return ds.getConnection();
 			}
 			
-			// 카데고리별 게시판이름 불러오기
+			// 카데고리별 게시판정보 불러오기
 			public List<CateDTO> getcatelist(int cate){
 				List<CateDTO> list = new ArrayList<CateDTO>();
 				
