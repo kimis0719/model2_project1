@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.Action;
 import service.ActionForward;
 import service.BoardListAction;
+import service.CateListAction;
 
 /**
  * Servlet implementation class board_controller
@@ -36,9 +37,9 @@ public class board_controller extends HttpServlet {
 		ActionForward forward = null;
 
 		// 카테고리별 목록 출력
-		if (command.equals("CateListAction.do")) {
+		if (command.equals("/CateListAction.do")) {
 			try {
-				action = new BoardListAction();
+				action = new CateListAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -46,7 +47,7 @@ public class board_controller extends HttpServlet {
 		}
 		
 		// 게시판별 게시글 출력
-		if (command.equals("BoardListAction.do")) {
+		if (command.equals("/BoardListAction.do")) {
 			try {
 				action = new BoardListAction();
 				forward = action.execute(request, response);

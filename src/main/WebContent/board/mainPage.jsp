@@ -17,20 +17,15 @@
 			<th>게임</th>
 			<th>연예</th>
 		</tr>
+		<%-- <c:if test="${Integer.parseInt(catelist.cate_code) == 1 }"> --%>
 		<c:forEach var="c" items="${catelist}">
-			<c:set var="num" value="5" />
 			<tr>
-				<td><a href="./BoardListAction.do?cate=${cate}">
-						${c.cate_name} </a></td>
+				<td><a href="">
+						${c.cate_name} </a>
+						${c.cate_code} </a></td>
 			</tr>
 		</c:forEach>
-
-		<tr>
-			<c:forEach var="item" items="${catelist}">
-     			<td>${item.cate_name}</td>
-			</c:forEach>
-		</tr>
-
+		<%-- </c:if> --%>
 	</table>
 
 </body>
