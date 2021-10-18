@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html lang=kr">
-
-<head>
-<title>메인 페이지</title>
-<meta charset="utf-8">
+<html lang="kr">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -187,10 +183,8 @@ input[type=text]:focus {
 }
 }
 </style>
-</head>
-<body>
 
-	<div class="header">
+		<div class="header">
 		<h1>중앙 커뮤니티</h1>
 		<form>
 			<input type="text" name="search" placeholder="통합검색...">
@@ -257,115 +251,3 @@ input[type=text]:focus {
     </div>
   </div>
 </nav>  
-
-	<div class="row">
-		<div class="leftcolumn">
-			<div class="card">
-				<h2>TITLE HEADING</h2>
-				<div class="fakeimg" style="height: 200px;">Image</div>
-				<p>Some text..</p>
-				<p>Sunt in culpa qui officia deserunt mollit anim id est laborum
-					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-					labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-					nostrud exercitation ullamco.</p>
-			</div>
-			<div class="card">
-				<h2>TITLE HEADING</h2>
-				<div class="fakeimg" style="height: 200px;">Image</div>
-				<p>Some text..</p>
-				<p>Sunt in culpa qui officia deserunt mollit anim id est laborum
-					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-					labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-					nostrud exercitation ullamco.</p>
-			</div>
-			<div class="card">
-				<h2>TITLE HEADING</h2>
-				<div class="fakeimg" style="height: 200px;">Image</div>
-				<p>Some text..</p>
-				<p>Sunt in culpa qui officia deserunt mollit anim id est laborum
-					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-					labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-					nostrud exercitation ullamco.</p>
-			</div>
-			<div class="card">
-				<h2>TITLE HEADING</h2>
-				<div class="fakeimg" style="height: 200px;">Image</div>
-				<p>Some text..</p>
-				<p>Sunt in culpa qui officia deserunt mollit anim id est laborum
-					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-					labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-					nostrud exercitation ullamco.</p>
-			</div>
-		</div>
-
-		<div class="rightcolumn">
-			<div class="card">
-				<button class="btn 로그인">로그인</button>
-				<button class="btn 회원가입">회원가입</button>
-			</div>
-			
-			<div class="card">
-				<h3>Popular Post</h3>
-				<div class="fakeimg">
-					<p>Image</p>
-				</div>
-				<div class="fakeimg">
-					<p>Image</p>
-				</div>
-				<div class="fakeimg">
-					<p>Image</p>
-				</div>
-			</div>
-			<div class="card">
-				<h3>Follow Me</h3>
-				<p>Some text..</p>
-			</div>
-			
-		</div>
-	</div>
-
-	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
-	<script>
-		//Get the button
-		var mybutton = document.getElementById("myBtn");
-
-		// When the user scrolls down 20px from the top of the document, show the button
-		window.onscroll = function() {
-			scrollFunction()
-		};
-
-		function scrollFunction() {
-			if (document.body.scrollTop > 20
-					|| document.documentElement.scrollTop > 20) {
-				mybutton.style.display = "block";
-			} else {
-				mybutton.style.display = "none";
-			}
-		}
-
-		// When the user clicks on the button, scroll to the top of the document
-		function topFunction() {
-			document.body.scrollTop = 0;
-			document.documentElement.scrollTop = 0;
-		}
-	</script>
-
-	<div class="footer">
-		<!-- 로고 추가 -->
-		<p>Copyright© All rights reserved.</p>
-		<dl>
-			<dt>주소: 서울특별시</dt>
-			<dt>상호: CHC</dt>
-			<dt>담당자: 홍길동</dt>
-			<dt>연락처: 111-1111-1111</dt>
-		</dl>
-		<h6>본 사이트에서는 각종 청소년유해정보로부터 청소년을 보호하고자 관련법률에 따라 19세미만의 청소년들이 유해정보에
-			접근할 수 없도록 청소년취급방침을 마련하여 시행하고 있습니다. 또한 청소년의 건전한 성장을 저해하는 음란 · 불법 등의
-			유해정보와 비윤리적 · 반사회적 행위에 대해서는 엄격하게 제재하고 있습니다.</h6>
-	</div>
-
-
-</body>
-
-</html>

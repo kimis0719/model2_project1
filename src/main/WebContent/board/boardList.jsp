@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 
 <head>
 <title>메인 페이지</title>
@@ -212,104 +212,70 @@ tr:hover {background-color: #ffffff;}
 </head>
 <body>
 
-	<div class="header">
-		<h1>중앙 커뮤니티</h1>
-		<form>
-			<input type="text" name="search" placeholder="통합검색...">
-			<button class="btn btn-info">
-				<span class="glyphicon glyphicon-search"></span> 검색
-			</button>
-		</form>
-	</div>
-
-
-	<nav class="navbar navbar-inverse" data-spy="affix"
-		data-offset-top="197">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">홈</a>
-			</div>
-			<div>
-				<div class="collapse navbar-collapse" id="myNavbar">
-					<ul class="nav navbar-nav">
-						<li><a href="#section1">공지</a></li>
-						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#">일상●취미 <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<c:forEach var="c" items="${catelist}">
-									<c:if test="${c.cate_code == 2}">
-										<li><a href=""> ${c.cate_name}</a></li>
-									</c:if>
-								</c:forEach>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#">스포츠 <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<c:forEach var="c" items="${catelist}">
-									<c:if test="${c.cate_code == 3}">
-										<li><a href=""> ${c.cate_name}</a></li>
-									</c:if>
-								</c:forEach>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#">게임 <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<c:forEach var="c" items="${catelist}">
-									<c:if test="${c.cate_code == 4}">
-										<li><a href=""> ${c.cate_name}</a></li>
-									</c:if>
-								</c:forEach>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#">연예 <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<c:forEach var="c" items="${catelist}">
-									<c:if test="${c.cate_code == 5}">
-										<li><a href=""> ${c.cate_name}</a></li>
-									</c:if>
-								</c:forEach>
-							</ul></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</nav>
+	<%-- <jsp:include page="./CateListAction.do"></jsp:include> --%>
+	 <c:import url="/CateListAction.do" />
 	
 	<div class="row">
 		<div class="leftcolumn">
 			<table align = "center">
-			<br>
+				<br><!-- 게시판명이 들어갈 자리 -->
 				<tr>
-					<th width = 50>번호</th>
-					<th width = 400>제목</th>
-					<th width = 100>좋아요</th>
-					<th width = 200>작성일</th>
+					<th width = 100>번호</th>
+					<th width = 700>제목</th>
+					<th width = 100>조회수</th>
+					<th width = 150>작성일</th>
 				</tr>
-				<tr>
-					<td>Peter</td>
-					<td>Griffin</td>
-					<td>$100</td>
-				</tr>
-				<tr>
-					<td>Lois</td>
-					<td>Griffin</td>
-					<td>$150</td>
-				</tr>
-				<tr>
-					<td>Joe</td>
-					<td>Swanson</td>
-					<td>$300</td>
-				</tr>
-				<tr>
-					<td>Cleveland</td>
-					<td>Brown</td>
-					<td>$250</td>
-				</tr>
+				
+					<c:set var="num" value="${listcount - (page-1) * 10 }"/>	
+					<c:forEach var="b" items="${boardlist}">
+						<tr>
+							<td>${num} 
+								<c:set var="num" value="${num-1}"/>	
+							</td>
+							<td> 
+								<a href="./BoardDetailAction.do?board_num=${b.board_num}&page=${page}">
+								 	${b.board_subject}
+								 </a>	
+							</td>
+							<td> ${b.board_name}	</td>
+							<td> 
+								<fmt:formatDate value="${b.board_date}" pattern="yyyy-MM-dd HH:mm:ss EEE요일"/> 
+							</td>
+							<td> ${b.board_readcount}</td>
+						</tr>
+					</c:forEach>
+				</table><br>
+				
+				<div style="text" align="center" >
+				<c:if test="${listcount > 0 }">
+					<!-- 1페이지로 이동 -->
+					<a href="./BoardListAction.do?page=1" style="text-decoration: none"> << </a>
+					
+					<!-- 이전블럭으로 이동 -->
+					<c:if test="${startPage > 10 }"> 
+						<a href ="./BoardListAction.do?page=${startPage - 10 }">[이전]</a>
+					</c:if>
+					
+					<!-- 각 블럭에 10개의 페이지 출력 -->
+					<c:forEach var="i" begin="${startPage}" end="${endPage}">
+						<c:if test="${i == page }">
+							[${i}]
+						</c:if>
+						<c:if test="${i != page }">
+							<a href="./BoardListAction.do?page=${i}">[${i}]</a>
+						</c:if>
+					</c:forEach>
+					
+					<!-- 다음블럭으로 이동 -->
+					<c:if test="${endPage < pageCount }"> 
+						<a href ="./BoardListAction.do?page=${startPage + 10 }">[다음]</a>
+					</c:if>
+					
+					<!-- 마지막 페이지로 이동 -->
+					<a href="./BoardListAction.do?page=${pageCount}" style="text-decoration: none"> >> </a>
+				</c:if>
+				</div>
+				
 			</table>
 		</div>
 

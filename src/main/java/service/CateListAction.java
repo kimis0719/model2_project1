@@ -25,11 +25,11 @@ public class CateListAction implements Action{
 			
 			// 게시판정보(게시판 번호, 카테고리번호, 게시판 이름) 받아올 리스트 생성
 			List<CateDTO> list = dao.getcatelist(cate);
-			System.out.println("catelist : "+catelist);
 			
 			// 게시판정보 catelist에 추가
 			catelist.addAll(list);
 		}
+		System.out.println("catelist : "+catelist);
 		// 게시판정보 공유설정
 		request.setAttribute("catelist", catelist);
 		
@@ -37,7 +37,7 @@ public class CateListAction implements Action{
 		ActionForward forward = new ActionForward();
 		
 		forward.setRedirect(false);  // dispatcher 방식으로 포워딩
-		forward.setPath("./board/mainPage.jsp");
+		forward.setPath("./layout/header.jsp");
 		
 		
 		return forward;
