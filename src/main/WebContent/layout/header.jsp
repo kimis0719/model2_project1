@@ -65,7 +65,7 @@
 					<li><a href=""> ${c.cate_name}</a></li>
 				</c:if>
 			  </c:forEach>
-            </ul>
+            </ul> 
           </li>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">연예 <span class="caret"></span></a>
             <ul class="dropdown-menu">
