@@ -15,13 +15,14 @@
 </style>
 </head>
 <body>
+
 <div class="rightcolumn">
-			<div class="card">
-				<button class="btn login">로그인</button>
-				<button class="btn sing-up">회원가입</button>
+				<div class="card">
+					<button class="btn login">로그인</button>
+					<button class="btn sing-up">회원가입</button>
+				</div>
 			</div>
-		</div>
-	</div>
+	</div>		
 
 
 

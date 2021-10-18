@@ -108,7 +108,7 @@ input[type=text]:focus {
 	color: black;
 }
 
-.sign-up:hover {
+.sing-up:hover {
 	background: #ddd;
 }
 
@@ -155,9 +155,6 @@ input[type=text]:focus {
 	color: #919191;
 	margin-top: 25px;
 }
-/* footer address a{
-    display: block; /* a 태그는 인라인요소라 수평으로 출력돼서 블록으로 강제로 수직으로 출력되도록 함*/
-} */
 
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
@@ -168,6 +165,3 @@ input[type=text]:focus {
 	}
 }
 }
-
-
-

@@ -17,7 +17,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
- <c:import url="../layout/header.jsp" />
+	<c:import url="../layout/header.jsp" />
 
 	<div class="row">
 		<div class="leftcolumn">
@@ -48,7 +48,9 @@
 					labore et dolore magna aliqua. Ut enim ad minim veniam, quis
 					nostrud exercitation ullamco.</p>
 			</div>
-		
+		</div>
+
+	
 	<c:import url="../layout/footer.jsp" />
 
 </body>
