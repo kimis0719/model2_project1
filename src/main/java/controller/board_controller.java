@@ -44,6 +44,8 @@ public class board_controller extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		
+		// 게시판별 목록 출력
 		}else if (command.equals("/BoardListAction.do")) {
 			try {
 				action = new BoardListAction();

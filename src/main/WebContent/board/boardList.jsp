@@ -211,9 +211,8 @@ tr:hover {background-color: #ffffff;}
 </style>
 </head>
 <body>
-
-	<%-- <jsp:include page="./CateListAction.do"></jsp:include> --%>
-	 <c:import url="./CateListAction.do" />
+	
+	<jsp:include page="../layout/header.jsp" />
 	
 	<div class="row">
 		<div class="leftcolumn">

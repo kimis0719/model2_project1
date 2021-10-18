@@ -28,7 +28,7 @@ public class BoardDAO {
 		}
 		
 		// 글 목록 : 총 데이터 갯수 구하기
-		public int getCount() {
+		public int getCount(int cate_num) {
 			int result = 0;
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -37,9 +37,10 @@ public class BoardDAO {
 			try {
 				con = getConnection();
 				
-				String sql= "select count(*) from board";
+				String sql= "select count(*) from board cate_num=? and board_yn='y'";
 				
 				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, cate_num);
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()) {
@@ -64,7 +65,7 @@ public class BoardDAO {
 			
 			try {
 				con = getConnection();
-				String sql = "select * from (select rownum rnum, board.* from (select * from model2 order by board_re_ref desc, ";
+				String sql = "select * from (select rownum rnum, board.* from (select * from board order by board_re_ref desc, ";
 				sql += " board_re_seq asc) board ) where rnum >=? and rnum<=? and cate_num=? and board_yn='y'";
 				
 				pstmt = con.prepareStatement(sql);
