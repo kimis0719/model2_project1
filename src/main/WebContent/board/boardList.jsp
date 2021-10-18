@@ -213,7 +213,7 @@ tr:hover {background-color: #ffffff;}
 <body>
 
 	<%-- <jsp:include page="./CateListAction.do"></jsp:include> --%>
-	 <c:import url="/CateListAction.do" />
+	 <c:import url="./CateListAction.do" />
 	
 	<div class="row">
 		<div class="leftcolumn">

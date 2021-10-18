@@ -183,7 +183,8 @@ input[type=text]:focus {
 }
 }
 </style>
-
+	
+	
 		<div class="header">
 		<h1>중앙 커뮤니티</h1>
 		<form>
@@ -195,7 +196,7 @@ input[type=text]:focus {
 	</div>
 
 
-	<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
+<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
   <div class="container-fluid">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">

@@ -189,8 +189,10 @@ input[type=text]:focus {
 </style>
 </head>
 <body>
- <c:import url="../layout/header.jsp" />
-
+	<!-- header -->
+<%-- 	<c:import url="/layout/header.jsp" /> --%>
+	<jsp:include page="/layout/header.jsp" />
+	
 	<div class="row">
 		<div class="leftcolumn">
 			<div class="card">
