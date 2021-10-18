@@ -18,8 +18,8 @@ import service.CateListAction;
  * Servlet implementation class board_controller
  */
 
-@WebServlet("*.do")
-public class board_controller extends HttpServlet {
+@WebServlet("/BoardController")
+public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// doGet(), doPost() 메소드에서 공통적인 작업을 처리하는 메소드
@@ -47,6 +47,48 @@ public class board_controller extends HttpServlet {
 		}else if (command.equals("/BoardListAction.do")) {
 			try {
 				action = new BoardListAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		//글작성
+		}else if (command.equals("/BoardWriteAction.do")) {
+			try {
+				action = new BoardWriteAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		//글작성 폼
+		}else if (command.equals("/BoardWrite.do")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("./board/boardWrite.jsp");
+		//글수정 폼
+		}else if (command.equals("/BoardUpdateAction.do")) {
+			try {
+				action = new BoardUpdateAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		//글수정
+		}else if (command.equals("/BoardUpdate.do")) {
+			try {
+				action = new BoardUpdate();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		//글삭제 폼
+		}else if (command.equals("/BoardDeleteAction.do")) {
+			forward = new ActionForward();
+			forward.setRedirect(false); // dispatcher 방식으로 포워딩
+			forward.setPath("./board/boardDelete.jsp");
+		//글삭제
+		}else if (command.equals("/BoardDelete.do")) {
+			try {
+				action = new BoardDeleteAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
