@@ -24,7 +24,7 @@
 	</form>
 </div>
 
-
+ 
 <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
   <div class="container-fluid">
     <div class="navbar-header">
