@@ -4,17 +4,17 @@
 
 <%-- <c:import url="../css/header.css" /> --%>  
 <div class="header">
-		<h1>중앙 커뮤니티</h1>
+	<h1>중앙 커뮤니티</h1>
 		<form>
 			<input type="text" name="search" placeholder="통합검색...">
 			<button class="btn btn-info">
-				<span class="glyphicon glyphicon-search"></span> 검색
+			<span class="glyphicon glyphicon-search"></span> 검색
 			</button>
-		</form>
-	</div>
+	</form>
+</div>
 
 
-	<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
+<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
   <div class="container-fluid">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">

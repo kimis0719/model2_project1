@@ -37,7 +37,7 @@ public class CateListAction implements Action{
 		ActionForward forward = new ActionForward();
 		
 		forward.setRedirect(false);  // dispatcher 방식으로 포워딩
-		forward.setPath("./layout/header.jsp");
+		forward.setPath("../layout/header.jsp");
 		
 		
 		return forward;

@@ -44,10 +44,7 @@ public class board_controller extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		
-		// 게시판별 게시글 출력
-		if (command.equals("/BoardListAction.do")) {
+		}else if (command.equals("/BoardListAction.do")) {
 			try {
 				action = new BoardListAction();
 				forward = action.execute(request, response);
