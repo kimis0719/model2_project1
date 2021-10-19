@@ -11,14 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.Action;
 import service.ActionForward;
+import service.BoardDeleteAction;
 import service.BoardListAction;
+import service.BoardUpdate;
+import service.BoardUpdateAction;
+import service.BoardWrite;
 import service.CateListAction;
 
 /**
  * Servlet implementation class board_controller
  */
 
-@WebServlet("/BoardController")
+@WebServlet("*.board")
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -54,16 +58,19 @@ public class BoardController extends HttpServlet {
 		//글작성
 		}else if (command.equals("/BoardWriteAction.do")) {
 			try {
-				action = new BoardWriteAction();
+				action = new BoardWrite();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		//글작성 폼
 		}else if (command.equals("/BoardWrite.do")) {
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("./board/boardWrite.jsp");
+			try {
+				action = new BoardWrite();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		//글수정 폼
 		}else if (command.equals("/BoardUpdateAction.do")) {
 			try {

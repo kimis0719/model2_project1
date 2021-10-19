@@ -102,5 +102,86 @@ public class BoardDAO {
 			
 			return list;
 		}
+		
+		//글작성:원문작성
+		public int insert(BoardDTO boardDTO) {
+			int result = 0;
+			Connection con = null;
+			PreparedStatement ps = null;
+			
+			try {
+				con = getConnection();
+				
+				String sql = "insert into board values(board_seq.nextval, ?, ?, ?, ?, sysdate, 0, 0, 0, '', '', 'y', ?)";
+				
+				ps = con.prepareStatement(sql);
+				ps.setString(1, boardDTO.getBoard_title());
+				ps.setString(2, boardDTO.getBoard_content());
+				ps.setInt(3, boardDTO.getBoard_memnum());
+				ps.setString(4, boardDTO.getBoard_nick());
+				ps.setInt(5, boardDTO.getCate_num());
+				
+				result = ps.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(ps != null) try {ps.close();}catch(Exception e) {}
+				if(con != null) try {con.close();}catch(Exception e) {}
+			}
+			
+			return result;
+		}//insert end
 
+		//글 수정
+		public int update(BoardDTO boardDTO) {
+			int result = 0;
+			Connection con = null;
+			PreparedStatement ps = null;
+			
+			try {
+				con = getConnection();
+				
+				String sql = "update board set board_title=?, board_content=?, board_nick=?, board_up_memnum=?, board_up_date=sysdate where board_num=?";
+				
+				ps = con.prepareStatement(sql);
+				ps.setString(1, boardDTO.getBoard_title());
+				ps.setString(2, boardDTO.getBoard_content());
+				ps.setString(3, boardDTO.getBoard_nick());
+				ps.setInt(4, boardDTO.getBoard_memnum());
+				ps.setInt(5, boardDTO.getBoard_num());
+				
+				result = ps.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(ps != null) try {ps.close();}catch(Exception e) {}
+				if(con != null) try {con.close();}catch(Exception e) {}
+			}
+			return result;
+		}//update end
+		
+		//글 삭제
+		public int delete(BoardDTO boardDTO) {
+			int result = 0;
+			Connection con = null;
+			PreparedStatement ps = null;
+			
+			try {
+				con = getConnection();
+				
+				String sql = "update board set board_yn='n' where board_num=?";
+				
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, boardDTO.getBoard_num());
+				
+				result = ps.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(ps != null) try {ps.close();}catch(Exception e) {}
+				if(con != null) try {con.close();}catch(Exception e) {}
+			}
+			
+			return result;
+		}//delete end
 }

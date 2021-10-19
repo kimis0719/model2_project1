@@ -44,11 +44,11 @@
 						class="form-control" id="title" placeholder="제목을 입력하세요."
 						name="title">
 				</div>
-
+				<input type="hidden" value="${member.mem_num}">
 				<div class="form-group">
 					<label for="writer">작성자</label> <input type="text"
 						class="form-control" id="writer" readonly="readonly" name="writer"
-						value="${board_nick}">
+						value="${member.mem_nick}">
 				</div>
 
 				<div class="form-group">

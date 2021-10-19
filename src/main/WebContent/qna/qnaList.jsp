@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cookie Notice</title>
+<title>Qna List</title>
 <c:import url="./boot.jsp" />
 <c:import url="../layout/header.jsp" />
 <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
@@ -43,66 +43,66 @@
 			
 			<tbody>
 				<c:forEach items="${lists}" var="list">
-						<c:if test="${list.step == 0}">
-							<tr class="${list.ref}">
-								<td class="td_num">${list.num}</td>
+						<c:if test="${list.qna_step == 0}">
+							<tr class="${list.qna_ref}">
+								<td class="td_num">${list.qna_num}</td>
 								<td class="td_view">
-									<c:if test="${list.acheck eq 0}">
+									<c:if test="${list.qna_check eq 0}">
 										<span class="state">미완료</span>
 									</c:if>
-									<c:if test="${list.acheck eq 1}">
+									<c:if test="${list.qna_check eq 1}">
 										<span class="state stateF">답변완료</span>
 									</c:if>
 								<!-- 비밀글일때 -->
-									<c:if test="${list.secret eq 1}">
-										<c:if test="${member.nickname ne list.writer && member.grade ne 9999}">비밀글입니다. <img alt="비밀글" src="../images/board/lock-line.png" style="margin-bottom: 4px;"></c:if>
-										<c:if test="${member.nickname eq list.writer || member.grade eq 9999}">
-											<a href="javascript:void(0)" id="showCloseDetail" class="view_txt">${list.contents} <img alt="비밀글" src="../images/board/lock-line.png" style="margin-bottom: 4px;"></a>
+									<c:if test="${list.qna_sec eq 1}">
+										<c:if test="${member.nickname ne list.qna_writer && member.grade ne 99}">비밀글입니다. <img alt="비밀글" src="../images/board/lock-line.png" style="margin-bottom: 4px;"></c:if>
+										<c:if test="${member.nickname eq list.qna_writer || member.grade eq 99}">
+											<a href="javascript:void(0)" id="showCloseDetail" class="view_txt">${list.qna_content} <img alt="비밀글" src="../images/board/lock-line.png" style="margin-bottom: 4px;"></a>
 										</c:if>
 									</c:if>
 								<!-- 비밀글 아닐때 -->
-									<c:if test="${list.secret eq 0}">
-										<a href="javascript:void(0)" id="showCloseDetail" class="view_txt">${list.contents}</a>
+									<c:if test="${list.qna_sec eq 0}">
+										<a href="javascript:void(0)" id="showCloseDetail" class="view_txt">${list.qna_content}</a>
 									</c:if>
 								</td>
-								<td class="td_writer">${list.writerS}</td>
-								<td class="td_date"><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd HH:mm" /></td>
+								<td class="td_writer">${list.qna_writerS}</td>
+								<td class="td_date"><fmt:formatDate value="${list.qna_date}" pattern="yyyy-MM-dd HH:mm" /></td>
 							</tr>
 						</c:if>
 						
-						<tr class="trQna trQna${list.ref}" style="display: table-row;">
+						<tr class="trQna trQna${list.qna_ref}" style="display: table-row;">
 							<td colspan="4" class="qna_wrap" style="display: table-cell;">
 							<!-- 질문 -->
-								<c:if test="${list.step == 0}">
+								<c:if test="${list.qna_step == 0}">
 									<div class="question">
 										<span class="iconQ">질문</span>
-											<div style="white-space: pre-line;"><c:out value="${list.contents}" /></div>
+											<div style="white-space: pre-line;"><c:out value="${list.qna_content}" /></div>
 										<br>
 										<div class="btns_wrap">
-											<input type="hidden" class="num" value="${list.num}">
-											<c:if test="${member.grade eq 9999}">
+											<input type="hidden" class="num" value="${list.qna_num}">
+											<c:if test="${member.grade eq 99}">
 												<a href="javascript:void(0)" class="btn_reply">답변하기 ></a>
 											</c:if>
-											<c:if test="${member.nickname eq list.writer}">
+											<c:if test="${member.nickname eq list.qna_writer}">
 												<a href="javascript:void(0)" class="btn_update">수정하기</a>
 											</c:if>
-											<c:if test="${member.nickname eq list.writer || member.grade eq 9999}">
-												<a href="qnaDelete?ref=${list.ref}">삭제하기</a>
+											<c:if test="${member.nickname eq list.qna_writer || member.grade eq 99}">
+												<a href="qnaDelete?ref=${list.qna_ref}">삭제하기</a>
 											</c:if>
 										</div>
 									</div>
 								</c:if>
 							<!-- 답변 -->
-								<c:if test="${list.step > 0}">
+								<c:if test="${list.qna_step > 0}">
 									<div class="answer">
 										<span class="iconA">답변</span>
-										<div style="white-space: pre-line;"><c:out value="${list.contents}" /></div>
+										<div style="white-space: pre-line;"><c:out value="${list.qna_content}" /></div>
 										<br>
 										<div class="btns_wrap">	
-											<input type="hidden" class="num" value="${list.ref}">
-											<c:if test="${member.grade eq 9999 && member.nickname eq list.writer}">
+											<input type="hidden" class="num" value="${list.qna_ref}">
+											<c:if test="${member.grade eq 99 && member.nickname eq list.qna_writer}">
 												<a href="javascript:void(0)" class="btn_replyUpdate">수정하기</a>
-												<a href="qnaAnswerDelete?num=${list.num}&&ref=${list.ref}">삭제하기</a>
+												<a href="qnaAnswerDelete?qna_num=${list.qna_num}&&qna_ref=${list.qna_ref}">삭제하기</a>
 											</c:if>
 										</div>
 									</div>
@@ -113,7 +113,7 @@
 			</tbody>
 		</table>
 		
-		<c:if test="${member.grade ne 9999}">
+		<c:if test="${member.grade ne 99}">
 			<div class="btn_wrap">
 				<input type="button" value="문의하기" class="btn_write">
 			</div>
@@ -174,15 +174,15 @@
 	
 
 	function openUpdate(num) {
-		openWin = window.open("qnaUpdate?num="+num, "updateForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
+		openWin = window.open("qnaUpdate?qna_num="+num, "updateForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 	}
 
 	function openAnswer(num) {
-		openWin = window.open("qnaAnswer?num="+num, "answerForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
+		openWin = window.open("qnaAnswer?qna_num="+num, "answerForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 	}
 
 	function openAnswerUpdate(num) {
-		openWin = window.open("qnaAnswerUpdate?num="+num, "answerForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
+		openWin = window.open("qnaAnswerUpdate?qna_num="+num, "answerForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 	}
 
 	//문의 수정
