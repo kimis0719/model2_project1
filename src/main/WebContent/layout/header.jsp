@@ -15,6 +15,9 @@
 </style>
 </head>
 <div class="header">
+	<div class="main-frame">
+		<a href="#"><img src="./img/logo.png"></a>
+	</div>
 	<h1>중앙 커뮤니티</h1>
 		<form>
 			<input type="text" name="search" placeholder="통합검색...">

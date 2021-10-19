@@ -1,3 +1,9 @@
+.main-frame {
+	text-align: left;
+	width: 1px;
+	height: 1px;
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -43,19 +49,20 @@ input[type=text]:focus {
 	width: 50%;
 }
 
-  .affix {
-    top:0;
-    width: 100%;
-    z-index: 9999 !important;
-  }
-  .navbar {
-    margin-bottom: 0px;
-  }
+.affix {
+	top: 0;
+	width: 100%;
+	z-index: 9999 !important;
+}
 
-  .affix ~ .container-fluid {
-   position: relative;
-   top: 50px;
-  }
+.navbar {
+	margin-bottom: 0px;
+}
+
+.affix ~ .container-fluid {
+	position: relative;
+	top: 50px;
+}
 
 /* Create two unequal columns that floats next to each other */
 /* Left column */
@@ -89,7 +96,7 @@ input[type=text]:focus {
 /* Set a style for all buttons */
 .btn {
 	border: none;
-	color: white;
+	color: black;
 	padding: 14px 28px;
 	font-size: 16px;
 	cursor: pointer;
@@ -103,12 +110,12 @@ input[type=text]:focus {
 	background-color: #EC5E5E;
 }
 
-.sing-up {
+.sign-up {
 	background-color: #e7e7e7;
 	color: black;
 }
 
-.sing-up:hover {
+.sign-up:hover {
 	background: #ddd;
 }
 
@@ -123,7 +130,7 @@ input[type=text]:focus {
 /* Clear floats after the columns */
 .row:after {
 	content: "";
-	display: table; 
+	display: table;
 	clear: both;
 }
 
@@ -142,7 +149,7 @@ input[type=text]:focus {
 	padding: 15px;
 	border-radius: 4px;
 }
- 
+
 #myBtn:hover {
 	background-color: #555;
 }
@@ -155,13 +162,44 @@ input[type=text]:focus {
 	color: #919191;
 	margin-top: 25px;
 }
-
+/* footer address a{
+    display: block; /* a 태그는 인라인요소라 수평으로 출력돼서 블록으로 강제로 수직으로 출력되도록 함*/
+}
+*
+/
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+
+
+
+
 @media screen and (max-width: 800px) {
 	.leftcolumn, .rightcolumn {
 		width: 100%;
 		padding: 0;
 	}
 }
+
+}
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th {
+	padding: 8px;
+	background: #ffffff;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+}
+
+td {
+	padding: 8px;
+	background-color: #fbfbfb;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+	background-color: #ffffff;
 }

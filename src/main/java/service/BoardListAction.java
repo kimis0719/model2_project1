@@ -28,14 +28,28 @@ public class BoardListAction implements Action {
 		int endRow = page * limit;
 		
 		BoardDAO dao = BoardDAO.getInstance();
-
-		
 		int listcount = dao.getCount();			// 총 데이터 갯수 구해오는 그룹함수
 		System.out.println("listcount : " + listcount);
 		
 		List<BoardDTO> boardlist = dao.getList(startRow, endRow, cate_num);
 		System.out.println("boardlist : "+boardlist);
-
+		
+		// 총 페이지
+		int pageCount = listcount/limit+((listcount%limit==0) ? 0 : 1);
+		
+		int startPage = ((page-1)/10) * limit + 1; // 1, 11, 21...
+		int endPage = startPage + 10 - 1; // 10, 20, 30...
+		
+		if(endPage > pageCount) endPage = pageCount;
+		
+		request.setAttribute("cate_num", cate_num);
+		request.setAttribute("page", page);
+		request.setAttribute("listcount", listcount);
+		request.setAttribute("boardlistcount", boardlist);
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		
 		ActionForward forward = new ActionForward();
 		
 		// request 객체로 공유를 한 경우에는 dispatcher 방식으로 포워딩이 되어야,

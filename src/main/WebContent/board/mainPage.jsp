@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html lang=kr">
+<html lang=kr>
  
 <head> 
 <title>메인페이지</title>
@@ -49,6 +49,13 @@
 					nostrud exercitation ullamco.</p>
 			</div>
 		</div>
+			<div class="rightcolumn">
+			<div class="card">
+				<button class="btn login">로그인</button>
+				<button class="btn sing-up">회원가입</button>
+			</div>
+		</div>
+	</div>
 
 	
 	<c:import url="../layout/footer.jsp" />
