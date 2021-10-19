@@ -14,8 +14,8 @@
 	<br>
 	
 <script type="text/javascript">
-	location.href = "./CateListAction.do";
+	location.href = "./CateListAction.board";
 </script>
-
+	
 </body>
 </html>

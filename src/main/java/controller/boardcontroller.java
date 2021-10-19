@@ -18,8 +18,8 @@ import service.CateListAction;
  * Servlet implementation class board_controller
  */
 
-@WebServlet("*.do")
-public class board_controller extends HttpServlet {
+@WebServlet("*.board")
+public class boardcontroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// doGet(), doPost() 메소드에서 공통적인 작업을 처리하는 메소드
@@ -37,7 +37,7 @@ public class board_controller extends HttpServlet {
 		ActionForward forward = null;
 
 		// 카테고리별 게시판 정보 출력
-		if (command.equals("/CateListAction.do")) {
+		if (command.equals("/CateListAction.board")) {
 			try {
 				action = new CateListAction();
 				forward = action.execute(request, response);
@@ -46,7 +46,7 @@ public class board_controller extends HttpServlet {
 			}
 		
 		// 게시판별 목록 출력
-		}else if (command.equals("/BoardListAction.do")) {
+		}else if (command.equals("/BoardListAction.board")) {
 			try {
 				action = new BoardListAction();
 				forward = action.execute(request, response);

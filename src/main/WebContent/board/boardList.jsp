@@ -8,13 +8,6 @@
 <head>
 <title>메인 페이지</title>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 * {
 	box-sizing: border-box;
@@ -189,7 +182,7 @@ input[type=text]:focus {
 		padding: 0;
 	}
 }
-}
+
 table {
   border-collapse: collapse;
   width: 100%;
@@ -198,7 +191,7 @@ th{
  padding: 8px;
  background: #ffffff;
  text-align: center;
-  border-bottom: 1px solid #ddd;
+ border-bottom: 1px solid #ddd;
 }
 
 td {
@@ -214,15 +207,18 @@ tr:hover {background-color: #ffffff;}
 	
 	<jsp:include page="../layout/header.jsp" />
 	
+	
+	
 	<div class="row">
 		<div class="leftcolumn">
-			<table align = "center">
+			<table align="center">
 				<br><!-- 게시판명이 들어갈 자리 -->
-				<tr>
-					<th width = 100>번호</th>
-					<th width = 700>제목</th>
-					<th width = 100>조회수</th>
-					<th width = 150>작성일</th>
+				<tr > 
+					<th width = >번호</th>
+					<th width = >제목</th>
+					<th width = >작성자</th>
+					<th width = >조회수</th>
+					<th width = >작성일</th>
 				</tr>
 				
 					<c:set var="num" value="${listcount - (page-1) * 10 }"/>	
@@ -233,14 +229,14 @@ tr:hover {background-color: #ffffff;}
 							</td>
 							<td> 
 								<a href="./BoardDetailAction.do?board_num=${b.board_num}&page=${page}">
-								 	${b.board_subject}
+								 	${b.board_title}
 								 </a>	
 							</td>
-							<td> ${b.board_name}	</td>
+							<td> ${b.board_nick}</td>
+							<td> ${b.board_count}</td>
 							<td> 
-								<fmt:formatDate value="${b.board_date}" pattern="yyyy-MM-dd HH:mm:ss EEE요일"/> 
+								<fmt:formatDate value="${b.board_date}" pattern="yyyy-MM-dd HH:mm:ss"/> 
 							</td>
-							<td> ${b.board_readcount}</td>
 						</tr>
 					</c:forEach>
 				</table><br>
@@ -248,11 +244,11 @@ tr:hover {background-color: #ffffff;}
 				<div style="text" align="center" >
 				<c:if test="${listcount > 0 }">
 					<!-- 1페이지로 이동 -->
-					<a href="./BoardListAction.do?page=1" style="text-decoration: none"> << </a>
+					<a href="./BoardListAction.board?cate_num=${currentCate}&page=1" style="text-decoration: none"> << </a>
 					
 					<!-- 이전블럭으로 이동 -->
 					<c:if test="${startPage > 10 }"> 
-						<a href ="./BoardListAction.do?page=${startPage - 10 }">[이전]</a>
+						<a href ="./BoardListAction.board?cate_num=${currentCate}&page=${startPage - 10 }">[이전]</a>
 					</c:if>
 					
 					<!-- 각 블럭에 10개의 페이지 출력 -->
@@ -261,17 +257,17 @@ tr:hover {background-color: #ffffff;}
 							[${i}]
 						</c:if>
 						<c:if test="${i != page }">
-							<a href="./BoardListAction.do?page=${i}">[${i}]</a>
+							<a href="./BoardListAction.board?cate_num=${currentCate}&page=${i}">[${i}]</a>
 						</c:if>
 					</c:forEach>
 					
 					<!-- 다음블럭으로 이동 -->
 					<c:if test="${endPage < pageCount }"> 
-						<a href ="./BoardListAction.do?page=${startPage + 10 }">[다음]</a>
+						<a href ="./BoardListAction.board?cate_num=${currentCate}&page=${startPage + 10 }">[다음]</a>
 					</c:if>
 					
 					<!-- 마지막 페이지로 이동 -->
-					<a href="./BoardListAction.do?page=${pageCount}" style="text-decoration: none"> >> </a>
+					<a href="./BoardListAction.board?cate_num=${currentCate}&page=${pageCount}" style="text-decoration: none"> >> </a>
 				</c:if>
 				</div>
 				

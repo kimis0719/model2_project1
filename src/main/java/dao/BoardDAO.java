@@ -37,7 +37,7 @@ public class BoardDAO {
 			try {
 				con = getConnection();
 				
-				String sql= "select count(*) from board cate_num=? and board_yn='y'";
+				String sql= "select count(*) from board where cate_num=? and board_yn='y'";
 				
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, cate_num);
@@ -65,13 +65,14 @@ public class BoardDAO {
 			
 			try {
 				con = getConnection();
-				String sql = "select * from (select rownum rnum, board.* from (select * from board order by board_re_ref desc, ";
-				sql += " board_re_seq asc) board ) where rnum >=? and rnum<=? and cate_num=? and board_yn='y'";
+				String sql = "select * from (select rownum rnum, board.* from ";
+					sql	+= " (select * from board where cate_num=? and board_yn='y' order by board_num desc) board )";
+					sql += "  where rnum >=? and rnum<=? "  ;
 				
 				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, start);
-				pstmt.setInt(2, end);
-				pstmt.setInt(3, cate_num);
+				pstmt.setInt(1, cate_num);
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
 				rs = pstmt.executeQuery();
 				
 				while(rs.next()){
