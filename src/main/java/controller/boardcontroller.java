@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.Action;
 import service.ActionForward;
+import service.BoardCountOrderListAction;
+import service.BoardGoodOrderListAction;
 import service.BoardListAction;
 import service.CateListAction;
 
@@ -53,7 +55,26 @@ public class boardcontroller extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		
+		// 정렬 : 게시판별 조회수로 정렬한 목록 출력
+		}else if (command.equals("/BoardCountOrderListAction.board")) {
+			try {
+				action = new BoardCountOrderListAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		// 정렬 : 게시판별 추천순으로 정렬한 목록 출력
+		}else if (command.equals("/BoardGoodOrderListAction.board")) {
+			try {
+				action = new BoardGoodOrderListAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
 
 		// 포워딩처리
 		if (forward != null) {

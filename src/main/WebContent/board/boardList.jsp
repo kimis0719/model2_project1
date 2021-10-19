@@ -7,6 +7,8 @@
 
 <head>
 <title>메인 페이지</title>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="<%=request.getContextPath() %>/board/boardScript.js"></script>
 <meta charset="utf-8">
 <style>
 * {
@@ -107,6 +109,14 @@ input[type=text]:focus {
 	cursor: pointer;
 }
 
+.btn2 {
+	border: none;
+	color: white;
+	padding: 4px 12px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
 .로그인 {
 	background-color: #EC5E5E;
 }
@@ -129,6 +139,14 @@ input[type=text]:focus {
 }
 
 .btn-info:hover {
+	background-color: #EC5E5E;
+}
+
+.btn-search {
+	background-color: #EC5E5E;
+}
+
+.btn-search:hover {
 	background-color: #EC5E5E;
 }
 
@@ -176,6 +194,8 @@ input[type=text]:focus {
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 
 
+
+
 @media screen and (max-width: 800px) {
 	.leftcolumn, .rightcolumn {
 		width: 100%;
@@ -184,94 +204,151 @@ input[type=text]:focus {
 }
 
 table {
-  border-collapse: collapse;
-  width: 100%;
+	border-collapse: collapse;
+	width: 100%;
 }
-th{
- padding: 8px;
- background: #ffffff;
- text-align: center;
- border-bottom: 1px solid #ddd;
+
+th {
+	padding: 8px;
+	background: #ffffff;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
 }
 
 td {
-  padding: 8px;
-  background-color: #fbfbfb;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+	padding: 8px;
+	background-color: #fbfbfb;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
 }
-tr:hover {background-color: #ffffff;}
+
+tr:hover {
+	background-color: #ffffff;
+}
 </style>
 </head>
 <body>
-	
+
 	<jsp:include page="../layout/header.jsp" />
-	
-	
-	
+
+
+
 	<div class="row">
 		<div class="leftcolumn">
-			<table align="center">
-				<br><!-- 게시판명이 들어갈 자리 -->
-				<tr > 
-					<th width = >번호</th>
-					<th width = >제목</th>
-					<th width = >작성자</th>
-					<th width = >조회수</th>
-					<th width = >작성일</th>
+			<table id=table align="center">
+				<br>
+				<!-- 게시판명이 들어갈 자리 -->
+				<tr text-align:center>
+					<th width=>번호</th>
+					<th width=>제목</th>
+					<th width=>작성자</th>
+					<th width=>조회수</th>
+					<th width=>추천</th>
+					<th width=>작성일</th>
 				</tr>
+
+				<c:set var="num" value="${listcount - (page-1) * 10 }" />
+				<c:forEach var="b" items="${boardlist}">
+					<tr>
+						<td>${num}<c:set var="num" value="${num-1}" />
+						</td>
+						<td text-decoration="none"><a
+							href="./BoardDetailAction.do?board_num=${b.board_num}&page=${page}">
+								${b.board_title} </a></td>
+						<td>${b.board_nick}</td>
+						<td>${b.board_count}</td>
+						<td>${b.board_good}</td>
+						<td><fmt:formatDate value="${b.board_date}"
+								pattern="yyyy-MM-dd HH:mm:ss" /></td>
+					</tr>
+				</c:forEach>
+			</table>
+
+			<div align="center">
+				<a class="sort">
+					<select name="orderselect" onchange="orderListToURL(this.value)">
+						<option value="./BoardListAction.board?cate_num=${currentCate}"
+							<c:if test="${orderName == null}">
+								selected
+							</c:if>
+						>최신순 정렬</option>
+						<option value="./BoardGoodOrderListAction.board?cate_num=${currentCate}&order=board_good" 
+							<c:if test="${orderName == 'board_good'}">
+								selected
+							</c:if>
+						>좋아요 정렬</option>
+						<option value="./BoardCountOrderListAction.board?cate_num=${currentCate}&order=board_count"
+							<c:if test="${orderName == 'board_count'}">
+								selected
+							</c:if>
+						>조회수 정렬</option>						
+					</select> 
+				</a>
+
+				<a class="search"> 
+
+
+						<form method=post action="boardlist.jsp">
+							<select name="searchselect" id="searchselect">
+								<option value="">검색</option>
+								<option value="writer">작성자</option>
+								<option value="subject">제목</option>
+								<option value="content">내용</option>
+							</select> 
+							<input type="searcharea" id="searcharea"> 
+							<button class="btn2 btn-search">
+								<span class="glyphicon glyphicon-search"></span> 검색
+							</button>
+						</form>
+					</a>
+						
+
+				<c:if test="${currentCate != 1 }">
+					<a class="boardWrite" align="right"> <input type="button"
+						value="글쓰기"
+						onclick="./BoardWriteAction.board?cate_num=${currentCate}">
+					</a>
+				</c:if>
 				
-					<c:set var="num" value="${listcount - (page-1) * 10 }"/>	
-					<c:forEach var="b" items="${boardlist}">
-						<tr>
-							<td>${num} 
-								<c:set var="num" value="${num-1}"/>	
-							</td>
-							<td> 
-								<a href="./BoardDetailAction.do?board_num=${b.board_num}&page=${page}">
-								 	${b.board_title}
-								 </a>	
-							</td>
-							<td> ${b.board_nick}</td>
-							<td> ${b.board_count}</td>
-							<td> 
-								<fmt:formatDate value="${b.board_date}" pattern="yyyy-MM-dd HH:mm:ss"/> 
-							</td>
-						</tr>
-					</c:forEach>
-				</table><br>
-				
-				<div style="text" align="center" >
+			</div>
+
+
+			<div style="" align="center">
 				<c:if test="${listcount > 0 }">
 					<!-- 1페이지로 이동 -->
-					<a href="./BoardListAction.board?cate_num=${currentCate}&page=1" style="text-decoration: none"> << </a>
-					
+					<a href="./BoardListAction.board?cate_num=${currentCate}&page=1"
+						style="text-decoration: none"> << </a>
+
 					<!-- 이전블럭으로 이동 -->
-					<c:if test="${startPage > 10 }"> 
-						<a href ="./BoardListAction.board?cate_num=${currentCate}&page=${startPage - 10 }">[이전]</a>
+					<c:if test="${startPage > 10 }">
+						<a
+							href="./BoardListAction.board?cate_num=${currentCate}&page=${startPage - 10 }">[이전]</a>
 					</c:if>
-					
+
 					<!-- 각 블럭에 10개의 페이지 출력 -->
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
 						<c:if test="${i == page }">
 							[${i}]
 						</c:if>
 						<c:if test="${i != page }">
-							<a href="./BoardListAction.board?cate_num=${currentCate}&page=${i}">[${i}]</a>
+							<a
+								href="./BoardListAction.board?cate_num=${currentCate}&page=${i}">[${i}]</a>
 						</c:if>
 					</c:forEach>
-					
+
 					<!-- 다음블럭으로 이동 -->
-					<c:if test="${endPage < pageCount }"> 
-						<a href ="./BoardListAction.board?cate_num=${currentCate}&page=${startPage + 10 }">[다음]</a>
+					<c:if test="${endPage < pageCount }">
+						<a
+							href="./BoardListAction.board?cate_num=${currentCate}&page=${startPage + 10 }">[다음]</a>
 					</c:if>
-					
+
 					<!-- 마지막 페이지로 이동 -->
-					<a href="./BoardListAction.board?cate_num=${currentCate}&page=${pageCount}" style="text-decoration: none"> >> </a>
+					<a
+						href="./BoardListAction.board?cate_num=${currentCate}&page=${pageCount}"
+						style="text-decoration: none"> >> </a>
 				</c:if>
-				</div>
-				
-			</table>
+			</div>
+
 		</div>
 
 		<div class="rightcolumn">
