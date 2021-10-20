@@ -1,13 +1,12 @@
 package service;
 
 import java.io.PrintWriter;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.memberDAO;
-import dto.memberDTO;
+import dao.MemberDAO;
+import dto.MemberDTO;
 
 public class Update implements Action {
 
@@ -23,22 +22,22 @@ public class Update implements Action {
 		// 출력을 위한 out객체 생성
 		PrintWriter out = response.getWriter();
 		
-		memberDTO member = new memberDTO(); // DTO 객체 생성
-		
-		member.setMem_num(request.getParameter("mem_num"));
-		member.setMem_id(request.getParameter("mem_id"));
-		member.setMem_nick(request.getParameter("mem_nick"));
-		member.setMem_pass(request.getParameter("mem_pass"));
-		member.setMem_email(request.getParameter("mem_email"));
-		member.setMem_id(request.getParameter("mem_img"));
-		member.setMem_id(request.getParameter("mem_phone"));
-		member.setMem_id(request.getParameter("mem_up_memnum"));
-		member.setMem_id(request.getParameter("mem_up_date"));
-		member.setMem_id(request.getParameter("mem_yn"));
-		member.setMem_id(request.getParameter("mem_grade"));
-		
-		memberDAO dao = memberDAO.getinstance();
-		memberDTO old = dao.getMember(member.getMem_id());
+		MemberDTO member = new MemberDTO(); // DTO 객체 생성
+		/*
+		 * member.setMem_num(request.getParameter("mem_num"));
+		 * member.setMem_id(request.getParameter("mem_id"));
+		 * member.setMem_nick(request.getParameter("mem_nick"));
+		 * member.setMem_pass(request.getParameter("mem_pass"));
+		 * member.setMem_email(request.getParameter("mem_email"));
+		 * member.setMem_img(request.getParameter("mem_img"));
+		 * member.setMem_phone(request.getParameter("mem_phone"));
+		 * member.setMem_up_memnum(request.getParameter("mem_up_memnum"));
+		 * member.setMem_up_date(request.getParameter("mem_up_date"));
+		 * member.setMem_yn(request.getParameter("mem_yn"));
+		 * member.setMem_grade(request.getParameter("mem_grade"));
+		 */
+		MemberDAO dao = MemberDAO.getInstance();
+		MemberDTO old = dao.getMember(member.getMem_id());
 		
 		
 		return null;

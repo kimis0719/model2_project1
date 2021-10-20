@@ -11,55 +11,116 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.Action;
 import service.ActionForward;
-import service.Delete;
+import service.Idcheck;
+import service.Login;
+import service.Member;
+import service.Nickcheck;
 
 /**
- * Servlet implementation class MemberController
+ * Servlet implementation class board_controller
  */
-@WebServlet("*member")
-public class MemberController extends HttpServlet {
+@WebServlet("*.member")
+public class Membercontroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
-		String requestURI = request.getRequestURI();  // 현재 프로젝트를 포함한 전체경로 구하기
-		String contextpath = request.getContextPath(); // 현재 프로젝트명을 구해옴
-		String command = requestURI.substring(contextpath.length());
+	// doGet(), doPost() 메소드에서 공통적인 작업을 처리하는 메소드
+	public void doProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		
+		String requestURI = request.getRequestURI();
+		String contextPath = request.getContextPath();
+		String command = requestURI.substring(contextPath.length());
 		
 		System.out.println("requestURI:"+requestURI);
-		System.out.println("contextpath:"+contextpath);
+		System.out.println("contextPath:"+contextPath);
 		System.out.println("command:"+command);
 		
-		Action action = null; 
-		ActionForward forward = null;  // 초기값은 null값이므로 처음에는 포워딩처리하지않음
-		// 아래쪽 else if가 한번 실행하면 null값이 아니게되므로 포워딩처리를 하게된다
+		Action action = null;
+		ActionForward forward = null;
 		
-		// 회원 탈퇴폼
-		if(command.equals("DeleteMember.do")) {
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/member/deleteform.jsp");
-			
-			//회원 탈퇴
-		}else if(command.equals("/Delete.do")){
+		//회원 가입
+		if(command.equals("/Member.member")) {
 			try {
-				action = new Delete();
+				action = new Member();
+				forward = action.execute(request,response);
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+					
+			//ID중복 검사(ajax)	
+		}else if(command.equals("/Idcheck.member")) {
+			try {
+				action = new Idcheck();
 				forward = action.execute(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		} // if end
 		
-		// 포워딩 처리
+		//닉네임 중복검사(ajax)
+		}else if(command.equals("/Nickcheck.member")) {
+			try {
+				action = new Nickcheck();
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+					
+		//회원 가입 폼
+		}else if(command.contentEquals("/Join.member")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("./member/join.jsp");
+			
+					
+		//로그인(회원인증)	
+		}else if(command.equals("/Login.member")) {
+			try {
+				action = new Login();
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+					
+		//로그인 폼	
+		}else if(command.equals("/Login.member")){
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("./member/login.jsp");
+			
+		
+		//로그아웃	
+		}else if(command.equals("/Logout.member")){
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/member/logout.jsp");	
+	
+		}
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//포워딩 처리
 		if(forward != null) {
-			if(forward.isRedirect()) {  // redirect 방식
+			if(forward.isRedirect()) {	//redirect 방식으로 포워딩
 				response.sendRedirect(forward.getPath());
-			}else {						// dispatcher
-				RequestDispatcher dispatcher = 
+			}else {						//dispatcher 방식으로 포워딩
+				RequestDispatcher dispatcher =
 						request.getRequestDispatcher(forward.getPath());
 				dispatcher.forward(request, response);
 			}
 		}
-		
+
 		
 	}  // do process end
 	
@@ -75,6 +136,7 @@ public class MemberController extends HttpServlet {
 	}
 
 	/**
+
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

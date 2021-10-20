@@ -9,8 +9,8 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.MemberDAO;
+import dto.MemberDTO;
 import dao.MemberDAO;
-import model.MemberDTO;
 
 public class Member implements Action{
 

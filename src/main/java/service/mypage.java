@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.memberDAO;
-import dto.memberDTO;
+import dao.MemberDAO;
+import dto.MemberDTO;
 
 public class mypage implements Action {
 
@@ -25,8 +25,8 @@ public class mypage implements Action {
 		
 		String mem_id = (String)session.getAttribute("mem_id");
 		
-		memberDAO dao = memberDAO.getinstance();
-		memberDTO member = dao.getMember(mem_id);
+		MemberDAO dao = MemberDAO.getInstance();
+		MemberDTO member = dao.getMember(mem_id);
 		System.out.println("마이페이지:"+member);
 		
 		request.setAttribute("member", member);

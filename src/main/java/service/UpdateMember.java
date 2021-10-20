@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.memberDAO;
-import dto.memberDTO;
+import dao.MemberDAO;
+import dto.MemberDTO;
 
 public class UpdateMember implements Action {
 
@@ -18,8 +18,8 @@ public class UpdateMember implements Action {
 		String mem_id = (String)session.getAttribute("mem_id"); // 세션 객체를 사용하여 id값을 가져옴
 		// 저장된 value값이 String형 데이터이기 때문에 String클래스로 다운캐스팅해야함
 		
-		memberDAO dao = memberDAO.getinstance(); 
-		memberDTO member = dao.getMember(mem_id); // 1명의 상세정보를 구해옴
+		MemberDAO dao = MemberDAO.getInstance(); 
+		MemberDTO member = dao.getMember(mem_id); // 1명의 상세정보를 구해옴
 		System.out.println("수정폼:"+member);
 		
 		// 공유 설정

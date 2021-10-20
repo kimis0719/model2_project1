@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.memberDAO;
-import dto.memberDTO;
+import dao.MemberDAO;
+import dto.MemberDTO;
 
 public class Delete implements Action{
 
@@ -25,8 +25,8 @@ public class Delete implements Action{
 		String mem_id = request.getParameter("mem_id");
 		String mem_pass = request.getParameter("mem_pass");
 		
-		memberDAO dao = memberDAO.getinstance();
-		memberDTO old = dao.getMember(mem_id);
+		MemberDAO dao = MemberDAO.getInstance();
+		MemberDTO old = dao.getMember(mem_id);
 	 
 		// 비밀번호 비교
 		if(old.getMem_pass().equals(mem_pass)) {  // 비밀번호 일치시

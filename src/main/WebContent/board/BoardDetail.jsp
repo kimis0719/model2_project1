@@ -280,7 +280,9 @@ tr:hover {
 			<!-- 댓글부분 -->
 			<table>
 				<tr>
-					<td>댓글</td>
+					<td>
+
+					</td>
 				</tr>
 				<tr>
 					<td>

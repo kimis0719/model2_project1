@@ -10,13 +10,13 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import dto.memberDTO;
+import dto.MemberDTO;
 
-public class memberDAO{
+public class MemberDAO{
 	
-	private static memberDAO instance = new memberDAO();
+	private static MemberDAO instance = new MemberDAO();
 	
-	public static memberDAO getInstance() {
+	public static MemberDAO getInstance() {
 		return instance;
 	}
 	private Connection getConnection() throws Exception{
@@ -26,7 +26,8 @@ public class memberDAO{
 	}
 	
 	//회원가입
-	public int insert(memberDTO member) {
+	public int insert(MemberDTO member) {
+
 		int result =0;
 		Connection con =null;
 		PreparedStatement pstmt =null;
@@ -155,8 +156,8 @@ String sql="insert into member ";
 		return result;
 	}
 		// 1명의 회원정보 구하기
-		public memberDTO getMember(String mem_id) {
-			memberDTO member = new memberDTO();
+		public MemberDTO getMember(String mem_id) {
+			MemberDTO member = new MemberDTO();
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -170,7 +171,7 @@ String sql="insert into member ";
 				rs = pstmt.executeQuery();  // select SQL문 실행
 				
 				if(rs.next()) {
-					member.setMem_num(rs.getString("mem_num"));
+					member.setMem_num(rs.getInt("mem_num"));
 					member.setMem_id(rs.getString("mem_id"));
 					member.setMem_nick(rs.getString("mem_nick"));
 					member.setMem_pass(rs.getString("mem_pass"));
@@ -178,10 +179,10 @@ String sql="insert into member ";
 					member.setMem_date(rs.getTimestamp("mem_date"));
 					member.setMem_img(rs.getString("mem_img"));
 					member.setMem_phone(rs.getString("mem_phone"));
-					member.setMem_up_memnum(rs.getString("mem_up_memnum"));
+					member.setMem_up_memnum(rs.getInt("mem_up_memnum"));
 					member.setMem_up_date(rs.getTimestamp("mem_up_date"));
 					member.setMem_yn(rs.getString("mem_yn"));
-					member.setMem_grade(rs.getString("mem_grade"));
+					member.setMem_grade(rs.getInt("mem_grade"));
 				}
 				
 			}catch(Exception e) {
@@ -195,7 +196,7 @@ String sql="insert into member ";
 			}
 		// 회원정보 수정
 		
-		public int update(memberDTO member) {
+		public int update(MemberDTO member) {
 			int result = 0;
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -249,4 +250,5 @@ String sql="update member set mem_nick=?,mem_pass=?,mem_email=?,mem_img=?,mem_ph
 			return result;
 		}
 		
-		}
+}
+
