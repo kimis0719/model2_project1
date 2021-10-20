@@ -11,10 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.Action;
 import service.ActionForward;
-import service.BoardDetailAction;
+import service.BoardDeleteAction;
 import service.BoardListAction;
-import service.BoardOrderListAction;
-import service.BoardSearchAction;
+import service.BoardUpdate;
+import service.BoardUpdateAction;
+import service.BoardWrite;
 import service.CateListAction;
 
 /**
@@ -39,54 +40,66 @@ public class BoardController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 
-
-		// 메뉴 : 메인페이지로 이동 - 카테고리출력
-		if (command.equals("/MainPageAction.board")) {
+		// 카테고리별 게시판 정보 출력
+		if (command.equals("/CateListAction.do")) {
 			try {
 				action = new CateListAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
-		// 글목록 : 게시판별 목록 출력
-		}else if (command.equals("/BoardListAction.board")) {
+		}else if (command.equals("/BoardListAction.do")) {
 			try {
 				action = new BoardListAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
-		// 글목록 : 정렬 - 게시판별 정렬조건으로 정렬한 목록 출력
-		}else if (command.equals("/BoardOrderListAction.board")) {
+		//글작성
+		}else if (command.equals("/BoardWriteAction.do")) {
 			try {
-				action = new BoardOrderListAction();
+				action = new BoardWrite();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-		
-		// 글목록 : 검색 - 게시판별 검색결과 출력
-		}else if (command.equals("/BoardSearchAction.board")) {
+		//글작성 폼
+		}else if (command.equals("/BoardWrite.do")) {
 			try {
-				action = new BoardSearchAction();
+				action = new BoardWrite();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-
-		}else if (command.equals("/BoardDetailAction.board")) {
+		//글수정 폼
+		}else if (command.equals("/BoardUpdateAction.do")) {
 			try {
-				action = new BoardDetailAction();
+				action = new BoardUpdateAction();
 				forward = action.execute(request, response);
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
+		//글수정
+		}else if (command.equals("/BoardUpdate.do")) {
+			try {
+				action = new BoardUpdate();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		//글삭제 폼
+		}else if (command.equals("/BoardDeleteAction.do")) {
+			forward = new ActionForward();
+			forward.setRedirect(false); // dispatcher 방식으로 포워딩
+			forward.setPath("./board/boardDelete.jsp");
+		//글삭제
+		}else if (command.equals("/BoardDelete.do")) {
+			try {
+				action = new BoardDeleteAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		// 포워딩처리
