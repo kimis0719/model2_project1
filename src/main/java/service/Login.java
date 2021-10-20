@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.memberDAO;
+import dao.MemberDAO;
 
 public class Login implements Action{
 
@@ -24,12 +24,12 @@ public class Login implements Action{
 		String mem_id =request.getParameter("mem_id");
 		String mem_pass =request.getParameter("mem_pass");
 		
-		memberDAO dao =memberDAO.getInstance();
+		MemberDAO dao =MemberDAO.getInstance();
 		int result = dao.memberAuth(mem_id, mem_pass);	//회원인증
 		if(result == 1)System.out.println("회원 인증 성공");
 		
 		if(result ==1) {		//회원 인증 성공
-			session.setAttribute("id", mem_id);		//세션 공유 설정
+			session.setAttribute("mem_id", mem_id);		//세션 공유 설정
 		}else {					//회원 인증 실패
 			out.println("<script>");
 			out.println("alert('로그인 실패');");
@@ -42,7 +42,7 @@ public class Login implements Action{
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("./member/main.jsp");
+		forward.setPath("./member/mainpage.jsp");
 		
 		return forward;
 	}
