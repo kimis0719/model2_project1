@@ -3,11 +3,13 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.BoardDTO;
 import dto.memberDTO;
 
 public class memberDAO {
@@ -39,7 +41,7 @@ public class memberDAO {
 		try {
 			con = getConnection();
 			
-String sql = "select * from member where mem_id=? and mem_pass=?";
+String sql = "select * from member where mem_id=? and mem_pass=? and mem_yn='y'";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mem_id);
 			pstmt.setString(2, mem_pass);
@@ -63,7 +65,7 @@ String sql = "select * from member where mem_id=? and mem_pass=?";
 	}
 	
 	// 1명의 회원정보 구하기
-	public memberDTO getMember(String id) {
+	public memberDTO getMember(String mem_id) {
 		memberDTO member = new memberDTO();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -74,7 +76,7 @@ String sql = "select * from member where mem_id=? and mem_pass=?";
 			
 			String sql = "select * from member where mem_id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, mem_id);
 			rs = pstmt.executeQuery();  // select SQL문 실행
 			
 			if(rs.next()) {
@@ -110,7 +112,7 @@ String sql = "select * from member where mem_id=? and mem_pass=?";
 				
 		try {
 			con = getConnection();
-String sql="update member set mem_nick=?,mem_pass,mem_email,mem_img,mem_phone where mem_id=?";
+String sql="update member set mem_nick=?,mem_pass=?,mem_email=?,mem_img=?,mem_phone=? where mem_id=?";
 		
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, member.getMem_nick());
