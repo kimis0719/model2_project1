@@ -22,7 +22,7 @@ import service.CateListAction;
  */
 
 @WebServlet("*.board")
-public class BoardController extends HttpServlet {
+public class Boardcontroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// doGet(), doPost() 메소드에서 공통적인 작업을 처리하는 메소드
