@@ -1,11 +1,10 @@
 package model;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
-public class memberDTO {
+public class MemberDTO {
 
-		private int member_num;
+		private int mem_num;
 		private String mem_id;
 		private String mem_nick;
 		private String mem_pass;
@@ -18,11 +17,11 @@ public class memberDTO {
 		private String mem_yn;
 		private int mem_grade;
 		
-		public int getMember_num() {
-			return member_num;
+		public int getMem_num() {
+			return mem_num;
 		}
-		public void setMember_num(int member_num) {
-			this.member_num = member_num;
+		public void setMem_num(int mem_num) {
+			this.mem_num = mem_num;
 		}
 		public String getMem_id() {
 			return mem_id;
