@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
 	box-sizing: border-box;
 }
@@ -95,26 +96,30 @@ input[type=text]:focus {
 .btn {
 	border: none;
 	color: black;
-	padding: 14px 28px;
+	padding: 18px 28px;
 	font-size: 16px;
 	cursor: pointer;
 }
 
 .login {
 	background-color: #EC5E5E;
+	padding: 18px 28px;
 }
 
 .login:hover {
 	background-color: #EC5E5E;
+	padding: 18px 28px;
 }
 
 .sing-up {
 	background-color: #eeeeee;
 	color: black;
+	padding: 18px 28px;
 }
 
 .sign-up:hover {
 	background: #ddd;
+	padding: 18px 28px;
 }
 
 .btn-info {
@@ -196,4 +201,3 @@ tr:hover {
 	background-color: #ffffff;
 }
 
-}

@@ -9,12 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	모델2 프로젝트 깃허브 테스트 - 김익수 왔다감2
-	<br> 모델2 프로젝트 깃허브 테스트 _ 김진 접속테스트 완료
-	<br>
-	
 <script type="text/javascript">
-	location.href = "./CateListAction.do";
+	location.href = "./MainPageAction.board";
 </script>
 </body>
 </html>

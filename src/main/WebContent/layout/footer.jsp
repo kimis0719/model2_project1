@@ -10,24 +10,34 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link href="${pageContext.request.contextPath}/css/header.css"
-	rel="stylesheet">
 <style>
+<
+c
+:import
+ 
+url
+="../css/header
+.css
+"
+/
+>
 </style>
 </head>
 <body>
 
 
 
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
 	<script>
 		//Get the button
 		var mybutton = document.getElementById("myBtn");
+
 		// When the user scrolls down 20px from the top of the document, show the button
 		window.onscroll = function() {
 			scrollFunction()
 		};
+
 		function scrollFunction() {
 			if (document.body.scrollTop > 20
 					|| document.documentElement.scrollTop > 20) {
@@ -36,6 +46,7 @@
 				mybutton.style.display = "none";
 			}
 		}
+
 		// When the user clicks on the button, scroll to the top of the document
 		function topFunction() {
 			document.body.scrollTop = 0;
@@ -44,7 +55,7 @@
 	</script>
 
 	<div class="footer">
-		<a href="${pageContext.request.contextPath}/qnaList.qna">문의사항</a>
+		<a href="#">문의사항</a>
 		<p>Copyright© All rights reserved.</p>
 		<dl>
 			<dt>주소: 서울특별시</dt>

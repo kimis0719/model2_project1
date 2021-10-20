@@ -2,15 +2,6 @@ package util;
 
 public class Pager {
 
-	
-//	  private Integer grade;//그레이드값
-//	  
-//	  //@@@@@@@중요 오류나면 여기 다시보기 public Integer getGrade() { if(grade == null ||grade
-//	  == 0) { grade = 1; } return grade; }
-//	  
-//	  public void setGrade(Integer grade) { this.grade = grade; }
-	 
-
 	private Integer curPage;	//현재 페이지 번호
 	private Integer perPage;	//불러올 페이지 개수
 	
