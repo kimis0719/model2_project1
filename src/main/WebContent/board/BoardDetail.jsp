@@ -1,15 +1,15 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<html>
 <head>
-<title>메인 페이지</title>
+<meta charset="UTF-8">
+<title>상세 페이지</title>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="<%=request.getContextPath() %>/board/boardScript.js"></script>
 <meta charset="utf-8">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
 * {
 	box-sizing: border-box;
@@ -205,15 +205,13 @@ input[type=text]:focus {
 
 table {
 	border-collapse: collapse;
-	background-color: white;
-	padding: 20px;
-	margin-top: 20px;
-	
+	width: 100%;
 }
 
 th {
 	padding: 8px;
 	background: #ffffff;
+	text-align: center;
 	border-bottom: 1px solid #ddd;
 }
 
@@ -232,11 +230,66 @@ tr:hover {
 <body>
 
 	<jsp:include page="../layout/header.jsp" />
-
-
-
+	
+	
 	<div class="row">
 		<div class="leftcolumn">
+			<br>
+			<!-- 글 상세페이지 -->
+			<table class="detail">
+				<tr class="detailtitle" >
+					<th colspan="3">${board.board_title}</th>
+				 </tr>
+				<tr class="detailhead">
+					<td>프로필사진, ${board.board_nick}</td>
+					<td><fmt:formatDate value="${board.board_date}"
+								pattern="yyyy-MM-dd HH:mm:ss" /></td>
+					<td>조회수 : ${board.board_count } </td>
+				</tr>
+				
+				<tr class = "detailcontent">
+					<td colspan="3" height = 700 vertical-align = top>
+						${content}
+					<td>
+				</tr>
+				<tr	class="goodnbad">
+					<td colspan="3" align=center>
+						좋아요 : ${board.board_good }
+						싫어요 : ${board.board_bad }
+					</td>
+				</tr>
+				<tr class="buttonlist">
+					<td colspan="3" align="center">
+					
+						<input type="button" value="즐겨찾기"
+							onclick="location.href='' ">
+								
+						<input type="button" value="수정"
+							onclick="location.href='' ">
+			
+						<input type="button" value="삭제"
+							onclick="location.href='' ">
+			
+						<input type="button" value="목록" 
+							onclick="location.href = './BoardListAction.board?cate_num=${currentCate}&page=${page}'">
+					</td>
+				</tr>
+			</table>
+			<br>
+			
+			<!-- 댓글부분 -->
+			<table>
+				<tr>
+					<td>댓글</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" id="replywrite">
+						<input type="button" value="댓글작성">
+					</td>
+				</tr>
+			</table>
+			
 			<table id=table align="center">
 				<br>
 				<!-- 게시판명이 들어갈 자리 -->
@@ -351,61 +404,60 @@ tr:hover {
 						style="text-decoration: none"> >> </a>
 				</c:if>
 			</div>
-
 		</div>
-
 		<div class="rightcolumn">
-			<div class="card">
-				<button class="btn 로그인">로그인</button>
-				<button class="btn 회원가입">회원가입</button>
-			</div>
-
-			<div class="card">
-				<h3>Popular Post</h3>
-				<div class="fakeimg">
-					<p>Image</p>
+				<div class="card">
+					<button class="btn 로그인">로그인</button>
+					<button class="btn 회원가입">회원가입</button>
 				</div>
-				<div class="fakeimg">
-					<p>Image</p>
+	
+				<div class="card">
+					<h3>Popular Post</h3>
+					<div class="fakeimg">
+						<p>Image</p>
+					</div>
+					<div class="fakeimg">
+						<p>Image</p>
+					</div>
+					<div class="fakeimg">
+						<p>Image</p>
+					</div>
 				</div>
-				<div class="fakeimg">
-					<p>Image</p>
+				<div class="card">
+					<h3>Follow Me</h3>
+					<p>Some text..</p>
 				</div>
+	
 			</div>
-			<div class="card">
-				<h3>Follow Me</h3>
-				<p>Some text..</p>
-			</div>
-
 		</div>
-	</div>
 
-	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
-	<script>
-		//Get the button
-		var mybutton = document.getElementById("myBtn");
-
-		// When the user scrolls down 20px from the top of the document, show the button
-		window.onscroll = function() {
-			scrollFunction()
-		};
-
-		function scrollFunction() {
-			if (document.body.scrollTop > 20
-					|| document.documentElement.scrollTop > 20) {
-				mybutton.style.display = "block";
-			} else {
-				mybutton.style.display = "none";
+		<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	
+		<script>
+			//Get the button
+			var mybutton = document.getElementById("myBtn");
+	
+			// When the user scrolls down 20px from the top of the document, show the button
+			window.onscroll = function() {
+				scrollFunction()
+			};
+	
+			function scrollFunction() {
+				if (document.body.scrollTop > 20
+						|| document.documentElement.scrollTop > 20) {
+					mybutton.style.display = "block";
+				} else {
+					mybutton.style.display = "none";
+				}
 			}
-		}
-
-		// When the user clicks on the button, scroll to the top of the document
-		function topFunction() {
-			document.body.scrollTop = 0;
-			document.documentElement.scrollTop = 0;
-		}
-	</script>
+	
+			// When the user clicks on the button, scroll to the top of the document
+			function topFunction() {
+				document.body.scrollTop = 0;
+				document.documentElement.scrollTop = 0;
+			}
+		</script>
+	
 
 	<div class="footer">
 		<!-- 로고 추가 -->

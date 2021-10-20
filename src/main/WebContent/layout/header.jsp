@@ -40,7 +40,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="./CateListAction.board">홈</a>
+      <a class="navbar-brand" href="./MainPageAction.board">홈</a>
     </div>
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">

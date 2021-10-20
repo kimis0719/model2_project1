@@ -231,7 +231,71 @@ public class BoardDAO {
 				if(con != null) try {con.close();} catch(Exception e) {}
 			}
 			return list;
+		}	
+		
+		// 글상세 : 조회수 증가
+		public void readCountUpdate(int cate_num, int board_num) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			try {
+				con = getConnection();
+				
+				String sql = "update board set board_count=board_count+1 where cate_num=? and board_num=?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, cate_num);
+				pstmt.setInt(2, board_num);
+				pstmt.executeUpdate();		//SQL문 실행
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+				if(con != null) try {con.close();} catch(Exception e) {}
+			}
 		}
 		
+		// 글상세 : 글 상세페이지 출력
+		public BoardDTO getBoardDetail(int cate_num, int board_num) {
+			BoardDTO board = new BoardDTO();
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				con = getConnection();
+				String sql = "select * from board where cate_num=? and board_num = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, cate_num);
+				pstmt.setInt(2, board_num);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					board.setBoard_num(rs.getInt("board_num"));
+					board.setBoard_title(rs.getString("board_title"));
+					board.setBoard_content(rs.getString("board_content"));
+					board.setBoard_memnum(rs.getInt("board_memnum"));
+					board.setBoard_nick(rs.getString("board_nick"));
+					board.setBoard_date(rs.getTimestamp("board_date"));
+					board.setBoard_count(rs.getInt("board_count"));
+					board.setBoard_good(rs.getInt("board_good"));
+					board.setBoard_bad(rs.getInt("board_bad"));
+					board.setBoard_up_memnum(rs.getInt("board_up_memnum"));
+					board.setBoard_up_date(rs.getTimestamp("board_up_date"));
+					board.setBoard_yn(rs.getString("board_yn"));
+					board.setCate_num(rs.getInt("cate_num"));
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(rs != null) try {rs.close();} catch(Exception e) {}
+				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+				if(con != null) try {con.close();} catch(Exception e) {}
+			}
+			
+			return board;
+		}
 	
 }

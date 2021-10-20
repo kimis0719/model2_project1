@@ -3,16 +3,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html lang="kr">
+<html lang=kr">
 
 <head>
-<title>메인 페이지</title>
+<title>로그인 페이지</title>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
 
+<script src="<%=request.getContextPath() %>/member/login.js"></script>
 <style>
 * {
 	box-sizing: border-box;
-} 
+}
 
 body {
 	font-family: Arial;
@@ -36,7 +45,7 @@ body {
 	font-size: 40px;
 }
 
-input[type=text] {
+input[id=totalfind] {
 	width: 130px;
 	box-sizing: border-box;
 	border: 5px solid #EC5E5E;
@@ -51,7 +60,7 @@ input[type=text] {
 	outline: none;
 }
 
-input[type=text]:focus {
+input[id=totalfind]:focus {
 	width: 50%;
 }
 
@@ -167,6 +176,18 @@ input[type=text]:focus {
 	color: #919191;
 	margin-top: 25px;
 }
+
+.btn-default {
+     	 background: #EC5E5E;
+     	 color: #fff;
+   }
+   
+ a {
+		color: black;
+   }
+
+   
+
 /* footer address a{
     display: block; /* a 태그는 인라인요소라 수평으로 출력돼서 블록으로 강제로 수직으로 출력되도록 함*/
 } */
@@ -183,54 +204,108 @@ input[type=text]:focus {
 </style>
 </head>
 <body>
-	<!-- header -->
-<%-- 	<c:import url="/layout/header.jsp" /> --%>
-	<jsp:include page="../layout/header.jsp" />
-	
+
+	<div class="header">
+		<h1>중앙 커뮤니티</h1>
+		<form>
+			<input type="text" name="search" id="totalfind"placeholder="통합검색...">
+			<button class="btn btn-info">
+				<span class="glyphicon glyphicon-search"></span> 검색
+			</button>
+		</form>
+	</div>
+
+
+	<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="./CateListAction.do">홈</a>
+    </div>
+    <div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="./BoardListAction.do?cate_num=${c.cate_num}">공지</a></li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">일상●취미 <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <c:forEach var="c" items="${catelist}">
+            	<!-- cate_code가 2(일상취미)에 해당하는 게시판 정보중 이름을 가져온다. -->
+				<c:if test="${c.cate_code == 2}">	
+					<li><a href="./BoardListAction.do?cate_num=${c.cate_num}"> ${c.cate_name}</a></li>
+				</c:if>
+			  </c:forEach>
+            </ul>
+          </li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">스포츠 <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+               <c:forEach var="c" items="${catelist}">
+				<c:if test="${c.cate_code == 3}">	
+					<li><a href=""> ${c.cate_name}</a></li>
+				</c:if>
+			  </c:forEach>
+            </ul>
+          </li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">게임 <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+               <c:forEach var="c" items="${catelist}">
+				<c:if test="${c.cate_code == 4}">	
+					<li><a href=""> ${c.cate_name}</a></li>
+				</c:if>
+			  </c:forEach>
+            </ul>
+          </li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">연예 <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+               <c:forEach var="c" items="${catelist}">
+				<c:if test="${c.cate_code == 5}">	
+					<li><a href=""> ${c.cate_name}</a></li>
+				</c:if>
+			  </c:forEach>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>  
+
 	<div class="row">
 		<div class="leftcolumn">
-			<div class="card">
-				<h2>TITLE HEADING</h2>
-				<div class="fakeimg" style="height: 200px;">Image</div>
-				<p>Some text..</p>
-				<p>Sunt in culpa qui officia deserunt mollit anim id est laborum
-					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-					labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-					nostrud exercitation ullamco.</p>
-			</div>
-			<div class="card">
-				<h2>TITLE HEADING</h2>
-				<div class="fakeimg" style="height: 200px;">Image</div>
-				<p>Some text..</p>
-				<p>Sunt in culpa qui officia deserunt mollit anim id est laborum
-					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-					labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-					nostrud exercitation ullamco.</p>
-			</div>
-			<div class="card">
-				<h2>TITLE HEADING</h2>
-				<div class="fakeimg" style="height: 200px;">Image</div>
-				<p>Some text..</p>
-				<p>Sunt in culpa qui officia deserunt mollit anim id est laborum
-					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-					labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-					nostrud exercitation ullamco.</p>
-			</div>
-			<div class="card">
-				<h2>TITLE HEADING</h2>
-				<div class="fakeimg" style="height: 200px;">Image</div>
-				<p>Some text..</p>
-				<p>Sunt in culpa qui officia deserunt mollit anim id est laborum
-					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-					labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-					nostrud exercitation ullamco.</p>
-			</div>
+			<div class="container" style="padding: 230px;">
+		<div class="jumbotron">
+  <div align="center"><h2>로그인</h2></div>
+  <form method="post" action="<%=request.getContextPath()%>/Login.member">
+   <table class="table table-bordered table-hover" align="center" >
+    <div class="form-group">
+      <label for="mem_id">ID:</label>
+      <input type="text" class="form-control" id="mem_id" name="mem_id" placeholder="아이디" maxlength="20">
+    </div>
+    <div class="form-group">
+      <label for="mem_pass">Password:</label>
+      <input type="password" class="form-control" id="mem_pass" name="mem_pass" placeholder="비밀번호" maxlength="20">
+    </div>
+    	<div class="checkbox">
+      	<label><input type="checkbox"> 아이디 저장</label>
+    	</div>
+      <a href="">ID/PW찾기</a>
+      
+      <div style="text-align:right">
+    <button type="submit" class="btn btn-default">로그인</button>
+     </div>
+ 	</table>
+  </form>
+  </div>
+</div>
 		</div>
 
 		<div class="rightcolumn">
 			<div class="card">
-				<a href="./member/login.jsp"><button class="btn 로그인">로그인</button></a>
-            	<a href="./member/join.jsp"><button class="btn 회원가입">회원가입</button></a>
+				<a href="login.jsp"><button class="btn 로그인">로그인</button></a>
+				<a href="join.jsp"><button class="btn 회원가입">회원가입</button></a>
 			</div>
 			
 			<div class="card">
@@ -298,3 +373,8 @@ input[type=text]:focus {
 </body>
 
 </html>
+
+
+
+
+
