@@ -15,7 +15,7 @@ import service.QnaService;
 /**
  * Servlet implementation class NoticeController
  */
-@WebServlet("/QnaController")
+@WebServlet("*.qna")
 public class QnaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private QnaService qnaService;
@@ -33,6 +33,8 @@ public class QnaController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("get");
+		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
@@ -41,14 +43,19 @@ public class QnaController extends HttpServlet {
 		
 		ActionForward actionForward = null;
 		if(url.equals("qnaList")) {
-			actionForward = qnaService.selectList(request, response);
-		} else if(url.equals("qnaSelect")) {
-			actionForward = qnaService.selectOne(request, response);
-		} else if(url.equals("qnaWrite")) {
-			actionForward = qnaService.write(request, response);
-		} else if(url.equals("qnaUpdate")) {
-			actionForward = qnaService.update(request, response);
-		}
+			try {
+				actionForward = qnaService.qnaList(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} /*
+			 * else if(url.equals("qnaSelect")) { actionForward =
+			 * qnaService.selectOne(request, response); } else if(url.equals("qnaWrite")) {
+			 * actionForward = qnaService.write(request, response); } else
+			 * if(url.equals("qnaUpdate")) { actionForward = qnaService.update(request,
+			 * response); }
+			 */
 		
 		if(actionForward.isRedirect()) { //flag 값이 true-Forward냐 false-Redirect냐에 따라 결정
 			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());

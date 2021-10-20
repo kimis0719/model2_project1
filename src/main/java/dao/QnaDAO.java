@@ -82,9 +82,10 @@ public class QnaDAO {
 		try {
 			con = getConnection();
 
-			String sql = "select * from (select qna_num, qna_writer, REGEXP_REPLACE(qna_writer, '(?<=.{3}).', '*') as qna_writerS, qna_title, qna_date, qna_ref, qna_step, qna_depth, qna_sec, qna_check from qna where qna_num > 0 and qna_yn='y' order by qna_ref desc, qna_step asc) where rownum>=? and rownum<=?;";
+			String sql = "select * from (select rownum rnum, qnas.* from (select qna_num, qna_writer, qna_title, qna_date, qna_ref, qna_step, qna_depth, qna_sec, qna_check from qna where qna_num > 0 and qna_yn='y' order by qna_ref desc, qna_step asc) qnas ) where rnum>=? and rnum<=?";
 
 			ps = con.prepareStatement(sql);
+			System.out.println(pager.getStartRow());
 			ps.setInt(1, pager.getStartRow());
 			ps.setInt(2, pager.getLastRow());
 			rs = ps.executeQuery();
@@ -92,7 +93,7 @@ public class QnaDAO {
 			while (rs.next()) {
 				QnaDTO qnaDTO = new QnaDTO();
 				qnaDTO.setQna_num(rs.getInt("qna_num"));
-				qnaDTO.setQna_writer(rs.getString("qna_writerS"));
+				/* qnaDTO.setQna_writer(rs.getString("qna_writerS")); */
 				qnaDTO.setQna_title(rs.getString("qna_title"));
 				qnaDTO.setQna_date(rs.getDate("qna_date"));
 				qnaDTO.setQna_ref(rs.getInt("qna_ref"));

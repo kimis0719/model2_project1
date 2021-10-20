@@ -187,7 +187,7 @@ input[type=text]:focus {
 </style>
 </head>
 <body>
-
+<a href="./qnaList.qna">q</a>
 	<div class="header">
 		<h1>중앙 커뮤니티 - 관리자 모드</h1>
 		<form>
