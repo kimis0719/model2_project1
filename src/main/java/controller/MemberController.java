@@ -20,7 +20,7 @@ import service.Nickcheck;
  * Servlet implementation class board_controller
  */
 @WebServlet("*.member")
-public class Membercontroller extends HttpServlet {
+public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// doGet(), doPost() 메소드에서 공통적인 작업을 처리하는 메소드
