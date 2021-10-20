@@ -2,7 +2,7 @@
 
 package dto;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class BoardDTO {
 	private int board_num;
@@ -10,14 +10,16 @@ public class BoardDTO {
 	private String board_content;
 	private int board_memnum;
 	private String board_nick;
-	private Timestamp board_date;
+	private Date board_date;
 	private int board_count;
 	private int board_good;
 	private int board_bad;
 	private int board_up_memnum;
-	private Timestamp board_up_date;
+	private Date board_up_date;
 	private String board_yn;
 	private int cate_num;
+	private int cate_code;
+
 	
 	public int getBoard_num() {
 		return board_num;
@@ -34,7 +36,7 @@ public class BoardDTO {
 	public String getBoard_nick() {
 		return board_nick;
 	}
-	public Timestamp getBoard_date() {
+	public Date getBoard_date() {
 		return board_date;
 	}
 	public int getBoard_count() {
@@ -49,7 +51,7 @@ public class BoardDTO {
 	public int getBoard_up_memnum() {
 		return board_up_memnum;
 	}
-	public Timestamp getBoard_up_date() {
+	public Date getBoard_up_date() {
 		return board_up_date;
 	}
 	public String getBoard_yn() {
@@ -73,7 +75,7 @@ public class BoardDTO {
 	public void setBoard_nick(String board_nick) {
 		this.board_nick = board_nick;
 	}
-	public void setBoard_date(Timestamp board_date) {
+	public void setBoard_date(Date board_date) {
 		this.board_date = board_date;
 	}
 	public void setBoard_count(int board_count) {
@@ -88,7 +90,7 @@ public class BoardDTO {
 	public void setBoard_up_memnum(int board_up_memnum) {
 		this.board_up_memnum = board_up_memnum;
 	}
-	public void setBoard_up_date(Timestamp board_up_date) {
+	public void setBoard_up_date(Date board_up_date) {
 		this.board_up_date = board_up_date;
 	}
 	public void setBoard_yn(String board_yn) {
@@ -97,6 +99,13 @@ public class BoardDTO {
 	public void setCate_num(int cate_num) {
 		this.cate_num = cate_num;
 	}
+	public int getCate_code() {
+		return cate_code;
+	}
+	public void setCate_code(int cate_code) {
+		this.cate_code = cate_code;
+	}
+
 	
 	
 

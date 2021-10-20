@@ -11,15 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.Action;
 import service.ActionForward;
-import service.BoardListAction;
 import service.CateListAction;
 
 /**
- * Servlet implementation class board_controller
+ * Servlet implementation class replyController
  */
-
-@WebServlet("*.do")
-public class board_controller extends HttpServlet {
+@WebServlet("*.reply")
+public class ReplyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// doGet(), doPost() 메소드에서 공통적인 작업을 처리하는 메소드
@@ -36,21 +34,15 @@ public class board_controller extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 
-		// 카테고리별 게시판 정보 출력
-		if (command.equals("/CateListAction.do")) {
+		// 댓글 : 댓글 작성
+		if (command.equals("/replyWriteAction.board")) {
 			try {
 				action = new CateListAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/BoardListAction.do")) {
-			try {
-				action = new BoardListAction();
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		
 		}
 
 		// 포워딩처리
