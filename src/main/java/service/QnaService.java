@@ -11,6 +11,7 @@ import util.Pager;
 
 public class QnaService {
 
+	//글 목록
 	public ActionForward qnaList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("QnaService");
@@ -37,6 +38,21 @@ public class QnaService {
 		actionForward.setRedirect(true);
 		actionForward.setPath("./qna/qnaList.jsp");
 
+		return actionForward;
+	}
+	
+	public ActionForward write(HttpServletRequest request, HttpServletResponse response) throws Exception  {
+		ActionForward actionForward = new ActionForward();
+		return actionForward;
+	}
+	
+	public ActionForward update(HttpServletRequest request, HttpServletResponse response) throws Exception  {
+		ActionForward actionForward = new ActionForward();
+		return actionForward;
+	}
+	
+	public ActionForward delete(HttpServletRequest request, HttpServletResponse response) throws Exception  {
+		ActionForward actionForward = new ActionForward();
 		return actionForward;
 	}
 }

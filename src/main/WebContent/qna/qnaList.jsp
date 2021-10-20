@@ -86,16 +86,16 @@
 										<br>
 										<div class="btns_wrap">
 											<input type="hidden" class="num" value="${list.qna_num}">
-											<c:if test="${member.grade eq 99}">
+											<%-- <c:if test="${member.grade eq 99}"> --%>
 												<a href="javascript:void(0)" class="btn_reply">답변하기 ></a>
-											</c:if>
-											<c:if test="${member.nickname eq list.qna_writer}">
+											<%-- </c:if> --%>
+											<%-- <c:if test="${member.nickname eq list.qna_writer}"> --%>
 												<a href="javascript:void(0)" class="btn_update">수정하기</a>
-											</c:if>
-											<c:if
-												test="${member.nickname eq list.qna_writer || member.grade eq 99}">
+											<%-- </c:if> --%>
+											<%-- <c:if
+												test="${member.nickname eq list.qna_writer || member.grade eq 99}"> --%>
 												<a href="qnaDelete.qna?ref=${list.qna_ref}">삭제하기</a>
-											</c:if>
+											<%-- </c:if> --%>
 										</div>
 									</div>
 								</c:if> <!-- 답변 --> <c:if test="${list.qna_step > 0}">
@@ -107,12 +107,12 @@
 										<br>
 										<div class="btns_wrap">
 											<input type="hidden" class="num" value="${list.qna_ref}">
-											<c:if
-												test="${member.grade eq 99 && member.nickname eq list.qna_writer}">
+											<%-- <c:if
+												test="${member.grade eq 99 && member.nickname eq list.qna_writer}"> --%>
 												<a href="javascript:void(0)" class="btn_replyUpdate">수정하기</a>
 												<a
 													href="qnaAnswerDelete.qna?qna_num=${list.qna_num}&&qna_ref=${list.qna_ref}">삭제하기</a>
-											</c:if>
+											<%-- </c:if> --%>
 										</div>
 									</div>
 								</c:if>
@@ -123,9 +123,9 @@
 			</table>
 
 			<%-- <c:if test="${member.grade ne 99}"> --%>
-				<div class="btn_wrap">
-					<input type="button" value="문의하기" class="btn_write">
-				</div>
+			<div class="btn_wrap">
+				<input type="button" value="문의하기" class="btn_write">
+			</div>
 			<%-- </c:if> --%>
 
 			<ul class="pagination">
@@ -173,9 +173,9 @@
 							//window.name = "parentForm";
 							//window.open("open할 window", "자식창 이름", "팝업창 옵션");
 							//if (nickname != null && nickname != "") {
-								openWin = window
-										.open("./qnaWrite.qna", "wirteForm",
-												"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
+							openWin = window
+									.open("./qnaWrite.qna", "wirteForm",
+											"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 							/* } else {
 								var confirm_val = confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?");
 								if (confirm_val) {

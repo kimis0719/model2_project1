@@ -19,30 +19,33 @@ import service.QnaService;
 public class QnaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private QnaService qnaService;
-	       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public QnaController() {
-        super();
-        // TODO Auto-generated constructor stub
-        qnaService = new QnaService();
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public QnaController() {
+		super();
+		// TODO Auto-generated constructor stub
+		qnaService = new QnaService();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		System.out.println("get");
-		
+
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		
+
 		String url = request.getServletPath();
-		url = url.substring(url.lastIndexOf("/")+1, url.lastIndexOf(".")); //주소 파싱해서 가져오기
-		
+		url = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf(".")); // 주소 파싱해서 가져오기
+
 		ActionForward actionForward = null;
-		if(url.equals("qnaList")) {
+		//글 목록
+		if (url.equals("qnaList")) {
 			try {
 				actionForward = qnaService.qnaList(request, response);
 			} catch (Exception e) {
@@ -50,25 +53,51 @@ public class QnaController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} /*
-			 * else if(url.equals("qnaSelect")) { actionForward =
-			 * qnaService.selectOne(request, response); } else if(url.equals("qnaWrite")) {
-			 * actionForward = qnaService.write(request, response); } else
-			 * if(url.equals("qnaUpdate")) { actionForward = qnaService.update(request,
-			 * response); }
+			 * else if (url.equals("qnaSelect")) { actionForward =
+			 * qnaService.selectOne(request, response); }
 			 */
+		//글 작성 폼
+		else if (url.equals("qnaWrite")) {
+			try {
+				actionForward = qnaService.write(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		//글 작성(원문작성)
+		} else if (url.equals("qnaWrite")) {
+			
 		
-		if(actionForward.isRedirect()) { //flag 값이 true-Forward냐 false-Redirect냐에 따라 결정
+		} else if (url.equals("qnaUpdate")) {
+			try {
+				actionForward = qnaService.update(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (url.equals("qnaDelete")) {
+			try {
+				actionForward = qnaService.delete(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		if (actionForward.isRedirect()) { // flag 값이 true-Forward냐 false-Redirect냐에 따라 결정
 			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
 			view.forward(request, response);
-		}else {
+		} else {
 			response.sendRedirect(actionForward.getPath());
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
