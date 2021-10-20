@@ -10,13 +10,13 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import model.memberDTO;
+import model.MemberDTO;
 
-public class memberDAO{
+public class MemberDAO{
 	
-	private static memberDAO instance = new memberDAO();
+	private static MemberDAO instance = new MemberDAO();
 	
-	public static memberDAO getInstance() {
+	public static MemberDAO getInstance() {
 		return instance;
 	}
 	private Connection getConnection() throws Exception{
@@ -26,7 +26,7 @@ public class memberDAO{
 	}
 	
 	//회원가입
-	public int insert(memberDTO member) {
+	public int insert(MemberDTO member) {
 		int result =0;
 		Connection con =null;
 		PreparedStatement pstmt =null;
@@ -34,8 +34,8 @@ public class memberDAO{
 		try {
 			con = getConnection();
 
-String sql="insert into member";
-		sql+="values(member_seq.nextval,?,?,?,?,sysdate,?,?)";
+String sql="insert into member ";
+		sql+=" values(member_seq.nextval,?,?,?,?,sysdate,?,?,'','','y',1) ";
 		
 		pstmt= con.prepareStatement(sql);
 		pstmt.setString(1, member.getMem_id());
@@ -44,7 +44,8 @@ String sql="insert into member";
 		pstmt.setString(4, member.getMem_email());
 		pstmt.setString(5, member.getMem_img());
 		pstmt.setString(6, member.getMem_phone());
-		return pstmt.executeUpdate();
+		
+		result = pstmt.executeUpdate();
 		
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -68,7 +69,7 @@ String sql="insert into member";
 		try {
 			con = getConnection();
 			
-			String sql="select * from member where mem_id = ?";
+			String sql=" select * from member where mem_id = ? ";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mem_id);
@@ -88,6 +89,39 @@ String sql="insert into member";
 		}
 		return result;
 	}
+	//닉네임 중복검사
+	public int nickcheck(String mem_nick) {
+		int result=0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con =getConnection();
+			
+			String sql=" select * from member where mem_nick = ? ";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mem_nick);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = 2;	//사용중 nick
+			}else {
+				result = 3;	//사용가능 nick
+			}
+					
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) try { rs.close();}catch(Exception e) {}
+			if(pstmt != null) try { pstmt.close();}catch(Exception e) {}
+			if(con != null) try { con.close();}catch(Exception e) {}
+		}
+		
+		return result;
+		
+	}
 	//로그인(회원인증)
 	public int memberAuth(String mem_id, String mem_pass) {
 		int result =0;
@@ -98,7 +132,19 @@ String sql="insert into member";
 		try {
 			con = getConnection();
 			
-			String sql="select * from member where mem_id = ? and mem_pass = ? ";
+			String sql= " select * from member where mem_id = ? and mem_pass = ? ";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			pstmt.setString(2, mem_pass);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = 1;		//인증성공
+			}else {
+				result = -1;	//실패
+			}
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
