@@ -57,6 +57,7 @@ public class BoardDAO {
 			}
 			return result;
 		}
+		
 		// 글목록 : 각 게시판별 글목록 구해오기
 		public List<BoardDTO> getList(int start, int end, int cate_num){
 			List<BoardDTO> list = new ArrayList<BoardDTO>();
@@ -153,6 +154,39 @@ public class BoardDAO {
 			return list;
 		}
 		
+		// 글 목록 : 게시판 - 검색 데이터 갯수 구하기
+				public int getFindCount(int cate_num, String sel, String find) {
+					int result = 0;
+					Connection con = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					
+					// 해당 게시판에 있는 글 중 Y인 게시글만 검색
+					try {
+						con = getConnection();
+						
+						String sql = "select count(*) from board where cate_num=? and board_yn='y' ";
+							   sql += "and "+sel+" like '%"+find+"%'";
+						
+						pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1, cate_num);
+						rs = pstmt.executeQuery();
+						
+						if(rs.next()) {
+							result = rs.getInt(1);	
+						//	result = rs.getInt("count(*)");	
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						if(rs != null) try {rs.close();} catch(Exception e) {}
+						if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+						if(con != null) try {con.close();} catch(Exception e) {}
+					}
+					return result;
+				}
+		
+		// 글 목록 : 게시판 - 검색
 		public List<BoardDTO> getFindList(int start, int end, int cate_num, String sel, String find){
 			List<BoardDTO> list = new ArrayList<BoardDTO>();
 			Connection con = null;

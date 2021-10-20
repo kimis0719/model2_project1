@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html lang="kr">
 
 <head>
 <title>메인 페이지</title>
@@ -290,15 +289,13 @@ tr:hover {
 				
 				<!-- 검색기능 -->
 				<div class="search"> 
-						<form action="BoardSearchAction.board" method=get>
-							<input type="hidden" id="cate_num" value="${currentCate }">
+						<form action="BoardSearchAction.board?cate_num=${currentCate}" method=post accept-charset="utf-8">
 							<select name="sel" id="sel">
-								<option value="">검색</option>
-								<option value="board_nick">작성자</option>
 								<option value="board_title">제목</option>
 								<option value="board_content">내용</option>
+								<option value="board_nick">작성자</option>
 							</select> 
-							<input type="text" id="find"> 
+							<input type="text" name="find" id="find"> 
 							<button type="submit" class="btn2 btn-search">
 								검색
 							</button>
