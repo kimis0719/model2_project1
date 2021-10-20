@@ -1,10 +1,10 @@
+<%@page import="dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="dto.memberDTO" %>
 
 <%
 	// 세션 저장되어있는 로그인 회원정보를 받아 저장
-	memberDTO loginMember = (memberDTO)session.getAttribute("loginMember");
+	MemberDTO loginMember = (MemberDTO)session.getAttribute("loginMember");
 	
 	if(loginMember == null){	// 비로그인상태 일시
 		out.println("<script>");
