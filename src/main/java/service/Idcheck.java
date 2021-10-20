@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.memberDAO;
+import dao.MemberDAO;
 
 public class Idcheck implements Action{
 
@@ -22,7 +22,7 @@ public class Idcheck implements Action{
 		String mem_id = request.getParameter("mem_id");
 		System.out.println("id:"+mem_id);
 		
-		memberDAO dao = memberDAO.getInstance();
+		MemberDAO dao = MemberDAO.getInstance();
 		int result = dao.idcheck(mem_id);			//ID중복 검사
 		System.out.println("result:"+result);	// 1 : 중복ID
 												//-1 : 사용가능 ID
