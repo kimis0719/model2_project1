@@ -18,11 +18,10 @@ public class QnaService {
 		QnaDAO qnaDAO = QnaDAO.getInstance();
 
 		Pager pager = new Pager();
-		System.out.println(pager.getCurPage());
-		System.out.println(request.getParameter("curPage"));
+		System.out.println("pager의 현재페이지 : "+pager.getCurPage());
+		System.out.println("request의 현재페이지 : "+request.getParameter("curPage"));
 		if (request.getParameter("curPage") != null) {
 			pager.setCurPage(Integer.parseInt(request.getParameter("curPage")));
-			System.out.println(request.getParameter("curPage"));
 		}
 		System.out.println(pager.getCurPage());
 

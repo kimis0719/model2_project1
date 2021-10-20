@@ -2,14 +2,14 @@ package util;
 
 public class Pager {
 
-	/*
-	 * private Integer grade;//그레이드값
-	 * 
-	 * //@@@@@@@중요 오류나면 여기 다시보기 public Integer getGrade() { if(grade == null ||grade
-	 * == 0) { grade = 1; } return grade; }
-	 * 
-	 * public void setGrade(Integer grade) { this.grade = grade; }
-	 */
+	
+//	  private Integer grade;//그레이드값
+//	  
+//	  //@@@@@@@중요 오류나면 여기 다시보기 public Integer getGrade() { if(grade == null ||grade
+//	  == 0) { grade = 1; } return grade; }
+//	  
+//	  public void setGrade(Integer grade) { this.grade = grade; }
+	 
 
 	private Integer curPage;	//현재 페이지 번호
 	private Integer perPage;	//불러올 페이지 개수
@@ -24,8 +24,8 @@ public class Pager {
 	private Integer curBlock;	//현재 블럭 번호
 	private Integer totalBlock;	//전체 블럭 개수
 	
-	private String kind;//검색종류
-	private String search;//검색어
+//	private String kind;//검색종류
+//	private String search;//검색어
 	
 	public Integer getCurPage() {
 		if(curPage == null || curPage == 0) {
@@ -83,40 +83,43 @@ public class Pager {
 	public void setTotalBlock(Integer totalBlock) {
 		this.totalBlock = totalBlock;
 	}
-	public String getKind() {
-		return kind;
-	}
-	public void setKind(String kind) {
-		this.kind = kind;
-	}
-	public String getSearch() {
-		if(search == null) {
-			search="";
-		}
-		return search;
-	}
-	public void setSearch(String search) {
-		this.search = search;
-	}
+//	public String getKind() {
+//		return kind;
+//	}
+//	public void setKind(String kind) {
+//		this.kind = kind;
+//	}
+//	public String getSearch() {
+//		if(search == null) {
+//			search="";
+//		}
+//		return search;
+//	}
+//	public void setSearch(String search) {
+//		this.search = search;
+//	}
 	
-	//makeRow
+	//makeRow : rownum 시작 번호, 끝 번호 만들기
 	public void makeRow() {
+		//시작 rownum = (현재 페이번호 -1)*불러올 페이지 개수 +1
 		this.startRow = (this.getCurPage()-1)*this.getPerPage()+1;
+		//끝 rownum = 현재 페이지번호 * 불러올 페이지 개수
 		this.lastRow = this.getCurPage()*this.getPerPage();
 	}
 	
-	//makePage
+	//makePage : 페이지 처리
 	public void makePage(int totalCount) {
-		//1. 전체 글의 개수를 DB에서 매개변수로 받아옴
+		//1. 전체 글의 개수를 DB에서 매개변수로 받아옴 : totalCount
 		
-		//2. totalPage
+		//2. 전체 페이지 개수 = 전체 글 개수 / 불러올 페이지 당 글 개수(10)
 		int totalPage = totalCount/this.getPerPage();
-		//	글개수가 perPage보다 작으면
+		//	글개수가 perPage보다 작으면(나머지가 0이 아닐 때)
 		if(totalCount%this.getPerPage()!=0) {
+			//전체 페이지 개수 +1
 			totalPage++;
 		}
 		
-		//3. totalBlock
+		//3. totalBlock(전체 블록 개수)
 		int perBlock = 5;
 		totalBlock = totalPage/perBlock;
 		if(totalPage%perBlock != 0) {

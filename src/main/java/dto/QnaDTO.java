@@ -6,6 +6,7 @@ public class QnaDTO {
 	private int qna_num;
 	private int qna_memnum;
 	private String qna_writer;
+	private String qna_writerS;
 	private Date qna_date;
 	private String qna_title;
 	private String qna_content;
@@ -94,5 +95,11 @@ public class QnaDTO {
 	}
 	public void setQna_check(int qna_check) {
 		this.qna_check = qna_check;
+	}
+	public String getQna_writerS() {
+		return qna_writerS;
+	}
+	public void setQna_writerS(String qna_writerS) {
+		this.qna_writerS = qna_writerS;
 	}
 }

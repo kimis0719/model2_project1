@@ -73,7 +73,7 @@ public class QnaDAO {
 	// 글목록
 	public List<QnaDTO> qnaList(Pager pager) {
 		
-		System.out.println("qnadao");
+		System.out.println("QnaDAO");
 		List<QnaDTO> list = new ArrayList<QnaDTO>();
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -82,10 +82,10 @@ public class QnaDAO {
 		try {
 			con = getConnection();
 
-			String sql = "select * from (select rownum rnum, qnas.* from (select qna_num, qna_writer, qna_title, qna_date, qna_ref, qna_step, qna_depth, qna_sec, qna_check from qna where qna_num > 0 and qna_yn='y' order by qna_ref desc, qna_step asc) qnas ) where rnum>=? and rnum<=?";
+			String sql = "select * from (select rownum rnum, qnas.* from (select qna_num, qna_writer, REGEXP_REPLACE(qna_writer, '.', '*', 4) as qna_writerS, qna_title, qna_content, qna_date, qna_ref, qna_step, qna_depth, qna_sec, qna_check from qna where qna_num > 0 and qna_yn='y' order by qna_ref desc, qna_step asc) qnas ) where rnum>=? and rnum<=?";
 
 			ps = con.prepareStatement(sql);
-			System.out.println(pager.getStartRow());
+			System.out.println("pager.startrow : "+pager.getStartRow());
 			ps.setInt(1, pager.getStartRow());
 			ps.setInt(2, pager.getLastRow());
 			rs = ps.executeQuery();
@@ -93,8 +93,10 @@ public class QnaDAO {
 			while (rs.next()) {
 				QnaDTO qnaDTO = new QnaDTO();
 				qnaDTO.setQna_num(rs.getInt("qna_num"));
-				/* qnaDTO.setQna_writer(rs.getString("qna_writerS")); */
+				qnaDTO.setQna_writer(rs.getString("qna_writer"));
+				qnaDTO.setQna_writerS(rs.getString("qna_writerS")); 
 				qnaDTO.setQna_title(rs.getString("qna_title"));
+				qnaDTO.setQna_content(rs.getString("qna_content"));
 				qnaDTO.setQna_date(rs.getDate("qna_date"));
 				qnaDTO.setQna_ref(rs.getInt("qna_ref"));
 				qnaDTO.setQna_step(rs.getInt("qna_step"));

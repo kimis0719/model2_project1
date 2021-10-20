@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	href="https://maxcdn.bootstrapcdn.coSm/bootstrap/3.4.1/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
@@ -59,19 +60,20 @@ input[type=text]:focus {
 	width: 50%;
 }
 
-  .affix {
-    top:0;
-    width: 100%;
-    z-index: 9999 !important;
-  }
-  .navbar {
-    margin-bottom: 0px;
-  }
+.affix {
+	top: 0;
+	width: 100%;
+	z-index: 9999 !important;
+}
 
-  .affix ~ .container-fluid {
-   position: relative;
-   top: 50px;
-  }
+.navbar {
+	margin-bottom: 0px;
+}
+
+.affix ~ .container-fluid {
+	position: relative;
+	top: 50px;
+}
 
 /* Create two unequal columns that floats next to each other */
 /* Left column */
@@ -173,10 +175,15 @@ input[type=text]:focus {
 }
 /* footer address a{
     display: block; /* a 태그는 인라인요소라 수평으로 출력돼서 블록으로 강제로 수직으로 출력되도록 함*/
-} */
-
+}
+*
+/
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+
+
+
+
 @media screen and (max-width: 800px) {
 	.leftcolumn, .rightcolumn {
 		width: 100%;
@@ -187,7 +194,6 @@ input[type=text]:focus {
 </style>
 </head>
 <body>
-<a href="./qnaList.qna">q</a>
 	<div class="header">
 		<h1>중앙 커뮤니티 - 관리자 모드</h1>
 		<form>
@@ -199,49 +205,50 @@ input[type=text]:focus {
 	</div>
 
 
-	<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
-  <div class="container-fluid">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">홈</a>
-    </div>
-    <div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li><a href="#section1">공지</a></li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">일상●취미 <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#section41">자유</a></li>
-              <li><a href="#section42">일상</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">스포츠 <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#section41">축구</a></li>
-              <li><a href="#section42">야구</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">게임 <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#section41">D2&D2R</a></li>
-              <li><a href="#section42">FF14</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">연예 <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#section41">영화</a></li>
-              <li><a href="#section42">tv방송</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</nav>  
+	<nav class="navbar navbar-inverse" data-spy="affix"
+		data-offset-top="197">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">홈</a>
+			</div>
+			<div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li><a href="#section1">공지</a></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">일상●취미 <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#section41">자유</a></li>
+								<li><a href="#section42">일상</a></li>
+							</ul></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">스포츠 <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#section41">축구</a></li>
+								<li><a href="#section42">야구</a></li>
+							</ul></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">게임 <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#section41">D2&D2R</a></li>
+								<li><a href="#section42">FF14</a></li>
+							</ul></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">연예 <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#section41">영화</a></li>
+								<li><a href="#section42">tv방송</a></li>
+							</ul></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
 
 	<div class="row">
 		<div class="leftcolumn">
@@ -288,7 +295,7 @@ input[type=text]:focus {
 				<button class="btn 로그인">로그인</button>
 				<button class="btn 회원가입">회원가입</button>
 			</div>
-			
+
 			<div class="card">
 				<h3>Popular Post</h3>
 				<div class="fakeimg">
@@ -305,7 +312,7 @@ input[type=text]:focus {
 				<h3>Follow Me</h3>
 				<p>Some text..</p>
 			</div>
-			
+
 		</div>
 	</div>
 
@@ -336,19 +343,7 @@ input[type=text]:focus {
 		}
 	</script>
 
-	<div class="footer">
-		<!-- 로고 추가 -->
-		<p>Copyright© All rights reserved.</p>
-		<dl>
-			<dt>주소: 서울특별시</dt>
-			<dt>상호: CHC</dt>
-			<dt>담당자: 홍길동</dt>
-			<dt>연락처: 111-1111-1111</dt>
-		</dl>
-		<h6>본 사이트에서는 각종 청소년유해정보로부터 청소년을 보호하고자 관련법률에 따라 19세미만의 청소년들이 유해정보에
-			접근할 수 없도록 청소년취급방침을 마련하여 시행하고 있습니다. 또한 청소년의 건전한 성장을 저해하는 음란 · 불법 등의
-			유해정보와 비윤리적 · 반사회적 행위에 대해서는 엄격하게 제재하고 있습니다.</h6>
-	</div>
+<c:import url="./layout/footer.jsp"></c:import>
 
 
 </body>

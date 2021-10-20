@@ -220,7 +220,7 @@ table {
     left: 25px;
     width: 35px;
     height: 35px;
-    background: url(../../images/board/q-circle.png) no-repeat;
+    /* background: url(../../images/board/q-circle.png) no-repeat; */
     font-size: 0;
     line-height: 0;
 }

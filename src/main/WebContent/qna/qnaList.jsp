@@ -47,7 +47,7 @@
 					<c:forEach items="${lists}" var="list">
 						<c:if test="${list.qna_step == 0}">
 							<tr class="${list.qna_ref}">
-								<td class="td_num">${list.qna_num}</td>
+								<td class="td_num">${list.qna_ref}</td>
 								<td class="td_view"><c:if test="${list.qna_check eq 0}">
 										<span class="state">미완료</span>
 									</c:if> <c:if test="${list.qna_check eq 1}">
@@ -55,21 +55,21 @@
 									</c:if> <!-- 비밀글일때 --> <c:if test="${list.qna_sec eq 1}">
 										<c:if
 											test="${member.nickname ne list.qna_writer && member.grade ne 99}">비밀글입니다. <img
-												alt="비밀글" src="../images/board/lock-line.png"
+												alt="비밀글" src="./images/board/lock-line.png"
 												style="margin-bottom: 4px;">
 										</c:if>
 										<c:if
 											test="${member.nickname eq list.qna_writer || member.grade eq 99}">
 											<a href="javascript:void(0)" id="showCloseDetail"
-												class="view_txt">${list.qna_content} <img alt="비밀글"
-												src="../images/board/lock-line.png"
+												class="view_txt">${list.qna_title} <img alt="비밀글"
+												src="./images/board/lock-line.png"
 												style="margin-bottom: 4px;"></a>
 										</c:if>
 									</c:if> <!-- 비밀글 아닐때 --> <c:if test="${list.qna_sec eq 0}">
 										<a href="javascript:void(0)" id="showCloseDetail"
-											class="view_txt">${list.qna_content}</a>
+											class="view_txt">${list.qna_title}</a>
 									</c:if></td>
-								<td class="td_writer">${list.qna_writer}</td>
+								<td class="td_writer">${list.qna_writerS}</td>
 								<td class="td_date"><fmt:formatDate
 										value="${list.qna_date}" pattern="yyyy-MM-dd HH:mm" /></td>
 							</tr>
@@ -94,7 +94,7 @@
 											</c:if>
 											<c:if
 												test="${member.nickname eq list.qna_writer || member.grade eq 99}">
-												<a href="qnaDelete?ref=${list.qna_ref}">삭제하기</a>
+												<a href="qnaDelete.qna?ref=${list.qna_ref}">삭제하기</a>
 											</c:if>
 										</div>
 									</div>
@@ -111,7 +111,7 @@
 												test="${member.grade eq 99 && member.nickname eq list.qna_writer}">
 												<a href="javascript:void(0)" class="btn_replyUpdate">수정하기</a>
 												<a
-													href="qnaAnswerDelete?qna_num=${list.qna_num}&&qna_ref=${list.qna_ref}">삭제하기</a>
+													href="qnaAnswerDelete.qna?qna_num=${list.qna_num}&&qna_ref=${list.qna_ref}">삭제하기</a>
 											</c:if>
 										</div>
 									</div>
@@ -122,32 +122,32 @@
 				</tbody>
 			</table>
 
-			<c:if test="${member.grade ne 99}">
+			<%-- <c:if test="${member.grade ne 99}"> --%>
 				<div class="btn_wrap">
 					<input type="button" value="문의하기" class="btn_write">
 				</div>
-			</c:if>
+			<%-- </c:if> --%>
 
 			<ul class="pagination">
 				<c:if test="${pager.curBlock gt 1}">
 					<li class="previous"><a
-						href="./qnaList?curPage=${pager.startNum-1}"><</a></li>
+						href="./qnaList.qna?curPage=${pager.startNum-1}"><</a></li>
 				</c:if>
 
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 					<c:if test="${pager.curPage == i}">
-						<li class="list"><a href="./qnaList?curPage=${i}"
+						<li class="list"><a href="./qnaList.qna?curPage=${i}"
 							style="color: #f23600;">${i}</a></li>
 
 					</c:if>
 					<c:if test="${pager.curPage != i}">
-						<li class="list"><a href="./qnaList?curPage=${i}">${i}</a></li>
+						<li class="list"><a href="./qnaList.qna?curPage=${i}">${i}</a></li>
 					</c:if>
 				</c:forEach>
 
 				<c:if test="${pager.curBlock lt pager.totalBlock}">
 					<li class="next"><a
-						href="./qnaList?curPage=${pager.lastNum+1}">></a></li>
+						href="./qnaList.qna?curPage=${pager.lastNum+1}">></a></li>
 				</c:if>
 			</ul>
 		</div>
@@ -172,11 +172,11 @@
 							//window.name = "부모창 이름";
 							//window.name = "parentForm";
 							//window.open("open할 window", "자식창 이름", "팝업창 옵션");
-							if (nickname != null && nickname != "") {
+							//if (nickname != null && nickname != "") {
 								openWin = window
-										.open("./qnaWrite", "wirteForm",
+										.open("./qnaWrite.qna", "wirteForm",
 												"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
-							} else {
+							/* } else {
 								var confirm_val = confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?");
 								if (confirm_val) {
 									location.href = "../member/memberLogin";
@@ -184,24 +184,24 @@
 								} else {
 									location.href = "./qnaList";
 								}
-							}
+							} */
 						});
 
 		function openUpdate(num) {
 			openWin = window
-					.open("qnaUpdate?qna_num=" + num, "updateForm",
+					.open("qnaUpdate.qna?qna_num=" + num, "updateForm",
 							"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 		}
 
 		function openAnswer(num) {
 			openWin = window
-					.open("qnaAnswer?qna_num=" + num, "answerForm",
+					.open("qnaAnswer.qna?qna_num=" + num, "answerForm",
 							"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 		}
 
 		function openAnswerUpdate(num) {
 			openWin = window
-					.open("qnaAnswerUpdate?qna_num=" + num, "answerForm",
+					.open("qnaAnswerUpdate.qna?qna_num=" + num, "answerForm",
 							"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 		}
 
@@ -225,109 +225,6 @@
 
 			openAnswerUpdate(num);
 		})
-
-		// 	function setUpdateText() {
-
-		// 		var num = $(this).parent().find('.num').val();
-		// 		openWin.document.getElementById("num").value = num;
-		// 	}
-
-		// 	function PostOpen() {
-		// 		var f = document.write_form;
-		// 		var is_status = "toolbar=no,directories=no,scrollbars=yes,resizable=no,status=yes,menubar=no, top=10,left=30, width=920, height=700"; 
-		// 		var p_window = window.open("","p_window",is_status); // post 는 우선 url 이 없다.
-
-		// 		f.target = "p_window";
-
-		// 		f.action = "open.asp";
-
-		// 		f.submit();
-
-		// 		p_window.focus();
-		// 	}
-
-		// 	function fnWindowOpen() {
-		// 		var target = 'pop';
-		// 		window.open('', target); //새창을 띄운다
-
-		// 		var from = document.form;
-		// 		form.action = ""; //form에 url 설정
-		// 		form.target = target; //form 타깃에 새창(popup)과 같은 타깃명을 설정한다.
-		// 		form.submit();
-		// 	}
-
-		// 	function open_pop(arg1, arg2){
-		// 		var frmPop = document.frmPopup;
-		// 		var url = 'popup.php';
-		// 		window.open('', 'popupView', '옵션');
-
-		// 		frmPop.action = url;
-		// 		frmPop.target = 'popupView'; //window.open()의 두번째 인수와 같아야 하며 필수다
-		// 		frmPop.arg1.value = arg1;
-		// 		frmPop.arg2.value = arg2;
-		// 		frmPop.submit();
-		// 	}
-
-		// 	function action_popup(idx) {
-
-		// 		var lPos = screen.availWidth / 2 - 300 / 2;
-
-		// 		var windowUrl = 'about:blank';
-
-		// 		var windowName = 'TARGET_' + idx;
-
-		// 		var popupWindow = window.open(windowUrl, windowName, 'left='+lPos+',top=10,scrollbars=yes,width=300,height=640');
-
-		// 		var popupForm = document.popupForm;
-
-		// 		if(!document.popupForm) {
-
-		// 			popupForm = document.createElement("form");
-
-		// 			popupForm.setAttribute("name", "popupForm");
-
-		// 			popupForm.setAttribute("method", "post");
-
-		// 			popupForm.setAttribute("action", "popup.html");
-
-		// 			var input = document.createElement('input');
-
-		// 			input.setAttribute("type", "hidden");
-
-		// 			input.setAttribute("name", "idx");
-
-		// 			input.setAttribute("value", "");
-
-		// 			popupForm.appendChild(input);
-
-		// 			popupForm.target = windowName;
-
-		// 			document.body.appendChild(popupForm);
-
-		// 		}
-
-		// 		popupForm.idx.value = idx;
-
-		// 		popupForm.submit();
-
-		// 	}
-
-		// 	function onSubmit(){
-		// 		 var myForm = document.popForm;
-		// 		 var url = "/test/popForm.do";
-		// 		 window.open("" ,"popForm",
-		// 		       "toolbar=no, width=540, height=467, directories=no, status=no,    scrollorbars=no, resizable=no");
-		// 		 myForm.action =url;
-		// 		 myForm.method="post";
-		// 		 myForm.target="popForm";
-		// 		 myForm.testVal = 'test';
-		// 		myForm.submit();
-		// 		}
-
-		// 		<form name="popForm">
-		// 		    <input type="hidden" name="cmd" value="openPop" />
-		// 		    <input type="hidden" name="testval" />
-		// 		</form>
 
 		//날짜 변환 함수
 		function changeDate(date) {

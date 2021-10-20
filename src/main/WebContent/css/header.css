@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 * {
 	box-sizing: border-box;
 }
@@ -22,9 +20,14 @@ body {
 	background: #EEEEEE;
 }
 
+.header img{
+	float: left;
+	border-radius: 10%;
+}
 .header h1 {
 	font-size: 40px;
 }
+
 
 input[type=text] {
 	width: 130px;
@@ -91,26 +94,26 @@ input[type=text]:focus {
 /* Set a style for all buttons */
 .btn {
 	border: none;
-	color: white;
+	color: black;
 	padding: 14px 28px;
 	font-size: 16px;
 	cursor: pointer;
 }
 
-.로그인 {
+.login {
 	background-color: #EC5E5E;
 }
 
-.로그인:hover {
+.login:hover {
 	background-color: #EC5E5E;
 }
 
-.회원가입 {
-	background-color: #e7e7e7;
+.sing-up {
+	background-color: #eeeeee;
 	color: black;
 }
 
-.회원가입:hover {
+.sign-up:hover {
 	background: #ddd;
 }
 
@@ -147,4 +150,50 @@ input[type=text]:focus {
 
 #myBtn:hover {
 	background-color: #555;
+}
+
+/* Footer */
+.footer {
+	padding: 25px;
+	text-align: center;
+	background-color: #222222;
+	color: #919191;
+	margin-top: 25px;
+}
+
+.footer a{
+    color: #919191;
+} 
+
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+	.leftcolumn, .rightcolumn {
+		width: 100%;
+		padding: 0;
+	}
+}
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th {
+	padding: 8px;
+	background: #ffffff;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+}
+
+td {
+	padding: 8px;
+	background-color: #fbfbfb;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+	background-color: #ffffff;
+}
+
 }
