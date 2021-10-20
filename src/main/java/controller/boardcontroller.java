@@ -12,14 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import service.Action;
 import service.ActionForward;
 import service.BoardListAction;
+import service.BoardOrderListAction;
+import service.BoardSearchAction;
 import service.CateListAction;
 
 /**
  * Servlet implementation class board_controller
  */
 
-@WebServlet("*.do")
-public class board_controller extends HttpServlet {
+@WebServlet("*.board")
+public class boardcontroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// doGet(), doPost() 메소드에서 공통적인 작업을 처리하는 메소드
@@ -36,21 +38,43 @@ public class board_controller extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 
-		// 카테고리별 게시판 정보 출력
-		if (command.equals("/CateListAction.do")) {
+		// 메뉴 : 카테고리별 게시판 정보 출력
+		if (command.equals("/CateListAction.board")) {
 			try {
 				action = new CateListAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/BoardListAction.do")) {
+		
+		// 글목록 : 게시판별 목록 출력
+		}else if (command.equals("/BoardListAction.board")) {
 			try {
 				action = new BoardListAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		
+		// 글목록 : 정렬 - 게시판별 정렬조건으로 정렬한 목록 출력
+		}else if (command.equals("/BoardOrderListAction.board")) {
+			try {
+				action = new BoardOrderListAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		
+		// 글목록 : 검색 - 게시판별 검색결과 출력
+		}else if (command.equals("/BoardSearchAction.board")) {
+			try {
+				action = new BoardSearchAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 
 		// 포워딩처리

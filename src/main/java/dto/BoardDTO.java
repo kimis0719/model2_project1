@@ -18,6 +18,7 @@ public class BoardDTO {
 	private Timestamp board_up_date;
 	private String board_yn;
 	private int cate_num;
+	private int cate_code;
 	
 	public int getBoard_num() {
 		return board_num;
@@ -96,6 +97,12 @@ public class BoardDTO {
 	}
 	public void setCate_num(int cate_num) {
 		this.cate_num = cate_num;
+	}
+	public int getCate_code() {
+		return cate_code;
+	}
+	public void setCate_code(int cate_code) {
+		this.cate_code = cate_code;
 	}
 	
 	

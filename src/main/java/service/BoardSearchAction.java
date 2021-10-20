@@ -11,16 +11,21 @@ import dao.CateDAO;
 import dto.BoardDTO;
 import dto.CateDTO;
 
-public class BoardListAction implements Action {
+public class BoardSearchAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("BoardListAction");
-
+		System.out.println("BoardSearchAction");
+		
+		String sel = request.getParameter("sel");
+		String find = request.getParameter("find");
+		
 		int currentCate = Integer.parseInt(request.getParameter("cate_num"));
 		System.out.println("currentCate : " + currentCate);
+		System.out.println("sel : " + sel);
+		System.out.println("find : " + find);
 
-		int page = 1; // 현재 페이지 번호
+		int page = 1; // 현재 페이지 번호	
 		int limit = 10; // 한화면에 출력할 데이터 갯수
 
 		if (request.getParameter("page") != null) {
@@ -37,7 +42,7 @@ public class BoardListAction implements Action {
 		int listcount = dao.getCount(currentCate); // 총 데이터 갯수 구해오는 그룹함수
 		System.out.println("listcount : " + listcount);
 
-		List<BoardDTO> boardlist = dao.getList(startRow, endRow, currentCate);
+		List<BoardDTO> boardlist = dao.getFindList(startRow, endRow, currentCate, sel, find);
 		System.out.println("boardlist : " + boardlist);
 
 		// 총 페이지
@@ -50,6 +55,8 @@ public class BoardListAction implements Action {
 			endPage = pageCount;
 
 		request.setAttribute("currentCate", currentCate);
+		request.setAttribute("sel", sel);
+		request.setAttribute("find", find);
 		request.setAttribute("page", page);
 		request.setAttribute("listcount", listcount);
 		request.setAttribute("boardlist", boardlist);

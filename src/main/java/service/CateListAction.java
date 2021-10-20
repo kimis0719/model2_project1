@@ -6,7 +6,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.BoardDAO;
 import dao.CateDAO;
+import dto.BoardDTO;
 import dto.CateDTO;
 
 public class CateListAction implements Action{
@@ -28,16 +30,45 @@ public class CateListAction implements Action{
 			
 			// 게시판정보 catelist에 추가
 			catelist.addAll(list);
+			System.out.println("catelist"+i+" : "+catelist.get(i-1));
 		}
-		System.out.println("catelist : "+catelist);
+		
+		int page = 1;
+		
+		BoardDAO bdao = BoardDAO.getInstance();
+		
+		
+		List<BoardDTO> noticelist = bdao.getboardlist(1);
+		List<BoardDTO> freelist = bdao.getboardlist(2);
+		List<BoardDTO> dailylist = bdao.getboardlist(3);
+		List<BoardDTO> sclist = bdao.getboardlist(4);
+		List<BoardDTO> bslist = bdao.getboardlist(5);
+		List<BoardDTO> d2list = bdao.getboardlist(6);
+		List<BoardDTO> ff14list = bdao.getboardlist(7);
+		List<BoardDTO> movielist = bdao.getboardlist(8);
+		List<BoardDTO> tvlist = bdao.getboardlist(9);
+		System.out.println("noticelist:"+ noticelist);
+		
+		
 		// 게시판정보 공유설정
 		request.setAttribute("catelist", catelist);
+		
+		request.setAttribute("noticelist", noticelist);
+		request.setAttribute("freelist", freelist);
+		request.setAttribute("dailylist", dailylist);
+		request.setAttribute("sclist", sclist);
+		request.setAttribute("bslist", bslist);
+		request.setAttribute("d2list", d2list);
+		request.setAttribute("ff14list", ff14list);
+		request.setAttribute("movielist", movielist);
+		request.setAttribute("tvlist", tvlist);
+		request.setAttribute("page", page);
 		
 		
 		ActionForward forward = new ActionForward();
 		
 		forward.setRedirect(false);  // dispatcher 방식으로 포워딩
-		forward.setPath("../layout/header.jsp");
+		forward.setPath("/board/mainPage.jsp");
 		
 		
 		return forward;

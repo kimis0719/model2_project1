@@ -17,9 +17,6 @@
 <body>
 
 
-	
-
- 
 
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
@@ -49,7 +46,7 @@
 	</script>
 
 	<div class="footer">
-		<!-- 로고 추가 -->
+		<a href="#">문의사항</a>
 		<p>Copyright© All rights reserved.</p>
 		<dl>
 			<dt>주소: 서울특별시</dt>
