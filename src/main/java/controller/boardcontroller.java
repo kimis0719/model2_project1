@@ -16,8 +16,8 @@ import service.ActionForward;
 /**
  * Servlet implementation class board_controller
  */
-@WebServlet("*.do")
-public class board_controller extends HttpServlet {
+@WebServlet("*.board")
+public class boardcontroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
   // doGet(), doPost() 메소드에서 공통적인 작업을 처리하는 메소드
