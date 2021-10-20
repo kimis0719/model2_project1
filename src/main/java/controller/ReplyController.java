@@ -17,7 +17,7 @@ import service.CateListAction;
  * Servlet implementation class replyController
  */
 @WebServlet("*.reply")
-public class replyController extends HttpServlet {
+public class ReplyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// doGet(), doPost() 메소드에서 공통적인 작업을 처리하는 메소드
