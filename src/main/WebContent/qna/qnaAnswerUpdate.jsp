@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cookie Qna Answer Update</title>
-<c:import url="../template/boot.jsp" />
+<title>Qna Answer Update</title>
+<c:import url="../layout/boot.jsp" />
 <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/qnaWrite.css" rel="stylesheet">
 </head>

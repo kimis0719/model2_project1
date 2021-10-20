@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Qna List</title>
-<c:import url="./boot.jsp" />
+<c:import url="../layout/boot.jsp" />
 <c:import url="../layout/header.jsp" />
 <link href="${pageContext.request.contextPath}/css/reset.css"
 	rel="stylesheet">
