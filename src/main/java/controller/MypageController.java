@@ -12,26 +12,32 @@ import javax.servlet.http.HttpServletResponse;
 import service.Action;
 import service.ActionForward;
 import service.Delete;
+import service.Myboardlist;
+import service.Update;
+import service.UpdateMember;
+
+
 
 /**
- * Servlet implementation class MemberController
+ * Servlet implementation class board_controller
  */
-@WebServlet("*member")
-public class MemberController extends HttpServlet {
+@WebServlet("*.Mypage")
+public class MypageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
-		String requestURI = request.getRequestURI();  // 현재 프로젝트를 포함한 전체경로 구하기
-		String contextpath = request.getContextPath(); // 현재 프로젝트명을 구해옴
-		String command = requestURI.substring(contextpath.length());
+  // doGet(), doPost() 메소드에서 공통적인 작업을 처리하는 메소드
+	public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
 		
-		System.out.println("requestURI:"+requestURI);
-		System.out.println("contextpath:"+contextpath);
-		System.out.println("command:"+command);
+		String requestURI = request.getRequestURI();
+		String contextPath = request.getContextPath();
+		String command = requestURI.substring(contextPath.length());
 		
-		Action action = null; 
-		ActionForward forward = null;  // 초기값은 null값이므로 처음에는 포워딩처리하지않음
-		// 아래쪽 else if가 한번 실행하면 null값이 아니게되므로 포워딩처리를 하게된다
+		System.out.println("requestURI"+requestURI);
+		System.out.println("contextPath"+contextPath);
+		System.out.println("command"+command);
+		
+		Action action = null;
+		ActionForward forward = null;		
 		
 		// 회원 탈퇴폼
 		if(command.equals("DeleteMember.do")) {
@@ -47,6 +53,32 @@ public class MemberController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+			
+			// 내가작성한글 목록
+		}else if(command.equals("Myboardlist.do")) {
+			try {
+				action = new Myboardlist();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			// 회원 가입 수정 폼
+		}else if(command.equals("UpdateMember.do")) {
+			try {
+				action = new UpdateMember();
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+		}else if(command.equals("Update.do")) {
+			try {
+				action = new Update();
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
 		} // if end
 		
 		// 포워딩 처리
@@ -59,16 +91,13 @@ public class MemberController extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 		}
-		
-		
-	}  // do process end
-	
+	} // doProcess() end
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		System.out.println("get");
 		
 		doProcess(request, response);
@@ -78,8 +107,6 @@ public class MemberController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
 		System.out.println("post");
 		
 		doProcess(request, response);
