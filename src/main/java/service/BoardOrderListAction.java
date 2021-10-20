@@ -11,10 +11,10 @@ import dao.CateDAO;
 import dto.BoardDTO;
 import dto.CateDTO;
 
-public class BoardCountOrderListAction implements Action{
+public class BoardOrderListAction implements Action{
 		@Override
 		public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-			System.out.println("BoardCountOrderListAction");
+			System.out.println("BoardOrderListAction");
 			
 			String orderName = request.getParameter("order");
 			int currentCate = Integer.parseInt(request.getParameter("cate_num"));
@@ -38,7 +38,7 @@ public class BoardCountOrderListAction implements Action{
 			int listcount = dao.getCount(currentCate); // 총 데이터 갯수 구해오는 그룹함수
 			System.out.println("listcount : " + listcount);
 
-			List<BoardDTO> boardlist = dao.getCountOrderList(startRow, endRow, currentCate);
+			List<BoardDTO> boardlist = dao.getOrderList(startRow, endRow, currentCate, orderName);
 			System.out.println("boardlist : " + boardlist);
 
 			// 총 페이지

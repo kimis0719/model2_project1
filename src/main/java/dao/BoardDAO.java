@@ -106,8 +106,8 @@ public class BoardDAO {
 			return list;
 		}
 		
-		// 정렬 : 각 게시판별 정렬된 글 목록 가져오기(조회순)
-		public List<BoardDTO> getCountOrderList(int start, int end, int cate_num){
+		// 글목록 : 정렬 - 각 게시판별 정렬된 글 목록 가져오기
+		public List<BoardDTO> getOrderList(int start, int end, int cate_num, String order){
 			List<BoardDTO> list = new ArrayList<BoardDTO>();
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -117,7 +117,7 @@ public class BoardDAO {
 				con = getConnection();
 
 				String sql = "select * from (select rownum rnum, board.* from ";
-				sql	+= " (select * from board where cate_num=? and board_yn='y' order by board_count desc) board) ";
+				sql	+= " (select * from board where cate_num=? and board_yn='y' order by "+order+" desc) board) ";
 				sql += "  where rnum >=? and rnum<=? ";
 				
 				pstmt = con.prepareStatement(sql);
@@ -141,10 +141,8 @@ public class BoardDAO {
 					board.setBoard_up_date(rs.getTimestamp("board_up_date"));
 					board.setBoard_yn(rs.getString("board_yn"));
 					board.setCate_num(rs.getInt("cate_num"));
-					
 					list.add(board);
 				}
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -152,12 +150,10 @@ public class BoardDAO {
 				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
 				if(con != null) try {con.close();} catch(Exception e) {}
 			}
-			
 			return list;
 		}
 		
-		// 정렬 : 각 게시판별 정렬된 글 목록 가져오기(좋아요순)
-		public List<BoardDTO> getGoodOrderList(int start, int end, int cate_num){
+		public List<BoardDTO> getFindList(int start, int end, int cate_num, String sel, String find){
 			List<BoardDTO> list = new ArrayList<BoardDTO>();
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -167,7 +163,7 @@ public class BoardDAO {
 				con = getConnection();
 
 				String sql = "select * from (select rownum rnum, board.* from ";
-				sql	+= " (select * from board where cate_num=? and board_yn='y' order by board_good desc) board) ";
+				sql	+= " (select * from board where cate_num=? and board_yn='y' and "+sel+" like '%"+find+"%'order by board_num desc) board) ";
 				sql += "  where rnum >=? and rnum<=? ";
 				
 				pstmt = con.prepareStatement(sql);
@@ -191,10 +187,8 @@ public class BoardDAO {
 					board.setBoard_up_date(rs.getTimestamp("board_up_date"));
 					board.setBoard_yn(rs.getString("board_yn"));
 					board.setCate_num(rs.getInt("cate_num"));
-					
 					list.add(board);
 				}
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -202,7 +196,8 @@ public class BoardDAO {
 				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
 				if(con != null) try {con.close();} catch(Exception e) {}
 			}
-			
 			return list;
 		}
+		
+	
 }

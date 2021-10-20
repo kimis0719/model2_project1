@@ -252,9 +252,11 @@ tr:hover {
 					<tr>
 						<td>${num}<c:set var="num" value="${num-1}" />
 						</td>
-						<td text-decoration="none"><a
-							href="./BoardDetailAction.do?board_num=${b.board_num}&page=${page}">
-								${b.board_title} </a></td>
+						<td text-decoration="none">
+							<a href="./BoardDetailAction.do?board_num=${b.board_num}&page=${page}">
+								${b.board_title} 
+							</a>
+						</td>
 						<td>${b.board_nick}</td>
 						<td>${b.board_count}</td>
 						<td>${b.board_good}</td>
@@ -265,6 +267,7 @@ tr:hover {
 			</table>
 
 			<div align="center">
+				<!-- 정렬기능 -->
 				<a class="sort">
 					<select name="orderselect" onchange="orderListToURL(this.value)">
 						<option value="./BoardListAction.board?cate_num=${currentCate}"
@@ -272,37 +275,37 @@ tr:hover {
 								selected
 							</c:if>
 						>최신순 정렬</option>
-						<option value="./BoardGoodOrderListAction.board?cate_num=${currentCate}&order=board_good" 
+						<option value="./BoardOrderListAction.board?cate_num=${currentCate}&order=board_good" 
 							<c:if test="${orderName == 'board_good'}">
 								selected
 							</c:if>
 						>좋아요 정렬</option>
-						<option value="./BoardCountOrderListAction.board?cate_num=${currentCate}&order=board_count"
+						<option value="./BoardOrderListAction.board?cate_num=${currentCate}&order=board_count"
 							<c:if test="${orderName == 'board_count'}">
 								selected
 							</c:if>
 						>조회수 정렬</option>						
 					</select> 
 				</a>
-
-				<a class="search"> 
-
-
-						<form method=post action="boardlist.jsp">
-							<select name="searchselect" id="searchselect">
+				
+				<!-- 검색기능 -->
+				<div class="search"> 
+						<form action="BoardSearchAction.board" method=get>
+							<input type="hidden" id="cate_num" value="${currentCate }">
+							<select name="sel" id="sel">
 								<option value="">검색</option>
-								<option value="writer">작성자</option>
-								<option value="subject">제목</option>
-								<option value="content">내용</option>
+								<option value="board_nick">작성자</option>
+								<option value="board_title">제목</option>
+								<option value="board_content">내용</option>
 							</select> 
-							<input type="searcharea" id="searcharea"> 
-							<button class="btn2 btn-search">
-								<span class="glyphicon glyphicon-search"></span> 검색
+							<input type="text" id="find"> 
+							<button type="submit" class="btn2 btn-search">
+								검색
 							</button>
 						</form>
-					</a>
+					</div>
 						
-
+				<!-- 글쓰기 -->
 				<c:if test="${currentCate != 1 }">
 					<a class="boardWrite" align="right"> <input type="button"
 						value="글쓰기"

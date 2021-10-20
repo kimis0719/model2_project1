@@ -7,13 +7,13 @@ function orderListToURL(url) {
 
 $(document).ready(function() {
 	$("form").submit(function() {
-		if ($("#searchselect").val() == "") {
+		if ($("#sel").val() == "") {
 			alert("검색할 항목을 선택하세요.");
 			return false;
 		}
-		if ($("#searcharea").val() == "") {
+		if ($("#find").val() == "") {
 			alert("검색어를 입력하세요.");
-			$("#searcharea").focus();
+			$("#find").focus();
 			return false;
 		}
 	});
