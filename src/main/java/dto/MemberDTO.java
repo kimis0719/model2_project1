@@ -1,28 +1,26 @@
-// DTO(Data Transfer Object) 클래스
-
-package dto;
+package model;
 
 import java.util.Date;
 
-public class memberDTO {
+public class MemberDTO {
 
-	    private String mem_num;
-	    private String mem_id;
-	    private String mem_nick;
-	    private String mem_pass;
-	    private String mem_email;
-	    private Date mem_date;
-	    private String mem_img;
-	    private String mem_phone;
-	    private String mem_up_memnum;
-	    private Date mem_up_date;
-	    private String mem_yn;
-	    private String mem_grade;
-	    
-		public String getMem_num() {
+		private int mem_num;
+		private String mem_id;
+		private String mem_nick;
+		private String mem_pass;
+		private String mem_email;
+		private Date mem_date;
+		private String mem_img;
+		private String mem_phone;
+		private int mem_up_memnum;
+		private Date mem_up_date;
+		private String mem_yn;
+		private int mem_grade;
+		
+		public int getMem_num() {
 			return mem_num;
 		}
-		public void setMem_num(String mem_num) {
+		public void setMem_num(int mem_num) {
 			this.mem_num = mem_num;
 		}
 		public String getMem_id() {
@@ -64,13 +62,13 @@ public class memberDTO {
 		public String getMem_phone() {
 			return mem_phone;
 		}
-		public void setMem_phone(String mem_phone) {
-			this.mem_phone = mem_phone;
+		public void setMem_phone(String string) {
+			this.mem_phone = string;
 		}
-		public String getMem_up_memnum() {
+		public int getMem_up_memnum() {
 			return mem_up_memnum;
 		}
-		public void setMem_up_memnum(String mem_up_memnum) {
+		public void setMem_up_memnum(int mem_up_memnum) {
 			this.mem_up_memnum = mem_up_memnum;
 		}
 		public Date getMem_up_date() {
@@ -85,12 +83,10 @@ public class memberDTO {
 		public void setMem_yn(String mem_yn) {
 			this.mem_yn = mem_yn;
 		}
-		public String getMem_grade() {
+		public int getMem_grade() {
 			return mem_grade;
 		}
-		public void setMem_grade(String mem_grade) {
+		public void setMem_grade(int mem_grade) {
 			this.mem_grade = mem_grade;
 		}
-	    
-		
 }

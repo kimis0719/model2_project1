@@ -1,3 +1,6 @@
+
+@charset "UTF-8";
+
 * {
 	box-sizing: border-box;
 }
@@ -24,10 +27,10 @@ body {
 	float: left;
 	border-radius: 10%;
 }
+
 .header h1 {
 	font-size: 40px;
 }
-
 
 input[type=text] {
 	width: 130px;
@@ -200,7 +203,6 @@ tr:hover {
 	background-color: #ffffff;
 }
 
-}
 
 
 

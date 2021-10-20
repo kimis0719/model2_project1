@@ -58,6 +58,7 @@ public class BoardDAO {
 			}
 			return result;
 		}
+
 		// 글목록 : 각 게시판별 글목록 구해오기
 		public List<BoardDTO> getList(int start, int end, int cate_num){
 			List<BoardDTO> list = new ArrayList<BoardDTO>();
@@ -154,6 +155,39 @@ public class BoardDAO {
 			return list;
 		}
 		
+		// 글 목록 : 게시판 - 검색 데이터 갯수 구하기
+				public int getFindCount(int cate_num, String sel, String find) {
+					int result = 0;
+					Connection con = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					
+					// 해당 게시판에 있는 글 중 Y인 게시글만 검색
+					try {
+						con = getConnection();
+						
+						String sql = "select count(*) from board where cate_num=? and board_yn='y' ";
+							   sql += "and "+sel+" like '%"+find+"%'";
+						
+						pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1, cate_num);
+						rs = pstmt.executeQuery();
+						
+						if(rs.next()) {
+							result = rs.getInt(1);	
+						//	result = rs.getInt("count(*)");	
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						if(rs != null) try {rs.close();} catch(Exception e) {}
+						if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+						if(con != null) try {con.close();} catch(Exception e) {}
+					}
+					return result;
+				}
+		
+		// 글 목록 : 게시판 - 검색
 		public List<BoardDTO> getFindList(int start, int end, int cate_num, String sel, String find){
 			List<BoardDTO> list = new ArrayList<BoardDTO>();
 			Connection con = null;
@@ -202,26 +236,50 @@ public class BoardDAO {
 		
 		
 		// 카테코리 번호별  5개 목록 구하기
-		public List<BoardDTO> getboardlist(int cate){
-			List<BoardDTO> list = new ArrayList<BoardDTO>();
+		/*
+		 * public List<BoardDTO> getboardlist(int cate){ List<BoardDTO> list = new
+		 * ArrayList<BoardDTO>(); }
+		 */
+		
+		// 글상세 : 조회수 증가
+		public void readCountUpdate(int cate_num, int board_num) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			try {
+				con = getConnection();
+				
+				String sql = "update board set board_count=board_count+1 where cate_num=? and board_num=?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, cate_num);
+				pstmt.setInt(2, board_num);
+				pstmt.executeUpdate();		//SQL문 실행
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+				if(con != null) try {con.close();} catch(Exception e) {}
+			}
+		}
+		
+		// 글상세 : 글 상세페이지 출력
+		public BoardDTO getBoardDetail(int cate_num, int board_num) {
+			BoardDTO board = new BoardDTO();
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			
 			try {
 				con = getConnection();
-
-				String sql = "select * from board, category ";
-				       sql+=" where  board.cate_num = category.cate_num and board.cate_num=?  and rownum <= 5 ";
-				       sql+="  order by board.board_date desc";
-				
+				String sql = "select * from board where cate_num=? and board_num = ?";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, cate);
+				pstmt.setInt(1, cate_num);
+				pstmt.setInt(2, board_num);
 				
 				rs = pstmt.executeQuery();
 				
-				while(rs.next()){
-					BoardDTO board = new BoardDTO();
+				if(rs.next()) {
 					board.setBoard_num(rs.getInt("board_num"));
 					board.setBoard_title(rs.getString("board_title"));
 					board.setBoard_content(rs.getString("board_content"));
@@ -237,8 +295,8 @@ public class BoardDAO {
 					board.setCate_num(rs.getInt("cate_num"));
 					board.setCate_code(rs.getInt("cate_code"));
 					
-					list.add(board);
 				}
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -246,7 +304,7 @@ public class BoardDAO {
 				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
 				if(con != null) try {con.close();} catch(Exception e) {}
 			}
-			return list;
+			return board;
 		}
 		
 		// 총 데이터 갯수 구하기 - 통합검색
@@ -406,7 +464,4 @@ public class BoardDAO {
 					}
 					return list;
 				}
-
-
-	
 }

@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.BoardDAO;
 import dao.CateDAO;
-import dto.BoardDTO;
 import dto.CateDTO;
 
 public class CateListAction implements Action{
@@ -38,7 +37,8 @@ public class CateListAction implements Action{
 		BoardDAO bdao = BoardDAO.getInstance();
 		
 		
-		List<BoardDTO> noticelist = bdao.getboardlist(1);
+/*		
+ * 		List<BoardDTO> noticelist = bdao.getboardlist(1);
 		List<BoardDTO> freelist = bdao.getboardlist(2);
 		List<BoardDTO> dailylist = bdao.getboardlist(3);
 		List<BoardDTO> sclist = bdao.getboardlist(4);
@@ -48,6 +48,7 @@ public class CateListAction implements Action{
 		List<BoardDTO> movielist = bdao.getboardlist(8);
 		List<BoardDTO> tvlist = bdao.getboardlist(9);
 		System.out.println("noticelist:"+ noticelist);
+
 		
 		
 		// 게시판정보 공유설정
@@ -63,6 +64,12 @@ public class CateListAction implements Action{
 		request.setAttribute("movielist", movielist);
 		request.setAttribute("tvlist", tvlist);
 		request.setAttribute("page", page);
+		
+		}
+*/	
+		System.out.println("catelist : "+catelist);
+		// 게시판정보 공유설정
+		request.setAttribute("catelist", catelist);
 		
 		
 		ActionForward forward = new ActionForward();

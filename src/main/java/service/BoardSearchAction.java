@@ -16,6 +16,8 @@ public class BoardSearchAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BoardSearchAction");
+
+		request.setCharacterEncoding("utf-8");
 		
 		String sel = request.getParameter("sel");
 		String find = request.getParameter("find");
@@ -39,7 +41,7 @@ public class BoardSearchAction implements Action{
 
 		BoardDAO dao = BoardDAO.getInstance();
 
-		int listcount = dao.getCount(currentCate); // 총 데이터 갯수 구해오는 그룹함수
+		int listcount = dao.getFindCount(currentCate, sel, find); // 총 검색 결과 데이터의 갯수 구해오는 그룹함수
 		System.out.println("listcount : " + listcount);
 
 		List<BoardDTO> boardlist = dao.getFindList(startRow, endRow, currentCate, sel, find);

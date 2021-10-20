@@ -14,9 +14,10 @@
 	<br>
 	
 <script type="text/javascript">
-//	location.href = "./BoardListAction.do";
-	location.href = "./CateListAction.board";
+
+	location.href = "./MainPageAction.board";
 </script>
+	
 
 </body>
 </html>
