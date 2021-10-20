@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import dao.MemberDAO;
 import dto.MemberDTO;
 
-public class mypage implements Action {
+public class Mypage implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
