@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.memberDAO;
 import dto.memberDTO;
 
 public class Update implements Action {
@@ -35,6 +36,10 @@ public class Update implements Action {
 		member.setMem_id(request.getParameter("mem_up_date"));
 		member.setMem_id(request.getParameter("mem_yn"));
 		member.setMem_id(request.getParameter("mem_grade"));
+		
+		memberDAO dao = memberDAO.getinstance();
+		memberDTO old = dao.getMember(member.getMem_id());
+		
 		
 		return null;
 	}
