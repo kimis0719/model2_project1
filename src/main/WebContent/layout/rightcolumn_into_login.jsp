@@ -4,8 +4,9 @@
 
 	<div class="rightcolumn">
 			<div class="card">
-			<button class="btn login" onclick="<%=request.getContextPath()%>/Logout.member">로그아웃</button></a>
-				<button class="btn sing-up">마이페이지</button>
+			<h2><%=session.getAttribute("mem_id") %>님 로그인 되었습니다.</h2>
+			<a href="Logout.member"><button class="btn logout">로그아웃</button></a>
+			<a href="Update.do"><button class="btn mypage">마이페이지</button></a>
 			</div>
 		</div>
 	

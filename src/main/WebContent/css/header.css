@@ -101,6 +101,7 @@ input[type=text]:focus {
 	padding: 14px 28px;
 	font-size: 16px;
 	cursor: pointer;
+	outline: none;
 }
 
 .login {
@@ -119,6 +120,22 @@ input[type=text]:focus {
 .sign-up:hover {
 	background: #ddd;
 }
+.logout {
+	background-color: #EC5E5E;
+}
+
+.logout:hover {
+	background-color: #EC5E5E;
+}
+
+.mypage {
+	background-color: #eeeeee;
+	color: black;
+}
+
+.mypage:hover {
+	background: #ddd;
+}
 
 .btn-info {
 	background-color: #EC5E5E;
@@ -127,7 +144,6 @@ input[type=text]:focus {
 .btn-info:hover {
 	background-color: #EC5E5E;
 }
-
 .btn-info2 {
 	background-color: #EC5E5E;
 }
