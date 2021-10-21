@@ -31,6 +31,8 @@ public class QnaDAO {
 
 	// 전체 글 개수
 	public int qnaCount() {
+		System.out.println("QnaCount Method");
+		
 		int result = 0;
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -60,8 +62,8 @@ public class QnaDAO {
 
 	// 글목록
 	public List<QnaDTO> qnaList(Pager pager) {
+		System.out.println("QnaList Method");
 		
-		System.out.println("QnaDAO");
 		List<QnaDTO> list = new ArrayList<QnaDTO>();
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -106,11 +108,14 @@ public class QnaDAO {
 	
 	//글 작성폼
 	public void writeForm() {
+		System.out.println("WriteForm Method");
 		
 	}//writeForm end
 	
 	//글 작성
 	public int write(QnaDTO qnaDTO) {
+		System.out.println("Write Method");
+		
 		int result = 0;
 		
 		return result;
@@ -118,17 +123,22 @@ public class QnaDAO {
 	
 	//글 수정폼
 	public void updateForm() {
+		System.out.println("UpdateForm Method");
 		
 	}//updateForm end
 	
 	//글 수정
 	public int update(QnaDTO qnaDTO) {
+		System.out.println("Update Method");
+		
 		int result = 0;
 		return result;
 	}//update end
 	
 	//글 삭제
 	public int delete(QnaDTO qnaDTO) {
+		System.out.println("Delete Method");
+		
 		int result = 0;
 		return result;
 	}//delete end

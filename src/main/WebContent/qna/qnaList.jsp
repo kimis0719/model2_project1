@@ -48,35 +48,38 @@
 						<c:if test="${list.qna_step == 0}">
 							<tr class="${list.qna_ref}">
 								<td class="td_num">${list.qna_ref}</td>
-								<td class="td_view"><c:if test="${list.qna_check eq 0}">
+								<td class="td_view">
+									<c:if test="${list.qna_check eq 0}">
 										<span class="state">미완료</span>
-									</c:if> <c:if test="${list.qna_check eq 1}">
+									</c:if>
+									<c:if test="${list.qna_check eq 1}">
 										<span class="state stateF">답변완료</span>
-									</c:if> <!-- 비밀글일때 --> <c:if test="${list.qna_sec eq 1}">
-										<c:if
-											test="${member.mem_id ne list.qna_writer && member.mem_grade ne 99}">비밀글입니다. <img
-												alt="비밀글" src="${pageContext.request.contextPath}/images/board/lock-line.png"
-												style="margin-bottom: 4px;">
+									</c:if>
+									<!-- 비밀글일때 -->
+									<c:if test="${list.qna_sec eq 1}">
+										<c:if test="${member.mem_id ne list.qna_writer && member.mem_grade ne 99}">비밀글입니다. 
+											<img alt="비밀글" src="${pageContext.request.contextPath}/images/board/lock-line.png" style="margin-bottom: 4px;">
 										</c:if>
-										<c:if
-											test="${member.mem_id eq list.qna_writer || member.mem_grade eq 99}">
-											<a href="javascript:void(0)" id="showCloseDetail"
-												class="view_txt">${list.qna_title} <img alt="비밀글"
-												src="${pageContext.request.contextPath}/images/board/lock-line.png"
-												style="margin-bottom: 4px;"></a>
+										<c:if test="${member.mem_id eq list.qna_writer || member.mem_grade eq 99}">
+											<a href="javascript:void(0)" id="showCloseDetail" class="view_txt">${list.qna_title}
+												<img alt="비밀글" src="${pageContext.request.contextPath}/images/board/lock-line.png" style="margin-bottom: 4px;">
+											</a>
 										</c:if>
-									</c:if> <!-- 비밀글 아닐때 --> <c:if test="${list.qna_sec eq 0}">
-										<a href="javascript:void(0)" id="showCloseDetail"
-											class="view_txt">${list.qna_title}</a>
-									</c:if></td>
-								<td class="td_writer">${list.qna_writerS}</td>
-								<td class="td_date">${list.qna_dateS}</td>
+									</c:if>
+									<!-- 비밀글 아닐때 -->
+									<c:if test="${list.qna_sec eq 0}">
+										<a href="javascript:void(0)" id="showCloseDetail" class="view_txt">${list.qna_title}</a>
+									</c:if>
+								</td>
+							<td class="td_writer">${list.qna_writerS}</td>
+							<td class="td_date">${list.qna_dateS}</td>
 							</tr>
 						</c:if>
 
 						<tr class="trQna trQna${list.qna_ref}" style="display: table-row;">
 							<td colspan="4" class="qna_wrap" style="display: table-cell;">
-								<!-- 질문 --> <c:if test="${list.qna_step == 0}">
+								<!-- 질문 -->
+								<c:if test="${list.qna_step == 0}">
 									<div class="question">
 										<span class="iconQ">질문</span>
 										<div style="white-space: pre-line;">
@@ -97,7 +100,9 @@
 											</c:if>
 										</div>
 									</div>
-								</c:if> <!-- 답변 --> <c:if test="${list.qna_step > 0}">
+								</c:if>
+								<!-- 답변 -->
+								<c:if test="${list.qna_step > 0}">
 									<div class="answer">
 										<span class="iconA">답변</span>
 										<div style="white-space: pre-line;">
@@ -106,11 +111,9 @@
 										<br>
 										<div class="btns_wrap">
 											<input type="hidden" class="num" value="${list.qna_ref}">
-											<c:if
-												test="${member.mem_grade eq 99 && member.mem_id eq list.qna_writer}">
+											<c:if test="${member.mem_grade eq 99 && member.mem_id eq list.qna_writer}">
 												<a href="javascript:void(0)" class="btn_replyUpdate">수정하기</a>
-												<a
-													href="qnaAnswerDelete.qna?qna_num=${list.qna_num}&&qna_ref=${list.qna_ref}">삭제하기</a>
+												<a href="qnaAnswerDelete.qna?qna_num=${list.qna_num}&&qna_ref=${list.qna_ref}">삭제하기</a>
 											</c:if>
 										</div>
 									</div>
@@ -129,29 +132,34 @@
 
 			<ul class="pagination">
 				<c:if test="${pager.curBlock gt 1}">
-					<li class="previous"><a
-						href="./qnaList.qna?curPage=${pager.startNum-1}"><</a></li>
+					<li class="previous">
+						<a href="./qnaList.qna?curPage=${pager.startNum-1}"><</a>
+					</li>
 				</c:if>
 
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 					<c:if test="${pager.curPage == i}">
-						<li class="list"><a href="./qnaList.qna?curPage=${i}"
-							style="color: #f23600;">${i}</a></li>
-
+						<li class="list">
+							<a href="./qnaList.qna?curPage=${i}" style="color: #f23600;">${i}</a>
+						</li>
 					</c:if>
 					<c:if test="${pager.curPage != i}">
-						<li class="list"><a href="./qnaList.qna?curPage=${i}">${i}</a></li>
+						<li class="list">
+							<a href="./qnaList.qna?curPage=${i}">${i}</a>
+						</li>
 					</c:if>
 				</c:forEach>
 
 				<c:if test="${pager.curBlock lt pager.totalBlock}">
-					<li class="next"><a
-						href="./qnaList.qna?curPage=${pager.lastNum+1}">></a></li>
+					<li class="next">
+						<a href="./qnaList.qna?curPage=${pager.lastNum+1}">></a>
+					</li>
 				</c:if>
 			</ul>
 		</div>
 		<c:import url="../layout/footer.jsp" />
 	</div>
+	
 	<script type="text/javascript">
 		////////////////////////////////////////////////////////////////////
 		var openWin;
@@ -165,42 +173,43 @@
 		});
 
 		//문의 등록
-		$('.btn_write')
-				.click(
-						function() {
-							//window.name = "부모창 이름";
-							//window.name = "parentForm";
-							//window.open("open할 window", "자식창 이름", "팝업창 옵션");
-							//if (nickname != null && nickname != "") {
-							openWin = window
-									.open("./qnaWrite.qna", "wirteForm",
-											"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
-							/* } else {
-								var confirm_val = confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?");
-								if (confirm_val) {
-									location.href = "../member/memberLogin";
-									//이동후에 로그인하면 다시 원래 페이지로 돌아오는 방법이 없을까?
-								} else {
-									location.href = "./qnaList";
-								}
-							} */
-						});
-
+		$('.btn_write').click(function() {
+			//window.name = "부모창 이름";
+			//window.name = "parentForm";
+			//window.open("open할 window", "자식창 이름", "팝업창 옵션");
+			//if (nickname != null && nickname != "") {
+			openWin = window
+					.open("./qnaWrite.qna", "writeForm",
+							"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
+			/* } else {
+				var confirm_val = confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?");
+				if (confirm_val) {
+					location.href = "../member/memberLogin";
+					//이동후에 로그인하면 다시 원래 페이지로 돌아오는 방법이 없을까?
+				} else {
+					location.href = "./qnaList";
+				}
+			} */
+		});
+		
+		//문의 수정
 		function openUpdate(num) {
 			openWin = window
 					.open("qnaUpdate.qna?qna_num=" + num, "updateForm",
 							"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 		}
-
+		
+		//답변
 		function openAnswer(num) {
 			openWin = window
 					.open("qnaAnswer.qna?qna_num=" + num, "answerForm",
 							"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 		}
-
+		
+		//답변 수정
 		function openAnswerUpdate(num) {
 			openWin = window
-					.open("qnaAnswerUpdate.qna?qna_num=" + num, "answerForm",
+					.open("qnaAnswerUpdate.qna?qna_num=" + num, "answerUpdateForm",
 							"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 		}
 
@@ -225,19 +234,6 @@
 			openAnswerUpdate(num);
 		})
 
-		//날짜 변환 함수
-		function changeDate(date) {
-			date = new Date(parseInt(date));
-			year = date.getFullYear();
-			month = date.getMonth();
-			day = date.getDate();
-			hour = date.getHours();
-			minute = date.getMinutes();
-			//second = date.getSeconds();
-			strDate = year + "-" + month + "-" + day + " " + hour + ":"
-					+ minute;
-			return strDate;
-		}
 	</script>
 </body>
 </html>

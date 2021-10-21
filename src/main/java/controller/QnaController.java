@@ -35,7 +35,7 @@ public class QnaController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("get");
+		System.out.println("GET");
 
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -99,9 +99,11 @@ public class QnaController extends HttpServlet {
 		}
 
 		if (actionForward.isRedirect()) { // flag 값이 true-Forward냐 false-Redirect냐에 따라 결정
+			System.out.println("Forward");
 			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
 			view.forward(request, response);
 		} else {
+			System.out.println("Redirect");
 			response.sendRedirect(actionForward.getPath());
 		}
 	}
@@ -113,6 +115,8 @@ public class QnaController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("POST");
+		
 		doGet(request, response);
 	}
 
