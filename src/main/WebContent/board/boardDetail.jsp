@@ -228,7 +228,7 @@ tr:hover {
 					<td>프로필사진, ${board.board_nick}</td>
 					<td><fmt:formatDate value="${board.board_date}"
 								pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<td>조회수 : ${board.board_count } </td>
+					<td>조회수 : ${board.board_count} </td>
 				</tr>
 				
 				<tr class = "detailcontent">
@@ -238,10 +238,11 @@ tr:hover {
 				</tr>
 				<tr	class="goodnbad" style="text-align:center">
 					<td colspan="3" style="text-align:center">
-						추천 : ${board.board_good }
-						비추 : ${board.board_bad }
+						<input type="button" value="추천 : ${board.board_good}" onclick="location.href='./BoardGoodAction'">
+						<input type="button" value="비추 : ${board.board_bad}" onclick="">
 					</td>
 				</tr>
+				<!--  -->
 				<tr class="buttonlist">
 					<td colspan="3" align="center">
 					
@@ -269,35 +270,13 @@ tr:hover {
 								<c:choose>
 									<c:when test="${r.re_yn == 'y'}">
 										<td>
-											<c:if test="${r.re_level > 0}">
-												<c:forEach var="i" begin="0" end="${r.re_level}">
-													&nbsp;
-												</c:forEach>
-											</c:if>
-												${r.re_writer}
+											${r.re_writer}
 											<c:if test="${board.board_nick == r.re_writer}" >
 												(작성자)
 											</c:if>
 										</td>
 										<td style="text-align:left">&nbsp;&nbsp;${r.re_content}<br>
-											<%-- 대댓글 달기
-											<c:if test="${sessionScope.member.mem_nick != null }">
-												<script>
-											        const ad	d_textbox = () => {
-											            const box = document.getElementById("box");
-											            const newP = document.createElement('p');
-											            newP.innerHTML = "<input type='text'> <input type='button' value='취소' onclick='remove(this)'><input type='button' value='댓글달기' onclick=''>";
-											            box.appendChild(newP);
-											        }
-											        const remove = (obj) => {
-											            document.getElementById('box').removeChild(obj.parentNode);
-											        }
-											    </script>
-											    <div id="box">
-												<input type="button" value="댓글"	
-													onclick="add_textbox(); this.onclick=null;">
-												</div>
-											</c:if> --%>
+
 										</td>
 										<td><fmt:formatDate value="${r.re_date}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 										<td>

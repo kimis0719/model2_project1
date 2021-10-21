@@ -77,7 +77,7 @@ public class BoardController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-
+		// 글상세 : 글 상세페이지 출력
 		}else if (command.equals("/BoardDetailAction.board")) {
 			try {
 				action = new BoardDetailAction();
@@ -87,6 +87,14 @@ public class BoardController extends HttpServlet {
 				e.printStackTrace();
 			}
 
+		}else if(command.equals("BoardGoodAction")){
+			try {
+				action = new BoardDetailAction();
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		// 포워딩처리
