@@ -11,6 +11,7 @@ import dto.BoardDTO;
 import dto.MemberDTO;
 
 public class BoardWrite implements Action{
+	
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		System.out.println("BoardWrite");
@@ -41,7 +42,7 @@ public class BoardWrite implements Action{
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(true);
-		forward.setPath("./BoardListAction.do");
+		forward.setPath("./BoardListAction.board");
 		
 		return forward;
 	}

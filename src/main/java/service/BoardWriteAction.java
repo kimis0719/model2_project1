@@ -22,7 +22,7 @@ public class BoardWriteAction implements Action{
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false); 	// dispatcher 방식으로 포워딩
-		forward.setPath("./board/boardWrite.jsp"); // 글 작성폼
+		forward.setPath("./boardWrite.board"); // 글 작성폼
 		
 		return forward;
 	}
