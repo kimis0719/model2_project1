@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -238,8 +239,29 @@ tr:hover {
 				</tr>
 				<tr	class="goodnbad" style="text-align:center">
 					<td colspan="3" style="text-align:center">
-						<input type="button" value="추천 : ${board.board_good}" onclick="location.href='./BoardGoodAction'">
-						<input type="button" value="비추 : ${board.board_bad}" onclick="">
+					
+						<div>
+							<div class="w3-border w3-center w3-padding">
+								<c:choose>
+									<c:when test="${ sessionScope.member.mem_nick == null }">
+										추천 및 비추 기능은 로그인 후 사용 가능합니다.<br />
+										추천 : ${board.board_good} 비추 : ${board.board_bad}
+										<span class="rec_count"></span>					
+									</c:when>
+									
+									<c:otherwise>
+										<button class="w3-button w3-black w3-round" id="rec_update">
+											<i class="fa fa-heart" style="font-size:16px;color:red"></i>
+											&nbsp;<span class="rec_count"></span>
+										</button> 
+										
+										<input type="button" value="추천 : ${board.board_good}" onclick="location.href='./BoardGoodAction.board?cate_num=${currentCate}&board_num=${board.board_num}&page=${page}'; this.onclick=null;">
+										<input type="button" value="비추 : ${board.board_bad}" onclick="">
+									</c:otherwise>
+								</c:choose>
+							</div>
+						</div>
+						
 					</td>
 				</tr>
 				<!--  -->
@@ -431,58 +453,35 @@ tr:hover {
 				</c:if>
 			</div>
 		</div>
-		<div class="rightcolumn">
-				<div class="card">
-					<button class="btn 로그인">로그인</button>
-					<button class="btn 회원가입">회원가입</button>
-				</div>
-	
-				<div class="card">
-					<h3>Popular Post</h3>
-					<div class="fakeimg">
-						<p>Image</p>
-					</div>
-					<div class="fakeimg">
-						<p>Image</p>
-					</div>
-					<div class="fakeimg">
-						<p>Image</p>
-					</div>
-				</div>
-				<div class="card">
-					<h3>Follow Me</h3>
-					<p>Some text..</p>
-				</div>
-	
-			</div>
-		</div>
+		<jsp:include page="../layout/rightcolumn.jsp" />
+	</div>
 
-		<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-	
-		<script>
-			//Get the button
-			var mybutton = document.getElementById("myBtn");
-	
-			// When the user scrolls down 20px from the top of the document, show the button
-			window.onscroll = function() {
-				scrollFunction()
-			};
-	
-			function scrollFunction() {
-				if (document.body.scrollTop > 20
-						|| document.documentElement.scrollTop > 20) {
-					mybutton.style.display = "block";
-				} else {
-					mybutton.style.display = "none";
-				}
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+	<script>
+		//Get the button
+		var mybutton = document.getElementById("myBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {
+			scrollFunction()
+		};
+
+		function scrollFunction() {
+			if (document.body.scrollTop > 20
+					|| document.documentElement.scrollTop > 20) {
+				mybutton.style.display = "block";
+			} else {
+				mybutton.style.display = "none";
 			}
-	
-			// When the user clicks on the button, scroll to the top of the document
-			function topFunction() {
-				document.body.scrollTop = 0;
-				document.documentElement.scrollTop = 0;
-			}
-		</script>
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function topFunction() {
+			document.body.scrollTop = 0;
+			document.documentElement.scrollTop = 0;
+		}
+	</script>
 	
 
 	<div class="footer">

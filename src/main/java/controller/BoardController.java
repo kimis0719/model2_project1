@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.Action;
 import service.ActionForward;
 import service.BoardDetailAction;
+import service.BoardGoodAction;
 import service.BoardListAction;
 import service.BoardOrderListAction;
 import service.BoardSearchAction;
@@ -86,10 +87,11 @@ public class BoardController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-		}else if(command.equals("BoardGoodAction")){
+			
+		// 글상세: 좋아요
+		}else if(command.equals("BoardGoodAction.board")){
 			try {
-				action = new BoardDetailAction();
+				action = new BoardGoodAction();
 				forward = action.execute(request, response);
 				
 			} catch (Exception e) {

@@ -316,7 +316,6 @@ public class BoardDAO {
 		
 		
 		// 카테코리 번호별  5개 목록 구하기
-		
 		public List<BoardDTO> getboardlist(int cate){
 			List<BoardDTO> list = new ArrayList<BoardDTO>();
 			Connection con = null;
@@ -430,161 +429,185 @@ public class BoardDAO {
 			return board;
 		}
 		
+		// 글상세 : 추천하기 
+		public int BoardGoodAction(int board_num) {
+			int result = 0;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			
+			try {
+				con = getConnection();
+				
+				String sql = "update board set good=good+1 where board_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, board_num);
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+				if(con != null) try {con.close();} catch(Exception e) {}
+			}
+			return result;
+		}
+		
 		// 총 데이터 갯수 구하기 - 통합검색
-				public int getUnifiedSearchDate() {
-					int result = 0;
-					Connection con = null;
-					PreparedStatement pstmt = null;
-					ResultSet rs = null;
-					String url="jdbc:oracle:thin:@13.125.162.102:1521:xe";
-					String sql;
-					
-					try {
-						Class.forName("oracle.jdbc.driver.OracleDriver");
-						con = DriverManager.getConnection(url, "system", "oracle");
-						
-						sql = "select count(*) from board";
-						pstmt = con.prepareStatement(sql);
-						rs = pstmt.executeQuery();
-						if(rs.next()) {
-							result = rs.getInt(1);
+		public int getUnifiedSearchDate() {
+			int result = 0;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String url="jdbc:oracle:thin:@13.125.162.102:1521:xe";
+			String sql;
+			
+			try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				con = DriverManager.getConnection(url, "system", "oracle");
+				
+				sql = "select count(*) from board";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					result = rs.getInt(1);
 //							result = rs.getInt("count(*)");
-						}
-						
-					}catch(Exception e) {
-						e.printStackTrace();
-					}finally {
-						if(rs != null) try {rs.close();} catch(Exception e) {}
-						if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
-						if(con != null) try {con.close();} catch(Exception e) {}
-					}
-					
-					return result;
 				}
 				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(rs != null) try {rs.close();} catch(Exception e) {}
+				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+				if(con != null) try {con.close();} catch(Exception e) {}
+			}
+			
+			return result;
+		}
+		
+		
+		// 검색된 데이터 갯수
+		public int getUnifiedSearch(String sel, String find) {
+			int result = 0;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String url="jdbc:oracle:thin:@13.125.162.102:1521:xe";
+			String sql;
+			
+			try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				con = DriverManager.getConnection(url, "system", "oracle");
 				
-				// 검색된 데이터 갯수
-				public int getUnifiedSearch(String sel, String find) {
-					int result = 0;
-					Connection con = null;
-					PreparedStatement pstmt = null;
-					ResultSet rs = null;
-					String url="jdbc:oracle:thin:@13.125.162.102:1521:xe";
-					String sql;
-					
-					try {
-						Class.forName("oracle.jdbc.driver.OracleDriver");
-						con = DriverManager.getConnection(url, "system", "oracle");
-						
-						sql = "select count(*) from board where "+sel+" like '%"+find+"%'";    
-						pstmt = con.prepareStatement(sql);
-						rs = pstmt.executeQuery();
-						if(rs.next()) {
-							result = rs.getInt(1);
+				sql = "select count(*) from board where "+sel+" like '%"+find+"%'";    
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					result = rs.getInt(1);
 //							result = rs.getInt("count(*)");
-						}
-						
-					}catch(Exception e) {
-						e.printStackTrace();
-					}finally {
-						if(rs != null) try {rs.close();} catch(Exception e) {}
-						if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
-						if(con != null) try {con.close();} catch(Exception e) {}
-					}
-					
-					return result;
-				}	
-				
-				
-				//검색된 글목록
-				public List<BoardDTO> selectUnifiedSearchBoard(int start, int end) {
-					
-					Connection con=null;
-					PreparedStatement pstmt=null;
-					ResultSet rs =null;
-					List<BoardDTO> list = null;
-					String url="jdbc:oracle:thin:@13.125.162.102:1521:xe";
-					String sql;
-					
-					try {
-						Class.forName("oracle.jdbc.driver.OracleDriver");
-						con=DriverManager.getConnection(url, "system", "oracle");
-
-						sql = "select * from ( select rownum rnum, board_num, ";
-						sql += "board_nick, board_title, board_content  from ";
-						sql += "(select * from board order by board_num desc)) ";
-						sql += "where rnum >= ? and rnum <= ?";			
-						
-						pstmt=con.prepareStatement(sql);
-						pstmt.setInt(1, start);
-						pstmt.setInt(2, end);
-						
-						rs=pstmt.executeQuery();
-						
-						list = new ArrayList<BoardDTO>();
-						while(rs.next()) {
-							BoardDTO board = new BoardDTO();
-							board.setBoard_num(rs.getInt("board_num"));
-							board.setBoard_nick(rs.getString("board_nick"));
-							board.setBoard_title(rs.getString("board_title"));
-							board.setBoard_content(rs.getString("board_content"));
-							
-							list.add(board);
-						}
-						
-					}catch(Exception e) {
-						e.printStackTrace();
-					}finally {
-						if(rs != null) try {rs.close();} catch(Exception e) {}
-						if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
-						if(con != null) try {con.close();} catch(Exception e) {}
-					}
-					return list;
 				}
 				
-				
-				// 검색 목록 - 통합 검색 끝
-				public List<BoardDTO> selectUnifiedSearchFboard(int start, int end, String sel, String find) {
-					Connection con=null;
-					PreparedStatement pstmt=null;
-					ResultSet rs =null;
-					List<BoardDTO> list = null;
-					String url="jdbc:oracle:thin:@13.125.162.102:1521:xe";
-					String sql;
-					
-					try {
-						Class.forName("oracle.jdbc.driver.OracleDriver");
-						con=DriverManager.getConnection(url, "system", "oracle");
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(rs != null) try {rs.close();} catch(Exception e) {}
+				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+				if(con != null) try {con.close();} catch(Exception e) {}
+			}
+			
+			return result;
+		}	
+		
+			
+		//검색된 글목록
+		public List<BoardDTO> selectUnifiedSearchBoard(int start, int end) {
+			
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs =null;
+			List<BoardDTO> list = null;
+			String url="jdbc:oracle:thin:@13.125.162.102:1521:xe";
+			String sql;
+			
+			try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				con=DriverManager.getConnection(url, "system", "oracle");
 
-						sql = "select * from ( select rownum rnum, board_num, ";
-						sql += "board_nick, board_title, content  from ";
-						sql += "(select * from board where "+sel+" like '%"+find+"%' order by board_num desc)) ";
-						sql += "where rnum >= ? and rnum <= ?";			
-						
-						pstmt=con.prepareStatement(sql);
-						pstmt.setInt(1, start);
-						pstmt.setInt(2, end);
-						
-						rs=pstmt.executeQuery();
-						
-						list = new ArrayList<BoardDTO>();
-						while(rs.next()) {
-							BoardDTO board = new BoardDTO();
-							board.setBoard_num(rs.getInt("board_num"));
-							board.setBoard_nick(rs.getString("board_nick"));
-							board.setBoard_title(rs.getString("board_title"));
-							board.setBoard_content(rs.getString("board_content"));
-							
-							list.add(board);
-						}
-						
-					}catch(Exception e) {
-						e.printStackTrace();
-					}finally {
-						if(rs != null) try {rs.close();} catch(Exception e) {}
-						if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
-						if(con != null) try {con.close();} catch(Exception e) {}
-					}
-					return list;
+				sql = "select * from ( select rownum rnum, board_num, ";
+				sql += "board_nick, board_title, board_content  from ";
+				sql += "(select * from board order by board_num desc)) ";
+				sql += "where rnum >= ? and rnum <= ?";			
+				
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+				
+				rs=pstmt.executeQuery();
+				
+				list = new ArrayList<BoardDTO>();
+				while(rs.next()) {
+					BoardDTO board = new BoardDTO();
+					board.setBoard_num(rs.getInt("board_num"));
+					board.setBoard_nick(rs.getString("board_nick"));
+					board.setBoard_title(rs.getString("board_title"));
+					board.setBoard_content(rs.getString("board_content"));
+					
+					list.add(board);
 				}
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(rs != null) try {rs.close();} catch(Exception e) {}
+				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+				if(con != null) try {con.close();} catch(Exception e) {}
+			}
+			return list;
+		}
+		
+			
+		// 검색 목록 - 통합 검색 끝
+		public List<BoardDTO> selectUnifiedSearchFboard(int start, int end, String sel, String find) {
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs =null;
+			List<BoardDTO> list = null;
+			String url="jdbc:oracle:thin:@13.125.162.102:1521:xe";
+			String sql;
+			
+			try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				con=DriverManager.getConnection(url, "system", "oracle");
+
+				sql = "select * from ( select rownum rnum, board_num, ";
+				sql += "board_nick, board_title, content  from ";
+				sql += "(select * from board where "+sel+" like '%"+find+"%' order by board_num desc)) ";
+				sql += "where rnum >= ? and rnum <= ?";			
+				
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+				
+				rs=pstmt.executeQuery();
+				
+				list = new ArrayList<BoardDTO>();
+				while(rs.next()) {
+					BoardDTO board = new BoardDTO();
+					board.setBoard_num(rs.getInt("board_num"));
+					board.setBoard_nick(rs.getString("board_nick"));
+					board.setBoard_title(rs.getString("board_title"));
+					board.setBoard_content(rs.getString("board_content"));
+					
+					list.add(board);
+				}
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(rs != null) try {rs.close();} catch(Exception e) {}
+				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+				if(con != null) try {con.close();} catch(Exception e) {}
+			}
+			return list;
+		}
 }
