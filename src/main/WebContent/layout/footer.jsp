@@ -42,7 +42,7 @@
 	</script>
 
 	<div class="footer">
-		<a href="./qna/qnaList.qna">문의사항</a>
+		<a href="<%=request.getContextPath()%>/qnaList.qna">문의사항</a>
 		<p>Copyright© All rights reserved.</p>
 		<dl>
 			<dt>주소: 서울특별시</dt>
