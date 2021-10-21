@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Qna List</title>
-<c:import url="./boot.jsp" />
+<c:import url="../layout/boot.jsp" />
 <c:import url="../layout/header.jsp" />
 <link href="${pageContext.request.contextPath}/css/reset.css"
 	rel="stylesheet">
@@ -55,7 +55,7 @@
 									</c:if> <!-- 비밀글일때 --> <c:if test="${list.qna_sec eq 1}">
 										<c:if
 											test="${member.nickname ne list.qna_writer && member.grade ne 99}">비밀글입니다. <img
-												alt="비밀글" src="./images/board/lock-line.png"
+												alt="비밀글" src="${pageContext.request.contextPath}/images/board/lock-line.png"
 												style="margin-bottom: 4px;">
 										</c:if>
 										<c:if
@@ -70,8 +70,7 @@
 											class="view_txt">${list.qna_title}</a>
 									</c:if></td>
 								<td class="td_writer">${list.qna_writerS}</td>
-								<td class="td_date"><fmt:formatDate
-										value="${list.qna_date}" pattern="yyyy-MM-dd HH:mm" /></td>
+								<td class="td_date">${list.qna_dateS}</td>
 							</tr>
 						</c:if>
 

@@ -68,7 +68,7 @@ public class CateListAction implements Action{
 		ActionForward forward = new ActionForward();
 		
 		forward.setRedirect(false);  // dispatcher 방식으로 포워딩
-		forward.setPath("/board/mainPage.jsp");
+		forward.setPath("/mainpage.jsp");
 		
 		
 		return forward;

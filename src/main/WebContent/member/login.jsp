@@ -278,7 +278,7 @@ input[id=totalfind]:focus {
 			<div class="container" style="padding: 230px;">
 		<div class="jumbotron">
   <div align="center"><h2>로그인</h2></div>
-  <form method="post" action="<%=request.getContextPath()%>/Login.member">
+  <form method="post" action="./Login.member">
    <table class="table table-bordered table-hover" align="center" >
     <div class="form-group">
       <label for="mem_id">ID:</label>
