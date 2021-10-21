@@ -172,14 +172,14 @@
 			$('.trQna' + i).slideToggle();
 		});
 
-		//문의 등록
+		//문의하기 버튼 눌렀을 때, writeform
 		$('.btn_write').click(function() {
 			//window.name = "부모창 이름";
 			//window.name = "parentForm";
 			//window.open("open할 window", "자식창 이름", "팝업창 옵션");
 			//if (nickname != null && nickname != "") {
 			openWin = window
-					.open("./qnaWrite.qna", "writeForm",
+					.open("./qnaWriteForm.qna", "writeForm",
 							"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 			/* } else {
 				var confirm_val = confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?");
@@ -195,7 +195,7 @@
 		//문의 수정
 		function openUpdate(num) {
 			openWin = window
-					.open("qnaUpdate.qna?qna_num=" + num, "updateForm",
+					.open("qnaUpdateForm.qna?qna_num=" + num, "updateForm",
 							"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 		}
 		
@@ -212,7 +212,7 @@
 					.open("qnaAnswerUpdate.qna?qna_num=" + num, "answerUpdateForm",
 							"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 		}
-
+///////////////////////
 		//문의 수정
 		$('.btn_update').click(function() {
 			var num = $(this).parent().find('.num').val();

@@ -16,7 +16,6 @@ public class BoardWriteAction implements Action{
 		
 		MemberDTO memberDTO = (MemberDTO)request.getSession().getAttribute("member");
 		
-		BoardDAO dao = BoardDAO.getInstance();
 		CateDAO cateDAO = CateDAO.getInstance();
 		System.out.println("cate_num: "+request.getParameter("cate_num"));
 		

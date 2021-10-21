@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.QnaDAO;
+import dto.BoardDTO;
 import dto.MemberDTO;
 import dto.QnaDTO;
 import util.Pager;
@@ -23,12 +24,12 @@ public class QnaService {
 
 		//페이징 처리
 		Pager pager = new Pager();
-		System.out.println("pager의 현재페이지 : "+pager.getCurPage());
-		System.out.println("request의 현재페이지 : "+request.getParameter("curPage"));
+//		System.out.println("pager의 현재페이지 : "+pager.getCurPage());
+//		System.out.println("request의 현재페이지 : "+request.getParameter("curPage"));
 		if (request.getParameter("curPage") != null) {
 			pager.setCurPage(Integer.parseInt(request.getParameter("curPage")));
 		}
-		System.out.println(pager.getCurPage());
+//		System.out.println(pager.getCurPage());
 
 		pager.makeRow();
 		pager.makePage(qnaDAO.qnaCount());
@@ -50,7 +51,14 @@ public class QnaService {
 	public ActionForward writeForm(HttpServletRequest request, HttpServletResponse response) throws Exception  {
 		System.out.println("QnaWriteForm 들어왔냐");
 		
+		MemberDTO memberDTO = (MemberDTO)request.getSession().getAttribute("member");
+		
+		request.setAttribute("member", memberDTO);
+		
 		ActionForward actionForward = new ActionForward();
+		actionForward.setRedirect(true);
+		actionForward.setPath("./qnaWrite.jsp");
+		
 		return actionForward;
 	}//writeForm end
 	
@@ -58,7 +66,28 @@ public class QnaService {
 	public ActionForward write(HttpServletRequest request, HttpServletResponse response) throws Exception  {
 		System.out.println("QnaWrite 들어왔냐");
 		
+		QnaDTO qnaDTO = new QnaDTO();
+		int memnum = Integer.parseInt(request.getParameter("qna_memnum"));
+		System.out.println("memnum: "+ memnum);
+		int sec = Integer.parseInt(request.getParameter("qna_sec"));
+		System.out.println("sec: "+ sec);
+		
+		qnaDTO.setQna_title(request.getParameter("qna_title"));
+		qnaDTO.setQna_memnum(memnum);
+		qnaDTO.setQna_writer(request.getParameter("qna_writer"));
+		qnaDTO.setQna_content(request.getParameter("qna_content"));
+		qnaDTO.setQna_sec(sec);
+		qnaDTO.setQna_step(0);
+		qnaDTO.setQna_depth(0);
+		
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		int result = qnaDAO.write(qnaDTO);
+		if(result == 1) System.out.println("문의작성 성공");
+		
 		ActionForward actionForward = new ActionForward();
+		actionForward.setRedirect(false);
+		actionForward.setPath("./qnaList.jsp");
+		
 		return actionForward;
 	}//write end
 	
@@ -66,7 +95,19 @@ public class QnaService {
 	public ActionForward updateForm(HttpServletRequest request, HttpServletResponse response) throws Exception  {
 		System.out.println("QnaUpdateForm 들어왔냐");
 		
+		MemberDTO memberDTO = (MemberDTO)request.getSession().getAttribute("member");
+		int qna_num = Integer.parseInt(request.getParameter("qna_num"));
+		
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		QnaDTO qnaDTO = qnaDAO.selectOne(qna_num);
+		
+		request.setAttribute("member", memberDTO);
+		request.setAttribute("qna", qnaDTO);
+		
 		ActionForward actionForward = new ActionForward();
+		actionForward.setRedirect(true);
+		actionForward.setPath("./qnaUpdate.jsp");
+		
 		return actionForward;
 	}//updateForm end
 	
@@ -75,6 +116,9 @@ public class QnaService {
 		System.out.println("QnaUpdate 들어왔냐");
 		
 		ActionForward actionForward = new ActionForward();
+		actionForward.setRedirect(true);
+		actionForward.setPath("./qnaList.jsp");
+		
 		return actionForward;
 	}//update end
 	
@@ -83,6 +127,9 @@ public class QnaService {
 		System.out.println("QnaDelete 들어왔냐");
 		
 		ActionForward actionForward = new ActionForward();
+		actionForward.setRedirect(true);
+		actionForward.setPath("./qnaList.jsp");
+		
 		return actionForward;
 	}//delete end
 }

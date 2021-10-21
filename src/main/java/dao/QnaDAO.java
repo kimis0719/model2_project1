@@ -106,32 +106,112 @@ public class QnaDAO {
 		return list;
 	}//qnaList end
 	
-	//글 작성폼
-	public void writeForm() {
-		System.out.println("WriteForm Method");
+	//글 하나 가져오기
+	public QnaDTO selectOne(int qna_num) {
+		System.out.println("SelectOne Method");
 		
-	}//writeForm end
+		QnaDTO qnaDTO = new QnaDTO();
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = getConnection();
+			
+			String sql = "select qna_title, qna_content, qna_sec from qna where qna_num=?";
+			
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, qna_num);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				qnaDTO.setQna_title(rs.getString("qna_title"));
+				qnaDTO.setQna_content(rs.getString("qna_content"));
+				qnaDTO.setQna_sec(rs.getInt("qna_sec"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (ps != null) try { ps.close(); } catch (Exception e) { }
+			if (con != null) try { con.close(); } catch (Exception e) { }
+		}
+		
+		return qnaDTO;
+	}
 	
 	//글 작성
 	public int write(QnaDTO qnaDTO) {
 		System.out.println("Write Method");
 		
 		int result = 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = getConnection();
+			
+			String sql = "insert into qna(qna_num, qna_title, qna_memnum, qna_writer, qna_content, qna_date, qna_sec, qna_ref, qna_step, qna_depth) values(qna_seq.nextval, ?, ?, ?, ?, sysdate, ?, qna_seq.currval, ?, ?)";
+			
+			ps = con.prepareStatement(sql);
+			ps.setString(1, qnaDTO.getQna_title());
+			ps.setInt(2, qnaDTO.getQna_memnum());
+			ps.setString(3, qnaDTO.getQna_writer());
+			ps.setString(4, qnaDTO.getQna_content());
+			ps.setInt(5, qnaDTO.getQna_sec());
+			ps.setInt(6, qnaDTO.getQna_step());
+			ps.setInt(7, qnaDTO.getQna_depth());
+			
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (ps != null) try { ps.close(); } catch (Exception e) { }
+			if (con != null) try { con.close(); } catch (Exception e) { }
+		}
 		
 		return result;
 	}//write end
 	
-	//글 수정폼
-	public void updateForm() {
-		System.out.println("UpdateForm Method");
+	//답변 여부
+	public int answerCheck() {
+		System.out.println("AnswerCheck Method");
 		
-	}//updateForm end
+		int result = 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (ps != null) try { ps.close(); } catch (Exception e) { }
+			if (con != null) try { con.close(); } catch (Exception e) { }
+		}
+		String sql = "update qna set qna_check=1 where qna_num=?";
+		
+		return result;
+	}
 	
-	//글 수정
+	//글 수정 & 답변 수정
 	public int update(QnaDTO qnaDTO) {
 		System.out.println("Update Method");
 		
 		int result = 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (ps != null) try { ps.close(); } catch (Exception e) { }
+			if (con != null) try { con.close(); } catch (Exception e) { }
+		}
+		String sql = "update qna set qna_title=?, qna_content=?, qna_sec=? where qna_num=?";
+		
 		return result;
 	}//update end
 	
@@ -140,6 +220,40 @@ public class QnaDAO {
 		System.out.println("Delete Method");
 		
 		int result = 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (ps != null) try { ps.close(); } catch (Exception e) { }
+			if (con != null) try { con.close(); } catch (Exception e) { }
+		}
+		String sql = "update qna set qna_yn='n' where qna_ref=?";
+		
 		return result;
 	}//delete end
+	
+	//답변 삭제
+	public int answerDelete(QnaDTO qnaDTO) {
+		System.out.println("AnswerDelete Method");
+		
+		int result = 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (ps != null) try { ps.close(); } catch (Exception e) { }
+			if (con != null) try { con.close(); } catch (Exception e) { }
+		}
+		String sql = "update qna set qna_yn='n' where qna_num=?";
+		
+		return result;
+	}
 }
