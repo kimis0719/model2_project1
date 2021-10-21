@@ -117,6 +117,8 @@ public class ReplyDAO {
 				reply.setRe_writer(rs.getString("re_writer"));
 				reply.setRe_content(rs.getString("re_content"));
 				reply.setRe_date(rs.getTimestamp("re_date"));
+				reply.setRe_num(rs.getInt("re_num"));
+				reply.setRe_yn(rs.getString("re_yn"));
 				
 				list.add(reply);
 			}
@@ -128,6 +130,30 @@ public class ReplyDAO {
 			if(con != null) try {con.close();} catch(Exception e) {}
 		}
 		return list;
+	}
+	
+	// 댓글 : 댓글 삭제
+	public int deleteReplyAction(int re_num) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = getConnection();
+			String sql = "update reply set re_yn='n' where re_num = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, re_num);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+			if(con != null) try {con.close();} catch(Exception e) {}
+		}
+		
+		return result;
 	}
 
 	// 컨넥션풀에서 컨넥션을 구해오는 메소드

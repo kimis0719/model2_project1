@@ -17,6 +17,8 @@ public class BoardDetailAction  implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
+		
+		request.setCharacterEncoding("utf-8");
 
 		System.out.println("BoardDetailAction");
 		

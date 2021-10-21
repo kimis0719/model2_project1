@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.Action;
 import service.ActionForward;
+import service.ReplyDeleteAction;
 import service.ReplyWriteAction;
 
 /**
@@ -43,6 +44,15 @@ public class ReplyController extends HttpServlet {
 				e.printStackTrace();
 			}
 		
+		// 댓글 : 댓글 삭제
+		}else if(command.equals("/ReplyDeleteAction.reply")){
+			try {
+				action = new ReplyDeleteAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 
 		// 포워딩처리

@@ -214,10 +214,8 @@ tr:hover {
 </style>
 </head>
 <body>
-
 	<jsp:include page="../layout/header.jsp" />
-	
-	
+
 	<div class="row">
 		<div class="leftcolumn">
 			<br>
@@ -238,17 +236,15 @@ tr:hover {
 						${content}
 					<td>
 				</tr>
-				<tr	class="goodnbad">
-					<td colspan="3" align=center>
-						좋아요 : ${board.board_good }
-						싫어요 : ${board.board_bad }
+				<tr	class="goodnbad" style="text-align:center">
+					<td colspan="3" style="text-align:center">
+						추천 : ${board.board_good }
+						비추 : ${board.board_bad }
 					</td>
 				</tr>
 				<tr class="buttonlist">
 					<td colspan="3" align="center">
 					
-						<input type="button" value="즐겨찾기"
-							onclick="location.href='' ">
 						<c:if test="${board.board_nick == sessionScope.member.mem_nick}" >
 							<input type="button" value="수정"
 								onclick="location.href='' ">
@@ -269,10 +265,54 @@ tr:hover {
 				<table id="reply" class="reply">
 					<tr>
 						<c:forEach var="r" items="${replylist}">
-							<td>${r.re_writer}</td>
-							<td text-align="left">${r.re_content}</td>
-							<td><fmt:formatDate value="${r.re_date}"
-									pattern="yyyy-MM-dd HH:mm:ss" /></td>
+							<tr>
+								<c:choose>
+									<c:when test="${r.re_yn == 'y'}">
+										<td>
+											<c:if test="${r.re_level > 0}">
+												<c:forEach var="i" begin="0" end="${r.re_level}">
+													&nbsp;
+												</c:forEach>
+											</c:if>
+												${r.re_writer}
+											<c:if test="${board.board_nick == r.re_writer}" >
+												(작성자)
+											</c:if>
+										</td>
+										<td style="text-align:left">&nbsp;&nbsp;${r.re_content}<br>
+											<%-- 대댓글 달기
+											<c:if test="${sessionScope.member.mem_nick != null }">
+												<script>
+											        const ad	d_textbox = () => {
+											            const box = document.getElementById("box");
+											            const newP = document.createElement('p');
+											            newP.innerHTML = "<input type='text'> <input type='button' value='취소' onclick='remove(this)'><input type='button' value='댓글달기' onclick=''>";
+											            box.appendChild(newP);
+											        }
+											        const remove = (obj) => {
+											            document.getElementById('box').removeChild(obj.parentNode);
+											        }
+											    </script>
+											    <div id="box">
+												<input type="button" value="댓글"	
+													onclick="add_textbox(); this.onclick=null;">
+												</div>
+											</c:if> --%>
+										</td>
+										<td><fmt:formatDate value="${r.re_date}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+										<td>
+											<c:if test="${sessionScope.member.mem_nick == r.re_writer}" >
+												<input type="button" value="삭제"
+													onclick="location.href='./ReplyDeleteAction.reply?cate_num=${currentCate}&board_num=${board.board_num}&page=${page}&re_num=${r.re_num}' ">
+											</c:if>
+											
+										</td>
+									</c:when>
+									<c:otherwise>
+										<td colspan="4">삭제된 댓글입니다.</td>
+									</c:otherwise>
+								</c:choose>
+							</tr>
 						</c:forEach>
 					
 					</tr>
@@ -283,13 +323,13 @@ tr:hover {
 								<td name="writer" id="writer">
 										${sessionScope.member.mem_nick}
 								</td>
-								<td>
-									<textarea rows="4" cols="180" style="resize: none;" id="re_content"></textarea>
+								<td colspan="3">
+									<textarea rows="4" cols="170" style="resize: none;" id="re_content" name="re_content"></textarea>
 									<input type="submit" value="댓글작성" >
 								</td>	
 							</c:when>
 							<c:otherwise>
-								<td>로그인 후 댓글을 작성해 주세요.</td>
+								<td colspan="3" style="text-align:center">로그인 후 댓글을 작성해 주세요.</td>
 							</c:otherwise>
 						
 						</c:choose>
