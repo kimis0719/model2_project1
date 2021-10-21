@@ -52,12 +52,12 @@ public class QnaController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} /*
+			/*
 			 * else if (url.equals("qnaSelect")) { actionForward =
 			 * qnaService.selectOne(request, response); }
 			 */
-		// 글 작성 폼
-		else if (url.equals("qnaWriteForm")) {
+			// 글 작성 폼
+		} else if (url.equals("qnaWriteForm")) {
 			try {
 				actionForward = qnaService.writeForm(request, response);
 			} catch (Exception e) {

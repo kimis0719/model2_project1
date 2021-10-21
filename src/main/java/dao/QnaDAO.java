@@ -50,21 +50,9 @@ public class QnaDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (Exception e) {
-				}
-			if (ps != null)
-				try {
-					ps.close();
-				} catch (Exception e) {
-				}
-			if (con != null)
-				try {
-					con.close();
-				} catch (Exception e) {
-				}
+			if (rs != null) try { rs.close(); } catch (Exception e) { }
+			if (ps != null) try { ps.close(); } catch (Exception e) { }
+			if (con != null) try { con.close(); } catch (Exception e) { }
 		}
 
 		return result;
@@ -109,33 +97,39 @@ public class QnaDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (Exception e) {
-				}
-			if (ps != null)
-				try {
-					ps.close();
-				} catch (Exception e) {
-				}
-			if (con != null)
-				try {
-					con.close();
-				} catch (Exception e) {
-				}
+			if (rs != null) try { rs.close(); } catch (Exception e) { }
+			if (ps != null) try { ps.close(); } catch (Exception e) { }
+			if (con != null) try { con.close(); } catch (Exception e) { }
 		}
 		return list;
 	}//qnaList end
 	
 	//글 작성폼
+	public void writeForm() {
+		
+	}
 	
 	//글 작성
+	public int write(QnaDTO qnaDTO) {
+		int result = 0;
+		
+		return result;
+	}
 	
 	//글 수정폼
+	public void updateForm() {
+		
+	}
 	
 	//글 수정
+	public int update(QnaDTO qnaDTO) {
+		int result = 0;
+		return result;
+	}
 	
 	//글 삭제
-	
+	public int delete(QnaDTO qnaDTO) {
+		int result = 0;
+		return result;
+	}
 }
