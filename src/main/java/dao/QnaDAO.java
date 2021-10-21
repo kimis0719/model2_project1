@@ -107,29 +107,29 @@ public class QnaDAO {
 	//글 작성폼
 	public void writeForm() {
 		
-	}
+	}//writeForm end
 	
 	//글 작성
 	public int write(QnaDTO qnaDTO) {
 		int result = 0;
 		
 		return result;
-	}
+	}//write end
 	
 	//글 수정폼
 	public void updateForm() {
 		
-	}
+	}//updateForm end
 	
 	//글 수정
 	public int update(QnaDTO qnaDTO) {
 		int result = 0;
 		return result;
-	}
+	}//update end
 	
 	//글 삭제
 	public int delete(QnaDTO qnaDTO) {
 		int result = 0;
 		return result;
-	}
+	}//delete end
 }
