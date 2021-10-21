@@ -63,6 +63,37 @@ public class CateDAO {
 				return list;
 			}
 			
+			// 게시판 이름 가져오기
+			public String getBoardName(int cate_num) {
+				String result = null;
+				Connection con = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				
+				try {
+					con = getConnection();
+					
+					String sql = "select cate_name from category where cate_num=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, cate_num);
+					
+					rs = pstmt.executeQuery();
+					
+					if(rs.next()) {
+						CateDTO category = new CateDTO();
+						category.setCate_name(rs.getString("cate_name"));
+						
+						result = category.getCate_name();
+					}
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+					if(con != null) try {con.close();} catch(Exception e) {}
+				}
+				return result;
+			}
 			// 게시판 추가하기
 			public int addboard(int cate_code, String cate_name) {
 				int result = 0;

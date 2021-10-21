@@ -97,9 +97,15 @@ public class BoardDetailAction  implements Action{
 			// 게시판정보 catelist에 추가
 			catelist.addAll(list);
 		}
+		// 게시판 이름을 구함
+		CateDAO caten = CateDAO.getInstance();
+		String cateName = caten.getBoardName(currentCate);
+		
 		System.out.println("catelist : " + catelist);
+		System.out.println("cateName : " + cateName);
 		// 게시판정보 공유설정
 		request.setAttribute("catelist", catelist);
+		request.setAttribute("cateName", cateName);
 
 		ActionForward forward = new ActionForward();
 

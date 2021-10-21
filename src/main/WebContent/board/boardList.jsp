@@ -8,7 +8,7 @@
 <head>
 <title>메인 페이지</title>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="<%=request.getContextPath() %>/board/boardScript.js"></script>
+	<script src="<%=request.getContextPath() %>/board/boardFind.js"></script>
 <meta charset="utf-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -17,6 +17,8 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+</head>
 <style>
 * {
 	box-sizing: border-box;
@@ -33,6 +35,35 @@ body {
 	opacity: 1;
 }
 
+/* Header/Blog Title */
+.header {
+	padding: 30px;
+	text-align: center;
+	background: #EEEEEE;
+}
+
+.header h1 {
+	font-size: 40px;
+}
+
+input[type=text]:focus {
+	width: 50%;
+}
+
+.affix {
+	top: 0;
+	width: 100%;
+	z-index: 9999 !important;
+}
+
+.navbar {
+	margin-bottom: 0px;
+}
+
+.affix ~ .container-fluid {
+	position: relative;
+	top: 50px;
+}
 
 /* Create two unequal columns that floats next to each other */
 /* Left column */
@@ -166,32 +197,8 @@ body {
 	}
 }
 
-table {
-	border-collapse: collapse;
-	background-color: white;
-	padding: 20px;
-	margin-top: 20px;
-	
-}
-
-th {
-	padding: 8px;
-	background: #ffffff;
-	border-bottom: 1px solid #ddd;
-}
-
-td {
-	padding: 8px;
-	background-color: #fbfbfb;
-	text-align: left;
-	border-bottom: 1px solid #ddd;
-}
-
-tr:hover {
-	background-color: #ffffff;
-}
 </style>
-</head>
+<link href="${pageContext.request.contextPath}/css/boardList.css" rel="stylesheet">
 <body>
 
 	<jsp:include page="../layout/header.jsp" />
@@ -200,83 +207,88 @@ tr:hover {
 
 	<div class="row">
 		<div class="leftcolumn">
-			<table id=table align="center">
+			<table class=boardtable >
 				<br>
-				<!-- 게시판명이 들어갈 자리 -->
-				<tr text-align:center>
-					<th width=>번호</th>
-					<th width=>제목</th>
-					<th width=>작성자</th>
-					<th width=>조회수</th>
-					<th width=>추천</th>
-					<th width=>작성일</th>
+				<h3>&nbsp;&nbsp;&nbsp;${cateName} 게시판</h3>
+				<tr>
+					<th class=bnum>번호</th>
+					<th class=btitle>제목</th>
+					<th class=bwriter>작성자</th>
+					<th class=bcount>조회수</th>
+					<th class=bgood>추천</th>
+					<th class=bdate>작성일</th>
 				</tr>
 
 				<c:set var="num" value="${listcount - (page-1) * 10 }" />
 				<c:forEach var="b" items="${boardlist}">
 					<tr>
-						<td>${num}<c:set var="num" value="${num-1}" />
+						<td class=bnum>${num}<c:set var="num" value="${num-1}" />
 						</td>
-						<td text-decoration="none">
+						<td text-decoration="none" class=btitle>
 							<a href="./BoardDetailAction.board?cate_num=${currentCate}&board_num=${b.board_num}&page=${page}">
 								${b.board_title} 
 							</a>
 						</td>
-						<td>${b.board_nick}</td>
-						<td>${b.board_count}</td>
-						<td>${b.board_good}</td>
-						<td><fmt:formatDate value="${b.board_date}"
+						<td class=bwriter>${b.board_nick}</td>
+						<td class=bcount>${b.board_count}</td>
+						<td class=bgood>${b.board_good}</td>
+						<td class=bdate><fmt:formatDate value="${b.board_date}"
 								pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					</tr>
 				</c:forEach>
 			</table>
 
-			<div align="center">
-				<!-- 정렬기능 -->
-				<a class="sort">
-					<select name="orderselect" onchange="orderListToURL(this.value)">
-						<option value="./BoardListAction.board?cate_num=${currentCate}"
-							<c:if test="${orderName == null}">
-								selected
-							</c:if>
-						>최신순 정렬</option>
-						<option value="./BoardOrderListAction.board?cate_num=${currentCate}&order=board_good" 
-							<c:if test="${orderName == 'board_good'}">
-								selected
-							</c:if>
-						>좋아요 정렬</option>
-						<option value="./BoardOrderListAction.board?cate_num=${currentCate}&order=board_count"
-							<c:if test="${orderName == 'board_count'}">
-								selected
-							</c:if>
-						>조회수 정렬</option>						
-					</select> 
-				</a>
-				
-				<!-- 검색기능 -->
-				<div class="search"> 
-						<form action="BoardSearchAction.board?cate_num=${currentCate}" method=post accept-charset="utf-8">
-							<select name="sel" id="sel">
-								<option value="board_title">제목</option>
-								<option value="board_content">내용</option>
-								<option value="board_nick">작성자</option>
+			<table class="downbar">
+				<tr>
+					<td class="sort">
+						<!-- 정렬기능 -->
+						<a class="sort">
+							<select name="orderselect" onchange="orderListToURL(this.value)">
+								<option value="./BoardListAction.board?cate_num=${currentCate}"
+									<c:if test="${orderName == null}">
+										selected
+									</c:if>
+								>최신순 정렬</option>
+								<option value="./BoardOrderListAction.board?cate_num=${currentCate}&order=board_good" 
+									<c:if test="${orderName == 'board_good'}">
+										selected
+									</c:if>
+								>추천순 정렬</option>
+								<option value="./BoardOrderListAction.board?cate_num=${currentCate}&order=board_count"
+									<c:if test="${orderName == 'board_count'}">
+										selected
+									</c:if>
+								>조회수 정렬</option>						
 							</select> 
-							<input type="text" name="find" id="find"> 
-							<button type="submit" class="btn2 btn-search">
-								검색
-							</button>
-						</form>
-					</div>
-						
-				<!-- 글쓰기 -->
-				<c:if test="${currentCate != 1 }">
-					<a class="boardWrite" align="right"> <input type="button"
-						value="글쓰기"
-						onclick="./BoardWriteAction.board?cate_num=${currentCate}">
-					</a>
-				</c:if>
-				
-			</div>
+						</a>
+					</td>
+					<td class="search">
+						<!-- 검색기능 -->
+						<div class="search"> 
+								<form action="BoardSearchAction.board?cate_num=${currentCate}" method=post accept-charset="utf-8">
+									<select name="sel" id="sel">
+										<option value="board_title">제목</option>
+										<option value="board_content">내용</option>
+										<option value="board_nick">작성자</option>
+									</select> 
+									<input type="text" name="find" id="find"> 
+									<button type="submit" class="btn2 btn-search">
+										검색
+									</button>
+								</form>
+						</div>
+					</td>
+					<td class="boardWrite">
+						<!-- 글쓰기 -->
+						<c:if test="${currentCate != 1 }">
+							<a class="boardWrite" align="right"> <input type="button"
+								value="글쓰기"
+								onclick="./BoardWriteAction.board?cate_num=${currentCate}">
+							</a>
+						</c:if>
+					</td>
+				</tr>
+			</table>
 
 
 			<div style="" align="center">
@@ -315,19 +327,11 @@ tr:hover {
 				</c:if>
 			</div>
 
-		</div>
-
-		<div class="rightcolumn">
-			<div class="card">
-				<button class="btn login">로그인</button>
-				<button class="btn sign-up">회원가입</button>
-			</div>
-		</div>
+				</div>
+		<jsp:include page="../layout/rightcolumn.jsp" />
 	</div>
 
-<%-- <c:import url="../layout/footer.jsp" /> --%>
 	<jsp:include page="../layout/footer.jsp" />
-
 
 </body>
 

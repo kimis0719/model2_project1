@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 추가</title>
+<title>게시판 관리</title>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 <meta charset="utf-8">
 <link rel="stylesheet"
@@ -19,6 +19,9 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!-- 유효성검사 -->
+<script src="<%=request.getContextPath() %>/board/boardAddForm.js"></script>
+
 <style>
 * {
 	box-sizing: border-box;

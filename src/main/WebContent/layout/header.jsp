@@ -80,7 +80,7 @@
           <!-- 게시판추가 -->
            <c:if test="${sessionScope.member.mem_grade == '99' }">
           <li>
-          	<a class="cateadd" href="./BoardAddForm.board">게시판 추가<span class="cateadd"></span></a>
+          	<a class="cateadd" href="./BoardAddForm.board">게시판 관리<span class="cateadd"></span></a>
           </li>	
           </c:if>
         </ul>

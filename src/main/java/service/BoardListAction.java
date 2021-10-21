@@ -19,6 +19,7 @@ public class BoardListAction implements Action {
 
 		int currentCate = Integer.parseInt(request.getParameter("cate_num"));
 		System.out.println("currentCate : " + currentCate);
+		
 
 		int page = 1; // 현재 페이지 번호
 		int limit = 10; // 한화면에 출력할 데이터 갯수
@@ -71,9 +72,15 @@ public class BoardListAction implements Action {
 			// 게시판정보 catelist에 추가
 			catelist.addAll(list);
 		}
+		// 게시판 이름을 구함
+		CateDAO caten = CateDAO.getInstance();
+		String cateName = caten.getBoardName(currentCate);
+		
 		System.out.println("catelist : " + catelist);
+		System.out.println("cateName : " + cateName);
 		// 게시판정보 공유설정
 		request.setAttribute("catelist", catelist);
+		request.setAttribute("cateName", cateName);
 
 		ActionForward forward = new ActionForward();
 
