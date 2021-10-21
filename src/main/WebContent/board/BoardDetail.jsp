@@ -376,9 +376,8 @@ tr:hover {
 						
 				<!-- 글쓰기 -->
 				<c:if test="${currentCate != 1 }">
-					<a class="boardWrite" align="right"> <input type="button"
-						value="글쓰기"
-						onclick="./BoardWriteAction.board?cate_num=${currentCate}">
+					<a class="boardWrite" align="right"> 
+					<input type="button" value="글쓰기" onclick="location.href='./BoardWriteAction.board?cate_num=${currentCate}'">
 					</a>
 				</c:if>
 				

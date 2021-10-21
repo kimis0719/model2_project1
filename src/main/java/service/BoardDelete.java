@@ -27,6 +27,7 @@ public class BoardDelete implements Action {
 		boardDTO.setBoard_up_memnum(memberDTO.getMem_num());
 		
 		int result = boardDAO.delete(boardDTO);
+		if(result == 1) System.out.println("삭제 성공");
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
