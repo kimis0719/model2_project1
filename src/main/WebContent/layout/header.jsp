@@ -16,14 +16,21 @@
 </head>
 <div class="header">
 
-	<a href="./MainPageAction.board"><img class="logo" src="${pageContext.request.contextPath}/layout/img/logo.png" width="100" height="100"></a>
+	<a href="./MainPageAction.board"><img class="logo" src="${pageContext.request.contextPath}/layout/img/logo.png" width="40" height="55"></a>
 	<h1>중앙 커뮤니티</h1>
-		<form action="BoardSearchAction.board" method=get>
-			<input type="text" id="cate_num"  value="${currentCate }" placeholder="통합검색...">
+		<div class="UnifiedSearch"> 
+		<form action="BoardSearchAction.board?cate_num=${currentCate}" method=post accept-charset="utf-8">
+			<select name="sel" id="sel">
+								<option value="board_title">제목</option>
+								<option value="board_content">내용</option>
+								<option value="board_nick">작성자</option>
+							</select> 
+			<input type="text" name="find" id="find" placeholder="검색...">
 			<button type="submit" class="btn btn-info">
 			<span class="glyphicon glyphicon-search"></span> 검색
 			</button>
 	</form>
+	</div>
 </div>
 
 

@@ -52,7 +52,7 @@ public class CateListAction implements Action{
 		
 		// 게시판정보 공유설정
 		request.setAttribute("catelist", catelist);
-		
+		request.setAttribute("bdao", bdao);
 		request.setAttribute("noticelist", noticelist);
 		request.setAttribute("freelist", freelist);
 		request.setAttribute("dailylist", dailylist);

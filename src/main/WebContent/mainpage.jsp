@@ -39,8 +39,8 @@
 				<c:set var="num" value="${listcount1 - (page-1) * 5 }"  />
 				<c:forEach var="b" items="${noticelist}">
 					<tr>
-						<td text-decoration="none" text-align="center">
-							<a href="./BoardDetailAction.do?board_num=${b.board_num}&page=${page}">
+						<td text-decoration="none">
+							<a href="./BoardDetailAction.board?cate_num=${currentCate}&board_num=${b.board_num}&page=${page}">
 								${b.board_title} 
 							</a>
 						</td>
@@ -64,11 +64,11 @@
 					<th width=>작성일</th>
 				</tr>
 
-				<c:set var="num2" value="${listcount - (page-1) * 5 }" />
+				<c:set var="num" value="${listcount - (page-1) * 5 }" />
 				<c:forEach var="b" items="${freelist}">
 					<tr>
-						<td text-decoration="none" text-align="center">
-							<a href="./BoardDetailAction.do?board_num=${b.board_num}&page=${page}">
+						<td text-decoration="none">
+							<a href="./BoardDetailAction.board?cate_num=${currentCate}&board_num=${b.board_num}&page=${page}">
 								${b.board_title} 
 							</a>
 						</td>
@@ -95,8 +95,8 @@
 				<c:set var="num2" value="${listcount - (page-1) * 5 }" />
 				<c:forEach var="b" items="${dailylist}">
 					<tr>
-						<td text-decoration="none" text-align="center">
-							<a href="./BoardDetailAction.do?board_num=${b.board_num}&page=${page}">
+						<td text-decoration="none">
+							<a href="./BoardDetailAction.board?cate_num=${currentCate}&board_num=${b.board_num}&page=${page}">
 								${b.board_title} 
 							</a>
 						</td>
@@ -120,11 +120,11 @@
 					<th width=>작성일</th>
 				</tr>
 
-				<c:set var="num2" value="${listcount - (page-1) * 5 }" />
+				<c:set var="num" value="${listcount - (page-1) * 5 }" />
 				<c:forEach var="b" items="${sclist}">
 					<tr>
-						<td text-decoration="none" text-align="center">
-							<a href="./BoardDetailAction.do?board_num=${b.board_num}&page=${page}">
+						<td text-decoration="none">
+							<a href="./BoardDetailAction.board?cate_num=${currentCate}&board_num=${b.board_num}&page=${page}">
 								${b.board_title} 
 							</a>
 						</td>
@@ -148,11 +148,11 @@
 					<th width=>작성일</th>
 				</tr>
 
-				<c:set var="num2" value="${listcount - (page-1) * 5 }" />
+				<c:set var="num" value="${listcount - (page-1) * 5 }" />
 				<c:forEach var="b" items="${bslist}">
 					<tr>
-						<td text-decoration="none" text-align="center">
-							<a href="./BoardDetailAction.do?board_num=${b.board_num}&page=${page}">
+						<td text-decoration="none">
+							<a href="./BoardDetailAction.board?cate_num=${currentCate}&board_num=${b.board_num}&page=${page}">
 								${b.board_title} 
 							</a>
 						</td>
@@ -179,8 +179,8 @@
 				<c:set var="num2" value="${listcount - (page-1) * 5 }" />
 				<c:forEach var="b" items="${d2list}">
 					<tr>
-						<td text-decoration="none" text-align="center">
-							<a href="./BoardDetailAction.do?board_num=${b.board_num}&page=${page}">
+						<td text-decoration="none">
+							<a href="./BoardDetailAction.board?cate_num=${currentCate}&board_num=${b.board_num}&page=${page}">
 								${b.board_title} 
 							</a>
 						</td>
@@ -207,8 +207,8 @@
 				<c:set var="num" value="${listcount - (page-1) * 5 }" />
 				<c:forEach var="b" items="${ff14list}">
 					<tr>
-						<td text-decoration="none" text-align="center">
-							<a href="./BoardDetailAction.do?board_num=${b.board_num}&page=${page}">
+						<td text-decoration="none">
+							<a href="./BoardDetailAction.board?cate_num=${currentCate}&board_num=${b.board_num}&page=${page}">
 								${b.board_title} 
 							</a>
 						</td>
@@ -235,8 +235,8 @@
 				<c:set var="num" value="${listcount - (page-1) * 5 }" />
 				<c:forEach var="b" items="${movielist}">
 					<tr>
-						<td text-decoration="none" text-align="center">
-							<a href="./BoardDetailAction.do?board_num=${b.board_num}&page=${page}">
+						<td text-decoration="none">
+							<a href="./BoardDetailAction.board?cate_num=${currentCate}&board_num=${b.board_num}&page=${page}">
 								${b.board_title} 
 							</a>
 						</td>
@@ -263,8 +263,8 @@
 				<c:set var="num" value="${listcount - (page-1) * 5 }" />
 				<c:forEach var="b" items="${tvlist}">
 					<tr>
-						<td text-decoration="none" text-align="center">
-							<a href="./BoardDetailAction.do?board_num=${b.board_num}&page=${page}">
+						<td text-decoration="none">
+							<a href="./BoardDetailAction.board?cate_num=${currentCate}&board_num=${b.board_num}&page=${page}">
 								${b.board_title} 
 							</a>
 						</td>
@@ -279,13 +279,10 @@
 			</div>
 		</div>
 
-		
-		
 	<jsp:include page="./layout/rightcolumn.jsp" />
-	
+		
 	</div>
-	
-	
+		
 	<jsp:include page="./layout/footer.jsp" />
 
 </body>

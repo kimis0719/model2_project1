@@ -28,12 +28,15 @@ body {
 	font-size: 40px;
 }
 
+.UnifiedSearch{
+	align: "center";
+}
 
 input[type=text] {
 	width: 130px;
 	box-sizing: border-box;
 	border: 5px solid #EC5E5E;
-	border-radius: 4px;
+	border-radius: 2px;
 	font-size: 15px;
 	background-color: white;
 	background-position: 10px 10px;
@@ -122,6 +125,14 @@ input[type=text]:focus {
 }
 
 .btn-info:hover {
+	background-color: #EC5E5E;
+}
+
+.btn-info2 {
+	background-color: #EC5E5E;
+}
+
+.btn-info2:hover {
 	background-color: #EC5E5E;
 }
 
