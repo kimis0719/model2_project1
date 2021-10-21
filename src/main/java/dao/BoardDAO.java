@@ -57,7 +57,7 @@ public class BoardDAO {
 				if(con != null) try {con.close();} catch(Exception e) {}
 			}
 			return result;
-		}
+		}// select end
 
 		//글작성:원문작성
 		public int insert(BoardDTO boardDTO) {
@@ -141,6 +141,53 @@ public class BoardDAO {
 			return result;
 		}//delete end
 		
+		// 글목록 : 각 게시판별 글목록 구해오기
+		public List<BoardDTO> getList(int start, int end, int cate_num){
+			List<BoardDTO> list = new ArrayList<BoardDTO>();
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				con = getConnection();
+				String sql = "select * from (select rownum rnum, board.* from ";
+					sql	+= " (select * from board where cate_num=? and board_yn='y' order by board_num desc) board )";
+					sql += "  where rnum >=? and rnum<=? "  ;
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, cate_num);
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					BoardDTO board = new BoardDTO();
+					board.setBoard_num(rs.getInt("board_num"));
+					board.setBoard_title(rs.getString("board_title"));
+					board.setBoard_content(rs.getString("board_content"));
+					board.setBoard_memnum(rs.getInt("board_memnum"));
+					board.setBoard_nick(rs.getString("board_nick"));
+					board.setBoard_date(rs.getTimestamp("board_date"));
+					board.setBoard_count(rs.getInt("board_count"));
+					board.setBoard_good(rs.getInt("board_good"));
+					board.setBoard_bad(rs.getInt("board_bad"));
+					board.setBoard_up_memnum(rs.getInt("board_up_memnum"));
+					board.setBoard_up_date(rs.getTimestamp("board_up_date"));
+					board.setBoard_yn(rs.getString("board_yn"));
+					board.setCate_num(rs.getInt("cate_num"));
+					list.add(board);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(rs != null) try {rs.close();} catch(Exception e) {}
+				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+				if(con != null) try {con.close();} catch(Exception e) {}
+			}
+			return list;
+		}// select end
+		
 		// 글목록 : 정렬 - 각 게시판별 정렬된 글 목록 가져오기
 		public List<BoardDTO> getOrderList(int start, int end, int cate_num, String order){
 			List<BoardDTO> list = new ArrayList<BoardDTO>();
@@ -189,36 +236,36 @@ public class BoardDAO {
 		}
 		
 		// 글 목록 : 게시판 - 검색 데이터 갯수 구하기
-				public int getFindCount(int cate_num, String sel, String find) {
-					int result = 0;
-					Connection con = null;
-					PreparedStatement pstmt = null;
-					ResultSet rs = null;
-					
-					// 해당 게시판에 있는 글 중 Y인 게시글만 검색
-					try {
-						con = getConnection();
-						
-						String sql = "select count(*) from board where cate_num=? and board_yn='y' ";
-							   sql += "and "+sel+" like '%"+find+"%'";
-						
-						pstmt = con.prepareStatement(sql);
-						pstmt.setInt(1, cate_num);
-						rs = pstmt.executeQuery();
-						
-						if(rs.next()) {
-							result = rs.getInt(1);	
-						//	result = rs.getInt("count(*)");	
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					} finally {
-						if(rs != null) try {rs.close();} catch(Exception e) {}
-						if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
-						if(con != null) try {con.close();} catch(Exception e) {}
-					}
-					return result;
+		public int getFindCount(int cate_num, String sel, String find) {
+			int result = 0;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			// 해당 게시판에 있는 글 중 Y인 게시글만 검색
+			try {
+				con = getConnection();
+				
+				String sql = "select count(*) from board where cate_num=? and board_yn='y' ";
+					   sql += "and "+sel+" like '%"+find+"%'";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, cate_num);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					result = rs.getInt(1);	
+				//	result = rs.getInt("count(*)");	
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(rs != null) try {rs.close();} catch(Exception e) {}
+				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+				if(con != null) try {con.close();} catch(Exception e) {}
+			}
+			return result;
+		}
 		
 		// 글 목록 : 게시판 - 검색
 		public List<BoardDTO> getFindList(int start, int end, int cate_num, String sel, String find){
@@ -269,10 +316,54 @@ public class BoardDAO {
 		
 		
 		// 카테코리 번호별  5개 목록 구하기
-		/*
-		 * public List<BoardDTO> getboardlist(int cate){ List<BoardDTO> list = new
-		 * ArrayList<BoardDTO>(); }
-		 */
+		
+		public List<BoardDTO> getboardlist(int cate){
+			List<BoardDTO> list = new ArrayList<BoardDTO>();
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				con = getConnection();
+
+				String sql = "select * from board, category ";
+				       sql+=" where  board.cate_num = category.cate_num and board.cate_num=?  and rownum <= 5 ";
+				       sql+="  order by board.board_date desc";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, cate);
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					BoardDTO board = new BoardDTO();
+					board.setBoard_num(rs.getInt("board_num"));
+					board.setBoard_title(rs.getString("board_title"));
+					board.setBoard_content(rs.getString("board_content"));
+					board.setBoard_memnum(rs.getInt("board_memnum"));
+					board.setBoard_nick(rs.getString("board_nick"));
+					board.setBoard_date(rs.getTimestamp("board_date"));
+					board.setBoard_count(rs.getInt("board_count"));
+					board.setBoard_good(rs.getInt("board_good"));
+					board.setBoard_bad(rs.getInt("board_bad"));
+					board.setBoard_up_memnum(rs.getInt("board_up_memnum"));
+					board.setBoard_up_date(rs.getTimestamp("board_up_date"));
+					board.setBoard_yn(rs.getString("board_yn"));
+					board.setCate_num(rs.getInt("cate_num"));
+					board.setCate_code(rs.getInt("cate_code"));
+					
+					list.add(board);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(rs != null) try {rs.close();} catch(Exception e) {}
+				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+				if(con != null) try {con.close();} catch(Exception e) {}
+			}
+			return list;
+		}
+		 
 		
 		// 글상세 : 조회수 증가
 		public void readCountUpdate(int cate_num, int board_num) {
@@ -326,7 +417,6 @@ public class BoardDAO {
 					board.setBoard_up_date(rs.getTimestamp("board_up_date"));
 					board.setBoard_yn(rs.getString("board_yn"));
 					board.setCate_num(rs.getInt("cate_num"));
-					board.setCate_code(rs.getInt("cate_code"));
 					
 				}
 				

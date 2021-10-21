@@ -16,7 +16,8 @@
 </style>
 </head>
 <div class="header">
-	<a href="./CateListAction.board"><img class="logo" src="./layout/img/logo.png" width="100" height="100"></a>
+
+	<a href="./MainPageAction.board"><img class="logo" src="./layout/img/logo.png" width="100" height="100"></a>
 	<h1>중앙 커뮤니티</h1>
 		<form action="BoardSearchAction.board" method=get>
 			<input type="text" id="cate_num"  value="${currentCate }" placeholder="통합검색...">
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="./CateListAction.board">홈</a>
+      <a class="navbar-brand" href="./MainPageAction.board">홈</a>
     </div>
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
