@@ -288,9 +288,6 @@ input[id=totalfind]:focus {
       <label for="mem_pass">Password:</label>
       <input type="password" class="form-control" id="mem_pass" name="mem_pass" placeholder="비밀번호" maxlength="20">
     </div>
-    	<div class="checkbox">
-      	<label><input type="checkbox"> 아이디 저장</label>
-    	</div>
       <a href="">ID/PW찾기</a>
       
       <div style="text-align:right">
