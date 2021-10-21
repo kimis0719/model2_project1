@@ -62,7 +62,7 @@
 											test="${member.mem_id eq list.qna_writer || member.mem_grade eq 99}">
 											<a href="javascript:void(0)" id="showCloseDetail"
 												class="view_txt">${list.qna_title} <img alt="비밀글"
-												src="./images/board/lock-line.png"
+												src="${pageContext.request.contextPath}/images/board/lock-line.png"
 												style="margin-bottom: 4px;"></a>
 										</c:if>
 									</c:if> <!-- 비밀글 아닐때 --> <c:if test="${list.qna_sec eq 0}">
@@ -85,16 +85,16 @@
 										<br>
 										<div class="btns_wrap">
 											<input type="hidden" class="num" value="${list.qna_num}">
-											<%-- <c:if test="${member.grade eq 99}"> --%>
+											<c:if test="${member.mem_grade eq 99}">
 												<a href="javascript:void(0)" class="btn_reply">답변하기 ></a>
-											<%-- </c:if> --%>
-											<%-- <c:if test="${member.nickname eq list.qna_writer}"> --%>
+											</c:if>
+											<c:if test="${member.mem_id eq list.qna_writer}">
 												<a href="javascript:void(0)" class="btn_update">수정하기</a>
-											<%-- </c:if> --%>
-											<%-- <c:if
-												test="${member.nickname eq list.qna_writer || member.grade eq 99}"> --%>
+											</c:if>
+											<c:if
+												test="${member.mem_id eq list.qna_writer || member.mem_grade eq 99}">
 												<a href="qnaDelete.qna?ref=${list.qna_ref}">삭제하기</a>
-											<%-- </c:if> --%>
+											</c:if>
 										</div>
 									</div>
 								</c:if> <!-- 답변 --> <c:if test="${list.qna_step > 0}">
@@ -106,12 +106,12 @@
 										<br>
 										<div class="btns_wrap">
 											<input type="hidden" class="num" value="${list.qna_ref}">
-											<%-- <c:if
-												test="${member.grade eq 99 && member.nickname eq list.qna_writer}"> --%>
+											<c:if
+												test="${member.mem_grade eq 99 && member.mem_id eq list.qna_writer}">
 												<a href="javascript:void(0)" class="btn_replyUpdate">수정하기</a>
 												<a
 													href="qnaAnswerDelete.qna?qna_num=${list.qna_num}&&qna_ref=${list.qna_ref}">삭제하기</a>
-											<%-- </c:if> --%>
+											</c:if>
 										</div>
 									</div>
 								</c:if>

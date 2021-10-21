@@ -21,7 +21,7 @@
 <body>
 		<!-- header -->
 <%-- 	<c:import url="/layout/header.jsp" /> --%>
-	<jsp:include page="../layout/header.jsp" />
+	<jsp:include page="./layout/header.jsp" />
 
 	<div class="row">
 		<div class="leftcolumn">
@@ -281,14 +281,15 @@
 
 		<div class="rightcolumn">
 			<div class="card">
-				<button class="btn login">로그인</button>
+			<input type="button" class="btn login" value="로그인" onclick="location.href='./member/loginForm.jsp'">
+				<!-- <button class="btn login">로그인</button> -->
 				<button class="btn sing-up">회원가입</button>
 			</div>
 		</div>
 	</div>
 		
 	<%-- <c:import url="../layout/footer.jsp" /> --%>
-	<jsp:include page="../layout/footer.jsp" />
+	<jsp:include page="./layout/footer.jsp" />
 
 </body>
 

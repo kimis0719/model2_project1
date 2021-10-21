@@ -30,10 +30,12 @@ public class BoardWrite implements Action{
 			new DefaultFileRenamePolicy()); // 중복파일 문제 해결
 		
 		BoardDTO board = new BoardDTO();
+		System.out.println(multi.getParameter("board_title"));
 		board.setBoard_title(multi.getParameter("board_title"));
 		board.setBoard_content(multi.getParameter("board_content"));
 		board.setBoard_memnum(memberDTO.getMem_num());
 		board.setBoard_nick(multi.getParameter("board_nick"));
+		System.out.println("multi.catenum: "+multi.getParameter("cate_num"));
 		board.setCate_num(Integer.parseInt(multi.getParameter("cate_num")));
 		
 		BoardDAO boardDAO = BoardDAO.getInstance();
@@ -41,7 +43,7 @@ public class BoardWrite implements Action{
 		if(result == 1) System.out.println("글작성 성공");
 		
 		ActionForward forward = new ActionForward();
-		forward.setRedirect(true);
+		forward.setRedirect(false);
 		forward.setPath("./BoardListAction.board");
 		
 		return forward;

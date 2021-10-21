@@ -95,7 +95,7 @@ public class BoardDetailAction  implements Action{
 		// request 객체로 공유를 한 경우에는 dispatcher 방식으로 포워딩이 되어야,
 		// view 페이지에서 공유한 값에 접근이 가능하다.
 		forward.setRedirect(false); // dispatcher 방식으로 포워딩
-		forward.setPath("/board/BoardDetail.jsp");
+		forward.setPath("./board/BoardDetail.jsp");
 		
 		return forward;
 
