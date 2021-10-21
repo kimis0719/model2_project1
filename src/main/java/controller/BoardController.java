@@ -107,7 +107,7 @@ public class BoardController extends HttpServlet {
 			}
 
 			// 글수정 폼
-		} else if (command.equals("/BoardModifyAction.do")) {
+		} else if (command.equals("/BoardUpdateAction.board")) {
 			try {
 				action = new BoardUpdateAction();
 				forward = action.execute(request, response);
@@ -116,7 +116,7 @@ public class BoardController extends HttpServlet {
 			}
 
 			// 글수정
-		} else if (command.equals("/BoardModify.do")) {
+		} else if (command.equals("/BoardUpdate.board")) {
 			try {
 				action = new BoardUpdate();
 				forward = action.execute(request, response);
@@ -125,7 +125,7 @@ public class BoardController extends HttpServlet {
 			}
 
 			// 글삭제
-		} else if (command.equals("/BoardDelete.do")) {
+		} else if (command.equals("/BoardDelete.board")) {
 			try {
 				action = new BoardDelete();
 				forward = action.execute(request, response);

@@ -25,7 +25,7 @@
 		<!-- 서브 타이틀 -->
 		<div class="subTitle_wrap">
 			<div class="subTitle_inner">
-				<h2>${boardName}글쓰기</h2>
+				<h2>${boardName}게시판 글쓰기</h2>
 			</div>
 		</div>
 		<div class="container">

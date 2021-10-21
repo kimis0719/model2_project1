@@ -44,7 +44,7 @@ public class QnaController extends HttpServlet {
 		url = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf(".")); // 주소 파싱해서 가져오기
 
 		ActionForward actionForward = null;
-		//글 목록
+		// 글 목록
 		if (url.equals("qnaList")) {
 			try {
 				actionForward = qnaService.qnaList(request, response);
@@ -56,18 +56,31 @@ public class QnaController extends HttpServlet {
 			 * else if (url.equals("qnaSelect")) { actionForward =
 			 * qnaService.selectOne(request, response); }
 			 */
-		//글 작성 폼
-		else if (url.equals("qnaWrite")) {
+		// 글 작성 폼
+		else if (url.equals("qnaWriteForm")) {
+			try {
+				actionForward = qnaService.writeForm(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// 글 작성(원문작성)
+		} else if (url.equals("qnaWrite")) {
 			try {
 				actionForward = qnaService.write(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		//글 작성(원문작성)
-		} else if (url.equals("qnaWrite")) {
-			
-		
+			// 글 수정폼
+		} else if (url.equals("qnaUpdateForm")) {
+			try {
+				actionForward = qnaService.updateForm(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// 글 수정
 		} else if (url.equals("qnaUpdate")) {
 			try {
 				actionForward = qnaService.update(request, response);
@@ -75,6 +88,7 @@ public class QnaController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			// 글 삭제
 		} else if (url.equals("qnaDelete")) {
 			try {
 				actionForward = qnaService.delete(request, response);

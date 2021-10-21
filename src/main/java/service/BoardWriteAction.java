@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.BoardDAO;
+import dao.CateDAO;
 import dto.MemberDTO;
 
 public class BoardWriteAction implements Action{
@@ -16,9 +17,12 @@ public class BoardWriteAction implements Action{
 		MemberDTO memberDTO = (MemberDTO)request.getSession().getAttribute("member");
 		
 		BoardDAO dao = BoardDAO.getInstance();
+		CateDAO cateDAO = CateDAO.getInstance();
+		System.out.println("cate_num: "+request.getParameter("cate_num"));
 		
 		// 공유 설정
 		request.setAttribute("member", memberDTO);
+		request.setAttribute("boardName", cateDAO.getCateName(Integer.parseInt(request.getParameter("cate_num"))));
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false); 	// dispatcher 방식으로 포워딩

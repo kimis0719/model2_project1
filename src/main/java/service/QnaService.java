@@ -42,20 +42,35 @@ public class QnaService {
 		actionForward.setPath("./qnaList.jsp");
 
 		return actionForward;
-	}
+	}//qnaList end
 	
+	//글 작성폼
+	public ActionForward writeForm(HttpServletRequest request, HttpServletResponse response) throws Exception  {
+		ActionForward actionForward = new ActionForward();
+		return actionForward;
+	}//writeForm end
+	
+	//글 작성
 	public ActionForward write(HttpServletRequest request, HttpServletResponse response) throws Exception  {
 		ActionForward actionForward = new ActionForward();
 		return actionForward;
-	}
+	}//write end
 	
+	//글 수정폼
+	public ActionForward updateForm(HttpServletRequest request, HttpServletResponse response) throws Exception  {
+		ActionForward actionForward = new ActionForward();
+		return actionForward;
+	}//updateForm end
+	
+	//글 수정
 	public ActionForward update(HttpServletRequest request, HttpServletResponse response) throws Exception  {
 		ActionForward actionForward = new ActionForward();
 		return actionForward;
-	}
+	}//update end
 	
+	//글 삭제
 	public ActionForward delete(HttpServletRequest request, HttpServletResponse response) throws Exception  {
 		ActionForward actionForward = new ActionForward();
 		return actionForward;
-	}
+	}//delete end
 }

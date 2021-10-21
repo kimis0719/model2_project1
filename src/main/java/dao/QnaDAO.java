@@ -126,5 +126,16 @@ public class QnaDAO {
 				}
 		}
 		return list;
-	}
+	}//qnaList end
+	
+	//글 작성폼
+	
+	//글 작성
+	
+	//글 수정폼
+	
+	//글 수정
+	
+	//글 삭제
+	
 }

@@ -17,6 +17,7 @@ public class BoardListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BoardListAction");
 
+		System.out.println(request.getParameter("cate_num"));
 		int currentCate = Integer.parseInt(request.getParameter("cate_num"));
 		System.out.println("currentCate : " + currentCate);
 

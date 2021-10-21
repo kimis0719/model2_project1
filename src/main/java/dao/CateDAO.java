@@ -27,6 +27,49 @@ public class CateDAO {
 		  		return ds.getConnection();
 			}
 			
+			//cate_num으로 cate_name 찾아오기
+			public String getCateName(int cate_num) {
+				String cate_name = null;
+				
+				Connection con = null;
+				PreparedStatement ps = null;
+				ResultSet rs = null;
+				
+				try {
+					con = getConnection();
+
+					String sql = "select cate_name from category where cate_num =?";
+
+					ps = con.prepareStatement(sql);
+					ps.setInt(1, cate_num);
+					
+					rs = ps.executeQuery();
+
+					if (rs.next()) {
+						cate_name = rs.getString(1);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					if (rs != null)
+						try {
+							rs.close();
+						} catch (Exception e) {
+						}
+					if (ps != null)
+						try {
+							ps.close();
+						} catch (Exception e) {
+						}
+					if (con != null)
+						try {
+							con.close();
+						} catch (Exception e) {
+						}
+				}
+				
+				return cate_name;
+			}
 			// 카데고리별 게시판정보 불러오기
 			public List<CateDTO> getcatelist(int cate){
 				List<CateDTO> list = new ArrayList<CateDTO>();

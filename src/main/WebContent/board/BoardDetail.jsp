@@ -252,6 +252,7 @@ tr:hover {
 						${content}
 					<td>
 				</tr>
+				
 				<tr	class="goodnbad">
 					<td colspan="3" align=center>
 						좋아요 : ${board.board_good }
@@ -265,10 +266,10 @@ tr:hover {
 							onclick="location.href='' ">
 								
 						<input type="button" value="수정"
-							onclick="location.href='' ">
+							onclick="location.href = './BoardUpdateAction.board?board_num=${board.board_num}&cate_num=${currentCate}'">
 			
 						<input type="button" value="삭제"
-							onclick="location.href='' ">
+							onclick="location.href = './BoardDelete.board?board_num=${board.board_num}'">
 			
 						<input type="button" value="목록" 
 							onclick="location.href = './BoardListAction.board?cate_num=${currentCate}&page=${page}'">
@@ -276,7 +277,20 @@ tr:hover {
 				</tr>
 			</table>
 			<br>
-			
+
+			<%-- <!-- 첨부파일이 있을때만 첨부파일 출력 -->
+			<c:if test="${board.board_file != null}">
+				<a href="./board/file_down.jsp?file_name=${board.board_file}">
+					${board.board_file} </a>
+			</c:if> --%>
+
+			<div>
+				<ul>
+					<c:forEach items="${select.boardFileDTOs}" var="file" varStatus="i">
+						<li><a href="./fileDown?file_num=${file.file_num}">${file.file_oname}</a></li>
+					</c:forEach>
+				</ul>
+			</div>
 			<!-- 댓글부분 -->
 			<table>
 				<tr>
