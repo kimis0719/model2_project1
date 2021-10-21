@@ -27,6 +27,7 @@ public class BoardDetailAction  implements Action{
 		BoardDAO dao = BoardDAO.getInstance();
 		dao.readCountUpdate(currentCate, board_num);					// 조회수 증가
 		BoardDTO board = dao.getBoardDetail(currentCate, board_num);	// 상세정보 구하기
+
 		
 		// 글 내용에서 줄 바꿈
 		String content = board.getBoard_content().replace("\n", "<br>");

@@ -10,6 +10,13 @@
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="<%=request.getContextPath() %>/board/boardScript.js"></script>
 <meta charset="utf-8">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <style>
 * {
 	box-sizing: border-box;
@@ -26,50 +33,6 @@ body {
 	opacity: 1;
 }
 
-/* Header/Blog Title */
-.header {
-	padding: 30px;
-	text-align: center;
-	background: #EEEEEE;
-}
-
-.header h1 {
-	font-size: 40px;
-}
-
-input[type=text] {
-	width: 130px;
-	box-sizing: border-box;
-	border: 5px solid #EC5E5E;
-	border-radius: 4px;
-	font-size: 15px;
-	background-color: white;
-	background-position: 10px 10px;
-	background-repeat: no-repeat;
-	padding: 12px 20px 12px 40px;
-	-webkit-transition: width 0.4s ease-in-out;
-	transition: width 0.4s ease-in-out;
-	outline: none;
-}
-
-input[type=text]:focus {
-	width: 50%;
-}
-
-.affix {
-	top: 0;
-	width: 100%;
-	z-index: 9999 !important;
-}
-
-.navbar {
-	margin-bottom: 0px;
-}
-
-.affix ~ .container-fluid {
-	position: relative;
-	top: 50px;
-}
 
 /* Create two unequal columns that floats next to each other */
 /* Left column */
