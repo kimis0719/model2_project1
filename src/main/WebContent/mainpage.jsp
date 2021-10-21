@@ -92,7 +92,7 @@
 					<th width=>작성일</th>
 				</tr>
 
-				<c:set var="num2" value="${listcount - (page-1) * 5 }" />
+				<c:set var="num" value="${listcount - (page-1) * 5 }" />
 				<c:forEach var="b" items="${dailylist}">
 					<tr>
 						<td text-decoration="none">
@@ -176,7 +176,7 @@
 					<th width=>작성일</th>
 				</tr>
 
-				<c:set var="num2" value="${listcount - (page-1) * 5 }" />
+				<c:set var="num" value="${listcount - (page-1) * 5 }" />
 				<c:forEach var="b" items="${d2list}">
 					<tr>
 						<td text-decoration="none">

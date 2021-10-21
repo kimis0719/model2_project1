@@ -15,7 +15,6 @@
 	}else{
 		
 	%>
-		<%=session.getAttribute("sessionID") %>님 로그인되었습니다.<br>
 		<div class="rightcolumn">
 			<div class="card">
 			<h2><%=session.getAttribute("mem_id") %>님 로그인 되었습니다.</h2>
