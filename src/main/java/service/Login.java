@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.MemberDAO;
+import dto.MemberDTO;
 
 public class Login implements Action{
 
@@ -29,7 +30,9 @@ public class Login implements Action{
 		if(result == 1)System.out.println("회원 인증 성공");
 		
 		if(result ==1) {		//회원 인증 성공
-			session.setAttribute("mem_id", mem_id);		//세션 공유 설정
+			MemberDTO member = dao.getMember(mem_id);
+	         session.setAttribute("mem_id", mem_id);      //세션 공유 설정
+	         session.setAttribute("member", member);      //세션 공유 설정
 		}else {					//회원 인증 실패
 			out.println("<script>");
 			out.println("alert('로그인 실패');");

@@ -37,11 +37,21 @@ public class Member implements Action{
 		member.setMem_pass(multi.getParameter("mem_pass"));
 		member.setMem_email(multi.getParameter("mem_email"));
 		member.setMem_phone(multi.getParameter("mem_phone"));
-		member.setMem_img(multi.getParameter("mem_img"));
 		
-		
+		String origin = multi.getOriginalFileName("mem_img");
+		String filesystem = multi.getFilesystemName("mem_img");
 		
 		MemberDAO dao =MemberDAO.getInstance();
+		MemberDTO old = dao.getMember(member.getMem_id());
+		
+		
+		if(filesystem != null) {    // 프로필 이미지 수정한 경우
+			member.setMem_img(filesystem);
+			System.out.println("프로필 이미지 수정 성공");
+		}else {
+			member.setMem_img(old.getMem_img());			
+		}		
+		
 		int result =dao.insert(member);
 		if(result == 1) {
 			System.out.println("회원 가입 성공");

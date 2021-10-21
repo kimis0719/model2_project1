@@ -203,7 +203,7 @@ String sql="insert into member ";
 					
 			try {
 				con = getConnection();
-String sql="update member set mem_nick=?,mem_pass=?,mem_email=?,mem_img=?,mem_phone=? where mem_id=?";
+String sql="update member set mem_nick=?,mem_pass=?,mem_email=?,mem_img=?,mem_phone=? where mem_num=?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, member.getMem_nick());
@@ -211,6 +211,7 @@ String sql="update member set mem_nick=?,mem_pass=?,mem_email=?,mem_img=?,mem_ph
 			pstmt.setString(3, member.getMem_email());
 			pstmt.setString(4, member.getMem_img());
 			pstmt.setString(5, member.getMem_phone());
+			pstmt.setInt(6, member.getMem_num());
 			
 			result = pstmt.executeUpdate();  // update SQL문 실행
 			

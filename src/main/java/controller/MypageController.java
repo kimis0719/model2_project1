@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.Action;
 import service.ActionForward;
+import service.BoardDeleteAction;
+import service.BoardModify;
 import service.Delete;
 import service.Myboardlist;
 import service.Update;
@@ -40,13 +42,13 @@ public class MypageController extends HttpServlet {
 		ActionForward forward = null;		
 		
 		// 회원 탈퇴폼
-		if(command.equals("DeleteMember.do")) {
+		if(command.equals("DeleteMember.member")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/member/deleteform.jsp");
 			
 			//회원 탈퇴
-		}else if(command.equals("/Delete.do")){
+		}else if(command.equals("/Delete.member")){
 			try {
 				action = new Delete();
 				forward = action.execute(request, response);
@@ -55,15 +57,46 @@ public class MypageController extends HttpServlet {
 			}
 			
 			// 내가작성한글 목록
-		}else if(command.equals("Myboardlist.do")) {
+		}else if(command.equals("Myboardlist.board")) {
 			try {
 				action = new Myboardlist();
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 			
+			// 내가 작성한 글 수정
+			
+		}else if(command.equals("BoardModify.board")) {
+			try {
+				action = new BoardModify();
+				forward = action.execute(request, response);
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		
+			// 내가 작성한 글 삭제폼
+		}else if(command.equals("BoardDeleteAction.board")) {
+			try {
+				forward = new ActionForward();
+				forward.setRedirect(false);
+				forward.setPath("./board/boardDelete.jsp");
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			// 글 삭제
+		
+		}else if(command.equals("")) {
+			try {
+				action = new BoardDeleteAction();
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
 			// 회원 가입 수정 폼
-		}else if(command.equals("UpdateMember.do")) {
+		}else if(command.equals("UpdateMember.Member")) {
 			try {
 				action = new UpdateMember();
 				forward = action.execute(request, response);
@@ -71,7 +104,7 @@ public class MypageController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		}else if(command.equals("Update.do")) {
+		}else if(command.equals("Update.Member")) {
 			try {
 				action = new Update();
 				forward = action.execute(request, response);

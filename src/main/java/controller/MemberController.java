@@ -15,6 +15,7 @@ import service.Idcheck;
 import service.Login;
 import service.Member;
 import service.Nickcheck;
+import service.Update;
 
 /**
  * Servlet implementation class board_controller
@@ -45,6 +46,15 @@ public class MemberController extends HttpServlet {
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
+			
+			// 회원 정보 수정
+		}else if(command.equals("/Update.member")) {
+			try {
+				action = new Update();
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 					
 			//ID중복 검사(ajax)	
 		}else if(command.equals("/Idcheck.member")) {
@@ -94,21 +104,6 @@ public class MemberController extends HttpServlet {
 			forward.setPath("/member/logout.jsp");	
 	
 		}
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		//포워딩 처리
 		if(forward != null) {
