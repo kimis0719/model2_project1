@@ -11,23 +11,14 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
-<
-c
-:import
- 
-url
-="../css/header
-.css
-"
-/
->
+<c:import url="../css/header.css" /> 
 </style>
 </head>
 <body>
 
 
 
-	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
 	<script>
 		//Get the button
