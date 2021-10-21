@@ -11,7 +11,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
-<c:import url="../css/header.css" /> 
+<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
 </style>
 </head>
 <div class="header">

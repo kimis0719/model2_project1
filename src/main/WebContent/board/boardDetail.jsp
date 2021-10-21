@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,21 +36,6 @@ body {
 
 .header h1 {
 	font-size: 40px;
-}
-
-input[type=text] {
-	width: 130px;
-	box-sizing: border-box;
-	border: 5px solid #EC5E5E;
-	border-radius: 4px;
-	font-size: 15px;
-	background-color: white;
-	background-position: 10px 10px;
-	background-repeat: no-repeat;
-	padding: 12px 20px 12px 40px;
-	-webkit-transition: width 0.4s ease-in-out;
-	transition: width 0.4s ease-in-out;
-	outline: none;
 }
 
 input[type=text]:focus {
@@ -236,7 +222,7 @@ tr:hover {
 		<div class="leftcolumn">
 			<br>
 			<!-- 글 상세페이지 -->
-			<table class="detail">
+			<table class="detail" id="detail">
 				<tr class="detailtitle" >
 					<th colspan="3">${board.board_title}</th>
 				 </tr>
@@ -263,12 +249,13 @@ tr:hover {
 					
 						<input type="button" value="즐겨찾기"
 							onclick="location.href='' ">
-								
-						<input type="button" value="수정"
-							onclick="location.href='' ">
-			
-						<input type="button" value="삭제"
-							onclick="location.href='' ">
+						<c:if test="${board.board_nick == sessionScope.member.mem_nick}" >
+							<input type="button" value="수정"
+								onclick="location.href='' ">
+				
+							<input type="button" value="삭제"
+								onclick="location.href='' ">
+						</c:if>	
 			
 						<input type="button" value="목록" 
 							onclick="location.href = './BoardListAction.board?cate_num=${currentCate}&page=${page}'">
@@ -277,20 +264,38 @@ tr:hover {
 			</table>
 			<br>
 			
-			<!-- 댓글부분 -->
-			<table>
-				<tr>
-					<td>
-
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="text" id="replywrite">
-						<input type="button" value="댓글작성">
-					</td>
-				</tr>
-			</table>
+			<!-- 댓글 출력 부분 -->
+			<form method="post" class="replywrite" accept-charset="utf-8" action="./ReplyWriteAction.reply?cate_num=${currentCate}&board_num=${board.board_num}&page=${page}">
+				<table id="reply" class="reply">
+					<tr>
+						<c:forEach var="r" items="${replylist}">
+							<td>${r.re_writer}</td>
+							<td text-align="left">${r.re_content}</td>
+							<td><fmt:formatDate value="${r.re_date}"
+									pattern="yyyy-MM-dd HH:mm:ss" /></td>
+						</c:forEach>
+					
+					</tr>
+			<!-- 댓글작성부분 -->
+					<tr>
+						<c:choose>
+							<c:when test="${sessionScope.member.mem_nick != null }">
+								<td name="writer" id="writer">
+										${sessionScope.member.mem_nick}
+								</td>
+								<td>
+									<textarea rows="4" cols="180" style="resize: none;" id="re_content"></textarea>
+									<input type="submit" value="댓글작성" >
+								</td>	
+							</c:when>
+							<c:otherwise>
+								<td>로그인 후 댓글을 작성해 주세요.</td>
+							</c:otherwise>
+						
+						</c:choose>
+					</tr>
+				</table>
+			</form>
 			
 			<table id=table align="center">
 				<br>
@@ -346,19 +351,19 @@ tr:hover {
 				</a>
 				
 				<!-- 검색기능 -->
-				<div class="search"> 
-						<form action="BoardSearchAction.board?cate_num=${currentCate}" method=post accept-charset="utf-8">
-							<select name="sel" id="sel">
-								<option value="board_title">제목</option>
-								<option value="board_content">내용</option>
-								<option value="board_nick">작성자</option>
-							</select> 
-							<input type="text" name="find" id="find"> 
-							<button type="submit" class="btn2 btn-search">
-								검색
-							</button>
-						</form>
-					</div>
+				<div class="search" id="search"> 
+					<form action="BoardSearchAction.board?cate_num=${currentCate}" method=post accept-charset="utf-8" id="search">
+						<select name="sel" id="sel">
+							<option value="board_title">제목</option>
+							<option value="board_content">내용</option>
+							<option value="board_nick">작성자</option>
+						</select> 
+						<!-- <input type="text" name="find" id="find"> 
+						<button type="submit" class="btn2 btn-search">
+							검색
+						</button> -->
+					</form>
+				</div>
 						
 				<!-- 글쓰기 -->
 				<c:if test="${currentCate != 1 }">

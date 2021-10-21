@@ -7,10 +7,10 @@ import dao.ReplyDAO;
 import dto.MemberDTO;
 import dto.ReplyDTO;
 
-public class ReplyWriteAction implements Action {
+public class ReplyListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("ReplyWriteAction");
+		System.out.println("ReplyListAction");
 		
 		MemberDTO memberDTO = (MemberDTO)request.getSession().getAttribute("member");
 		
