@@ -35,7 +35,7 @@ public class BoardWrite implements Action{
 			new DefaultFileRenamePolicy()); // 중복파일 문제 해결
 		
 		BoardDTO board = new BoardDTO();
-		System.out.println(multi.getParameter("board_title"));
+		System.out.println("multi.boardtitle: "+multi.getParameter("board_title"));
 		board.setBoard_title(multi.getParameter("board_title"));
 		board.setBoard_content(multi.getParameter("board_content"));
 		board.setBoard_memnum(memberDTO.getMem_num());

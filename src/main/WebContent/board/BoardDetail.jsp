@@ -269,7 +269,7 @@ tr:hover {
 							onclick="location.href = './BoardUpdateAction.board?board_num=${board.board_num}&cate_num=${currentCate}'">
 			
 						<input type="button" value="삭제"
-							onclick="location.href = './BoardDelete.board?board_num=${board.board_num}'">
+							onclick="location.href = './BoardDelete.board?board_num=${board.board_num}&cate_num=${currentCate}'">
 			
 						<input type="button" value="목록" 
 							onclick="location.href = './BoardListAction.board?cate_num=${currentCate}&page=${page}'">

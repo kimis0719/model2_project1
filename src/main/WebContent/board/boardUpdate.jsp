@@ -29,15 +29,16 @@
 			</div>
 		</div>
 		<div class="container">
-			<form action="${pageContext.request.contextPath}/BoardWrite.board"
+			<form action="${pageContext.request.contextPath}/BoardUpdate.board"
 				method="post" enctype="multipart/form-data">
+				<input type="hidden" value="${board.board_num}" name="board_num">
 				<input type="hidden" value="${param.cate_num}" name="cate_num">
 				<div class="form-group">
 					<label for="title">제목</label> <input type="text"
 						class="form-control" id="title" placeholder="제목을 입력하세요."
 						name="board_title" value="${board.board_title}">
 				</div>
-				<input type="hidden" value="${member.mem_num}">
+				<input type="hidden" value="${member.mem_num}" name="board_up_memnum">
 				<div class="form-group">
 					<label for="writer">작성자</label> <input type="text"
 						class="form-control" id="writer" readonly="readonly" name="board_nick"
@@ -50,7 +51,7 @@
 						placeholder="내용을 입력하세요." name="board_content">${board.board_content}</textarea>
 				</div>
 
-				<button class="btngo">등록</button>
+				<button class="btngo">수정</button>
 				<input type="button" id="btn_add" class="btn_add" value="Add File">
 				<div id="files"></div>
 			</form>

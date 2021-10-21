@@ -153,10 +153,11 @@ public class BoardDAO {
 		try {
 			con = getConnection();
 
-			String sql = "update board set board_yn='n' where board_num=?";
+			String sql = "update board set board_yn='n', board_up_memnum=?, board_up_date=sysdate where board_num=?";
 
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, boardDTO.getBoard_num());
+			ps.setInt(1, boardDTO.getBoard_up_memnum());
+			ps.setInt(2, boardDTO.getBoard_num());
 
 			result = ps.executeUpdate();
 		} catch (Exception e) {

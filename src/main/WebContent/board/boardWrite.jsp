@@ -37,7 +37,7 @@
 						class="form-control" id="title" placeholder="제목을 입력하세요."
 						name="board_title">
 				</div>
-				<input type="hidden" value="${member.mem_num}">
+				<input type="hidden" value="${member.mem_num}" name="board_memnum">
 				<div class="form-group">
 					<label for="writer">작성자</label> <input type="text"
 						class="form-control" id="writer" readonly="readonly" name="board_nick"
