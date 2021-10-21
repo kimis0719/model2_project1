@@ -118,7 +118,7 @@ public class QnaDAO {
 		try {
 			con = getConnection();
 			
-			String sql = "select qna_title, qna_content, qna_sec from qna where qna_num=?";
+			String sql = "select qna_num, qna_title, qna_content, qna_sec from qna where qna_num=?";
 			
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, qna_num);
@@ -126,6 +126,7 @@ public class QnaDAO {
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
+				qnaDTO.setQna_num(rs.getInt("qna_num"));
 				qnaDTO.setQna_title(rs.getString("qna_title"));
 				qnaDTO.setQna_content(rs.getString("qna_content"));
 				qnaDTO.setQna_sec(rs.getInt("qna_sec"));
@@ -203,14 +204,23 @@ public class QnaDAO {
 		PreparedStatement ps = null;
 		
 		try {
+			con = getConnection();
 			
+			String sql = "update qna set qna_title=?, qna_content=?, qna_sec=? where qna_num=?";
+
+			ps = con.prepareStatement(sql);
+			ps.setString(1, qnaDTO.getQna_title());
+			ps.setString(2, qnaDTO.getQna_content());
+			ps.setInt(3, qnaDTO.getQna_sec());
+			ps.setInt(4, qnaDTO.getQna_num());
+			
+			result = ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			if (ps != null) try { ps.close(); } catch (Exception e) { }
 			if (con != null) try { con.close(); } catch (Exception e) { }
 		}
-		String sql = "update qna set qna_title=?, qna_content=?, qna_sec=? where qna_num=?";
 		
 		return result;
 	}//update end

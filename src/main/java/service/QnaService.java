@@ -115,8 +115,23 @@ public class QnaService {
 	public ActionForward update(HttpServletRequest request, HttpServletResponse response) throws Exception  {
 		System.out.println("QnaUpdate 들어왔냐");
 		
+		QnaDTO qnaDTO = new QnaDTO();
+		int num = Integer.parseInt(request.getParameter("qna_num"));
+		System.out.println("num: "+ num);
+		int sec = Integer.parseInt(request.getParameter("qna_sec"));
+		System.out.println("sec: "+ sec);
+		
+		qnaDTO.setQna_num(num);
+		qnaDTO.setQna_title(request.getParameter("qna_title"));
+		qnaDTO.setQna_content(request.getParameter("qna_content"));
+		qnaDTO.setQna_sec(sec);
+		
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		int result = qnaDAO.update(qnaDTO);
+		if(result == 1) System.out.println("문의수정 성공");
+		
 		ActionForward actionForward = new ActionForward();
-		actionForward.setRedirect(true);
+		actionForward.setRedirect(false);
 		actionForward.setPath("./qnaList.jsp");
 		
 		return actionForward;

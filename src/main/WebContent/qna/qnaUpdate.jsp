@@ -80,6 +80,7 @@
 				</div>
 			<!-- 버튼 -->
 				<div class="btn_wrap">
+					<input type="hidden" name="qna_num" value="${qna.qna_num}">
 					<input type="hidden" name="qna_memnum" value="${member.mem_num}">
 					<input type="hidden" name="qna_writer" value="${member.mem_id}">
 					<button id="btnSave" class="popbtn popbtn1" title="수정"><span>수정</span></button>
@@ -97,7 +98,7 @@
 			$('input[name="qna_sec"]').val(0);
 		}
 		
-		var memnum = $('input[name="qna_memnum"]').val();
+		var num = $('input[name="qna_num"]').val();
 		var writer = $('input[name="qna_writer"]').val();
 		var title = $('input[name="qna_title"]').val();
 		var content = $('#popCont').val();
@@ -115,8 +116,8 @@
 					type: "POST",
 					url: "./qnaUpdate.qna",
 					data: {
-						qna_memnum: memnum,
-						qna_writer: writer,
+						qna_num: num,
+						//qna_writer: writer,
 						qna_title: title,
 						qna_content: content,
 						qna_sec: secret
@@ -131,7 +132,7 @@
 						} */
 					},
 					error: function(){
-						alert("e잠시 후에 다시 시도해주세요.");
+						alert("잠시 후에 다시 시도해주세요.");
 					}
 				});
 						
