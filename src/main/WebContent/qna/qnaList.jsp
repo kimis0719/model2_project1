@@ -88,15 +88,15 @@
 										<br>
 										<div class="btns_wrap">
 											<input type="hidden" class="num" value="${list.qna_num}">
+											<input type="hidden" class="ref" value="${list.qna_ref}">
 											<c:if test="${member.mem_grade eq 99}">
 												<a href="javascript:void(0)" class="btn_reply">답변하기 ></a>
 											</c:if>
 											<c:if test="${member.mem_id eq list.qna_writer}">
 												<a href="javascript:void(0)" class="btn_update">수정하기</a>
 											</c:if>
-											<c:if
-												test="${member.mem_id eq list.qna_writer || member.mem_grade eq 99}">
-												<a href="qnaDelete.qna?ref=${list.qna_ref}">삭제하기</a>
+											<c:if test="${member.mem_id eq list.qna_writer || member.mem_grade eq 99}">
+												<a href="qnaDelete.qna?qna_ref=${list.qna_ref}">삭제하기</a>
 											</c:if>
 										</div>
 									</div>
@@ -110,10 +110,11 @@
 										</div>
 										<br>
 										<div class="btns_wrap">
-											<input type="hidden" class="num" value="${list.qna_ref}">
+											<input type="hidden" class="num" value="${list.qna_num}">
+											<input type="hidden" class="ref" value="${list.qna_ref}">
 											<c:if test="${member.mem_grade eq 99 && member.mem_id eq list.qna_writer}">
 												<a href="javascript:void(0)" class="btn_replyUpdate">수정하기</a>
-												<a href="qnaAnswerDelete.qna?qna_num=${list.qna_num}&&qna_ref=${list.qna_ref}">삭제하기</a>
+												<a href="qnaAnswerDelete.qna?qna_num=${list.qna_num}">삭제하기</a>
 											</c:if>
 										</div>
 									</div>
@@ -207,9 +208,9 @@
 		}
 		
 		//답변 수정
-		function openAnswerUpdate(num) {
+		function openAnswerUpdate(num, ref) {
 			openWin = window
-					.open("qnaAnswerUpdateForm.qna?qna_num=" + num, "answerUpdateForm",
+					.open("qnaAnswerUpdateForm.qna?qna_num=" + num+"&qna_ref="+ref, "answerUpdateForm",
 							"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 		}
 ///////////////////////
@@ -230,8 +231,9 @@
 		//답변 수정
 		$('.btn_replyUpdate').click(function() {
 			var num = $(this).parent().find('.num').val();
+			var ref = $(this).parent().find('.ref').val();
 
-			openAnswerUpdate(num);
+			openAnswerUpdate(num, ref);
 		})
 
 	</script>

@@ -202,15 +202,18 @@ public class QnaService {
 	public ActionForward answerUpdateForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("AnswerUpdateForm 들어왔냐");
 
-		MemberDTO memberDTO = (MemberDTO) request.getSession().getAttribute("member");
+		MemberDTO memberDTO = (MemberDTO)request.getSession().getAttribute("member");
 		int qna_num = Integer.parseInt(request.getParameter("qna_num"));
-
+		int qna_ref = Integer.parseInt(request.getParameter("qna_ref"));
+		
 		QnaDAO qnaDAO = QnaDAO.getInstance();
-		QnaDTO qnaDTO = qnaDAO.selectOne(qna_num);
-
+		QnaDTO qnaDTO = qnaDAO.selectOne(qna_ref);
+		QnaDTO qnaDTO2 = qnaDAO.selectOne(qna_num);
+		
 		request.setAttribute("member", memberDTO);
-		request.setAttribute("qna", qnaDTO);
-
+		request.setAttribute("question", qnaDTO);
+		request.setAttribute("answer", qnaDTO2);
+		
 		ActionForward actionForward = new ActionForward();
 		actionForward.setRedirect(true);
 		actionForward.setPath("./qnaAnswerUpdate.jsp");
@@ -236,7 +239,7 @@ public class QnaService {
 		QnaDAO qnaDAO = QnaDAO.getInstance();
 		int result = qnaDAO.update(qnaDTO);
 		if (result == 1)
-			System.out.println("문의수정 성공");
+			System.out.println("답변수정 성공");
 
 		ActionForward actionForward = new ActionForward();
 		actionForward.setRedirect(false);

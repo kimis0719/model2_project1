@@ -113,7 +113,7 @@ public class QnaController extends HttpServlet {
 				e.printStackTrace();
 			}
 			// 답변 수정폼
-		} else if (url.equals("qnaAnswerForm")) {
+		} else if (url.equals("qnaAnswerUpdateForm")) {
 			try {
 				actionForward = qnaService.answerUpdateForm(request, response);
 			} catch (Exception e) {
@@ -121,7 +121,7 @@ public class QnaController extends HttpServlet {
 				e.printStackTrace();
 			}
 			// 답변 수정
-		} else if (url.equals("qnaAnswer")) {
+		} else if (url.equals("qnaAnswerUpdate")) {
 			try {
 				actionForward = qnaService.answerUpdate(request, response);
 			} catch (Exception e) {
