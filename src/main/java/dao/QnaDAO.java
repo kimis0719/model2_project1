@@ -258,7 +258,7 @@ public class QnaDAO {
 	}//update end
 	
 	//글 삭제
-	public int delete(QnaDTO qnaDTO) {
+	public int delete(int num) {
 		System.out.println("Delete Method");
 		
 		int result = 0;
@@ -266,20 +266,25 @@ public class QnaDAO {
 		PreparedStatement ps = null;
 		
 		try {
+			con = getConnection();
+			String sql = "update qna set qna_yn='n' where qna_ref=?";
 			
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, num);
+			
+			result = ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			if (ps != null) try { ps.close(); } catch (Exception e) { }
 			if (con != null) try { con.close(); } catch (Exception e) { }
 		}
-		String sql = "update qna set qna_yn='n' where qna_ref=?";
 		
 		return result;
 	}//delete end
 	
 	//답변 삭제
-	public int answerDelete(QnaDTO qnaDTO) {
+	public int answerDelete(int num) {
 		System.out.println("AnswerDelete Method");
 		
 		int result = 0;
@@ -287,15 +292,21 @@ public class QnaDAO {
 		PreparedStatement ps = null;
 		
 		try {
+			con = getConnection();
 			
+			String sql = "update qna set qna_yn='n' where qna_num=?";
+			
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, num);
+			
+			result = ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			if (ps != null) try { ps.close(); } catch (Exception e) { }
 			if (con != null) try { con.close(); } catch (Exception e) { }
 		}
-		String sql = "update qna set qna_yn='n' where qna_num=?";
 		
 		return result;
-	}
+	}//answerDelete end
 }

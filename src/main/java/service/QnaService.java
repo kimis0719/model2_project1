@@ -141,9 +141,16 @@ public class QnaService {
 	public ActionForward delete(HttpServletRequest request, HttpServletResponse response) throws Exception  {
 		System.out.println("QnaDelete 들어왔냐");
 		
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		
+		int num = Integer.parseInt(request.getParameter("qna_ref"));
+		
+		int result = qnaDAO.answerDelete(num);
+		if(result == 1) System.out.println("답변 삭제 성공");
+		
 		ActionForward actionForward = new ActionForward();
 		actionForward.setRedirect(true);
-		actionForward.setPath("./qnaList.jsp");
+		actionForward.setPath("./qnaList.qna");
 		
 		return actionForward;
 	}//delete end
@@ -219,7 +226,7 @@ public class QnaService {
 		actionForward.setPath("./qnaAnswerUpdate.jsp");
 
 		return actionForward;
-	}// updateForm end
+	}// answerUpdateForm end
 
 	// 답변 수정
 	public ActionForward answerUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -246,15 +253,22 @@ public class QnaService {
 		actionForward.setPath("./qnaList.jsp");
 
 		return actionForward;
-	}// update end
+	}// answerUpdate end
 
 	// 답변 삭제
 	public ActionForward answerDelete(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("AnswerDelete 들어왔냐");
 
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		
+		int num = Integer.parseInt(request.getParameter("qna_num"));
+		
+		int result = qnaDAO.answerDelete(num);
+		if(result == 1) System.out.println("답변 삭제 성공");
+		
 		ActionForward actionForward = new ActionForward();
 		actionForward.setRedirect(true);
-		actionForward.setPath("./qnaList.jsp");
+		actionForward.setPath("./qnaList.qna");
 
 		return actionForward;
 	}// delete end
