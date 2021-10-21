@@ -49,7 +49,7 @@ public class Member implements Action{
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("./member/login.jsp");
+		forward.setPath("./member/loginForm.jsp");
 		
 		return forward;
 	}
