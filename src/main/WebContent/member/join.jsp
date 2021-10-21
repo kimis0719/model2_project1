@@ -280,7 +280,7 @@ input[id="totalfind"]:focus {
 </nav>  
 		<div class="rightcolumn">
 			<div class="card">
-				<a href="login.jsp"><button class="btn 로그인">로그인</button></a>
+				<a href="loginForm.jsp"><button class="btn 로그인">로그인</button></a>
 				<a href="join.jsp"><button class="btn 회원가입">회원가입</button></a>
 			</div>
 			
