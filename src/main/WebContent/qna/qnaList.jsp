@@ -54,12 +54,12 @@
 										<span class="state stateF">답변완료</span>
 									</c:if> <!-- 비밀글일때 --> <c:if test="${list.qna_sec eq 1}">
 										<c:if
-											test="${member.nickname ne list.qna_writer && member.grade ne 99}">비밀글입니다. <img
-												alt="비밀글" src="./images/board/lock-line.png"
+											test="${member.mem_id ne list.qna_writer && member.mem_grade ne 99}">비밀글입니다. <img
+												alt="비밀글" src="${pageContext.request.contextPath}/images/board/lock-line.png"
 												style="margin-bottom: 4px;">
 										</c:if>
 										<c:if
-											test="${member.nickname eq list.qna_writer || member.grade eq 99}">
+											test="${member.mem_id eq list.qna_writer || member.mem_grade eq 99}">
 											<a href="javascript:void(0)" id="showCloseDetail"
 												class="view_txt">${list.qna_title} <img alt="비밀글"
 												src="./images/board/lock-line.png"
@@ -70,8 +70,7 @@
 											class="view_txt">${list.qna_title}</a>
 									</c:if></td>
 								<td class="td_writer">${list.qna_writerS}</td>
-								<td class="td_date"><fmt:formatDate
-										value="${list.qna_date}" pattern="yyyy-MM-dd HH:mm" /></td>
+								<td class="td_date">${list.qna_dateS}</td>
 							</tr>
 						</c:if>
 
@@ -156,7 +155,7 @@
 	<script type="text/javascript">
 		////////////////////////////////////////////////////////////////////
 		var openWin;
-		var nickname = "${member.nickname}";
+		var nickname = "${member.mem_id}";
 
 		$('.trQna').hide();
 

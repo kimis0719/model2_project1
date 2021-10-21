@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.QnaDAO;
+import dto.MemberDTO;
 import dto.QnaDTO;
 import util.Pager;
 
@@ -17,6 +18,7 @@ public class QnaService {
 		System.out.println("QnaService");
 		ActionForward actionForward = new ActionForward();
 		QnaDAO qnaDAO = QnaDAO.getInstance();
+		MemberDTO memberDTO = (MemberDTO)request.getSession().getAttribute("member");
 
 		Pager pager = new Pager();
 		System.out.println("pager의 현재페이지 : "+pager.getCurPage());
@@ -34,9 +36,10 @@ public class QnaService {
 
 		request.setAttribute("lists", qnaList);
 		request.setAttribute("pager", pager);
+		request.setAttribute("member", memberDTO);
 
 		actionForward.setRedirect(true);
-		actionForward.setPath("./qna/qnaList.jsp");
+		actionForward.setPath("./qnaList.jsp");
 
 		return actionForward;
 	}

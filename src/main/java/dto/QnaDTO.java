@@ -8,6 +8,7 @@ public class QnaDTO {
 	private String qna_writer;
 	private String qna_writerS;
 	private Date qna_date;
+	private String qna_dateS;
 	private String qna_title;
 	private String qna_content;
 	private String qna_kind;
@@ -101,5 +102,11 @@ public class QnaDTO {
 	}
 	public void setQna_writerS(String qna_writerS) {
 		this.qna_writerS = qna_writerS;
+	}
+	public String getQna_dateS() {
+		return qna_dateS;
+	}
+	public void setQna_dateS(String qna_dateS) {
+		this.qna_dateS = qna_dateS;
 	}
 }
