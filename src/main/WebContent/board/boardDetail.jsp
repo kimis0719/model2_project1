@@ -249,6 +249,11 @@ tr:hover {
 										추천 : ${board.board_good} 비추 : ${board.board_bad}
 										<span class="rec_count"></span>					
 									</c:when>
+									<c:when test="${ sessionScope.member.mem_nick == board.board_nick }">
+										추천 및 비추 기능은 로그인 후 사용 가능합니다.<br />
+										추천 : ${board.board_good} 비추 : ${board.board_bad}
+										<span class="rec_count"></span>					
+									</c:when>
 									
 									<c:otherwise>
 										<button class="w3-button w3-black w3-round" id="rec_update">
