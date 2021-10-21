@@ -244,25 +244,22 @@ tr:hover {
 						<div>
 							<div class="w3-border w3-center w3-padding">
 								<c:choose>
-									<c:when test="${ sessionScope.member.mem_nick == null }">
+									<c:when test="${sessionScope.member.mem_nick == null }">
 										추천 및 비추 기능은 로그인 후 사용 가능합니다.<br />
 										추천 : ${board.board_good} 비추 : ${board.board_bad}
 										<span class="rec_count"></span>					
 									</c:when>
-									<c:when test="${ sessionScope.member.mem_nick == board.board_nick }">
+									<%-- <c:when test="${ sessionScope.member.mem_nick == board.board_nick }">
 										추천 및 비추 기능은 로그인 후 사용 가능합니다.<br />
 										추천 : ${board.board_good} 비추 : ${board.board_bad}
 										<span class="rec_count"></span>					
-									</c:when>
+									</c:when> --%>
 									
 									<c:otherwise>
-										<button class="w3-button w3-black w3-round" id="rec_update">
-											<i class="fa fa-heart" style="font-size:16px;color:red"></i>
-											&nbsp;<span class="rec_count"></span>
-										</button> 
-										
-										<input type="button" value="추천 : ${board.board_good}" onclick="location.href='./BoardGoodAction.board?cate_num=${currentCate}&board_num=${board.board_num}&page=${page}'; this.onclick=null;">
-										<input type="button" value="비추 : ${board.board_bad}" onclick="">
+										<input type="button" value="추천 : ${board.board_good}" 
+											onclick="location.href='./BoardGoodAction.board?cate_num=${currentCate}&board_num=${board.board_num}&page=${page}'">
+										<input type="button" value="비추 : ${board.board_bad}" 
+											onclick="location.href='./BoardBadAction.board?cate_num=${currentCate}&board_num=${board.board_num}&page=${page}'">
 									</c:otherwise>
 								</c:choose>
 							</div>

@@ -438,7 +438,7 @@ public class BoardDAO {
 			try {
 				con = getConnection();
 				
-				String sql = "update board set good=good+1 where board_num=?";
+				String sql = "update board set board_good=board_good+1 where board_num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, board_num);
 				
@@ -452,6 +452,31 @@ public class BoardDAO {
 			}
 			return result;
 		}
+		
+		// 글상세 : 비추
+		public int BoardBadAction(int board_num) {
+			int result = 0;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			
+			try {
+				con = getConnection();
+				
+				String sql = "update board set board_bad=board_bad+1 where board_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, board_num);
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+				if(con != null) try {con.close();} catch(Exception e) {}
+			}
+			return result;
+		}
+		
 		
 		// 총 데이터 갯수 구하기 - 통합검색
 		public int getUnifiedSearchDate() {

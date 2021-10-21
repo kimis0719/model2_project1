@@ -91,7 +91,7 @@ public class MemberController extends HttpServlet {
 		}else if(command.equals("/Logout.member")){
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/member/logout.jsp");	
+			forward.setPath("./member/logout.jsp");	
 	
 		}
 

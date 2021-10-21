@@ -15,7 +15,7 @@
 </style>
 </head>
 <div class="header">
-	<a href="./CateListAction.board"><img class="logo" src="./layout/img/logo.png" width="100" height="100"></a>
+	<a href="./CateListAction.board"><img class="logo" src="../layout/img/logo.png" width="100" height="100"></a>
 	<h1>중앙 커뮤니티</h1>
 		<form action="BoardSearchAction.board" method=get>
 			<input type="text" id="cate_num"  value="${currentCate }" placeholder="통합검색...">
@@ -77,6 +77,12 @@
 			  </c:forEach>
             </ul>
           </li>
+          <!-- 게시판추가 -->
+           <c:if test="${sessionScope.member.mem_grade == '99' }">
+          <li>
+          	<a class="cateadd" href="./BoardAddForm.board">게시판 추가<span class="cateadd"></span></a>
+          </li>	
+          </c:if>
         </ul>
       </div>
     </div>
