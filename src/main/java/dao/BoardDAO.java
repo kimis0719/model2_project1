@@ -316,10 +316,54 @@ public class BoardDAO {
 		
 		
 		// 카테코리 번호별  5개 목록 구하기
-		/*
-		 * public List<BoardDTO> getboardlist(int cate){ List<BoardDTO> list = new
-		 * ArrayList<BoardDTO>(); }
-		 */
+		
+		public List<BoardDTO> getboardlist(int cate){
+			List<BoardDTO> list = new ArrayList<BoardDTO>();
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				con = getConnection();
+
+				String sql = "select * from board, category ";
+				       sql+=" where  board.cate_num = category.cate_num and board.cate_num=?  and rownum <= 5 ";
+				       sql+="  order by board.board_date desc";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, cate);
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					BoardDTO board = new BoardDTO();
+					board.setBoard_num(rs.getInt("board_num"));
+					board.setBoard_title(rs.getString("board_title"));
+					board.setBoard_content(rs.getString("board_content"));
+					board.setBoard_memnum(rs.getInt("board_memnum"));
+					board.setBoard_nick(rs.getString("board_nick"));
+					board.setBoard_date(rs.getTimestamp("board_date"));
+					board.setBoard_count(rs.getInt("board_count"));
+					board.setBoard_good(rs.getInt("board_good"));
+					board.setBoard_bad(rs.getInt("board_bad"));
+					board.setBoard_up_memnum(rs.getInt("board_up_memnum"));
+					board.setBoard_up_date(rs.getTimestamp("board_up_date"));
+					board.setBoard_yn(rs.getString("board_yn"));
+					board.setCate_num(rs.getInt("cate_num"));
+					board.setCate_code(rs.getInt("cate_code"));
+					
+					list.add(board);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(rs != null) try {rs.close();} catch(Exception e) {}
+				if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+				if(con != null) try {con.close();} catch(Exception e) {}
+			}
+			return list;
+		}
+		 
 		
 		// 글상세 : 조회수 증가
 		public void readCountUpdate(int cate_num, int board_num) {

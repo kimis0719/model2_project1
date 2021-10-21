@@ -16,6 +16,7 @@
 </style>
 </head>
 <div class="header">
+
 	<a href="./MainPageAction.board"><img class="logo" src="./layout/img/logo.png" width="100" height="100"></a>
 	<h1>중앙 커뮤니티</h1>
 		<form action="BoardSearchAction.board" method=get>
