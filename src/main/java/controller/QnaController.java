@@ -96,8 +96,48 @@ public class QnaController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			// 답변 폼
+		} else if (url.equals("qnaAnswerForm")) {
+			try {
+				actionForward = qnaService.answerForm(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// 답변
+		} else if (url.equals("qnaAnswer")) {
+			try {
+				actionForward = qnaService.answer(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// 답변 수정폼
+		} else if (url.equals("qnaAnswerForm")) {
+			try {
+				actionForward = qnaService.answerUpdateForm(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// 답변 수정
+		} else if (url.equals("qnaAnswer")) {
+			try {
+				actionForward = qnaService.answerUpdate(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// 답변 삭제
+		} else if (url.equals("qnaAnswerDelete")) {
+			try {
+				actionForward = qnaService.answerDelete(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-
+		
 		if (actionForward.isRedirect()) { // flag 값이 true-Forward냐 false-Redirect냐에 따라 결정
 			System.out.println("Forward");
 			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());

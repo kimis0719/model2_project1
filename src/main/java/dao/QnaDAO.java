@@ -174,6 +174,38 @@ public class QnaDAO {
 		return result;
 	}//write end
 	
+	//답변 작성
+		public int answer(QnaDTO qnaDTO) {
+			System.out.println("Answer Method");
+			
+			int result = 0;
+			Connection con = null;
+			PreparedStatement ps = null;
+			
+			try {
+				con = getConnection();
+				
+				String sql = "insert into qna(qna_num, qna_title, qna_memnum, qna_writer, qna_content, qna_date, qna_sec, qna_ref, qna_step, qna_depth) values(qna_seq.nextval, ?, ?, ?, ?, sysdate, ?, ?, 1, 1)";
+				
+				ps = con.prepareStatement(sql);
+				ps.setString(1, qnaDTO.getQna_title());
+				ps.setInt(2, qnaDTO.getQna_memnum());
+				ps.setString(3, qnaDTO.getQna_writer());
+				ps.setString(4, qnaDTO.getQna_content());
+				ps.setInt(5, qnaDTO.getQna_sec());
+				ps.setInt(6, qnaDTO.getQna_ref());
+				
+				result = ps.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				if (ps != null) try { ps.close(); } catch (Exception e) { }
+				if (con != null) try { con.close(); } catch (Exception e) { }
+			}
+			
+			return result;
+		}//answer end
+	
 	//답변 여부
 	public int answerCheck() {
 		System.out.println("AnswerCheck Method");

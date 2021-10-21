@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cookie Qna Answer</title>
+<title>Qna Answer</title>
 <c:import url="../layout/boot.jsp" />
 <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/qnaWrite.css" rel="stylesheet">
@@ -27,12 +27,21 @@
 								<col style="width:75%">
 							</colgroup>
 							<tbody>
+							<!-- 제목 -->
+								<tr>
+									<th scope="row" class="first alignL">
+										<label for="popCont">문의제목</label>
+									</th>
+									<td class="alignL">
+										<input type="text" disabled="disabled" value="${question.qna_title}" maxlength="60" size="79">
+									</td>
+								</tr>
 								<tr>
 									<th scope="row" class="first alignL">
 										<label for="popCont">문의내용</label>
 									</th>
 									<td class="alignL">
-										<textarea disabled="disabled" rows="10" cols="80">${answer.contents}</textarea>
+										<textarea disabled="disabled" rows="10" cols="80">${question.qna_content}</textarea>
 									</td>
 								</tr>
 								<tr>
@@ -40,7 +49,7 @@
 										<label for="popCont">답변내용</label>
 									</th>
 									<td class="alignL">
-										<textarea name="contents" id="popCont" rows="10" cols="80" placeholder="답변 내용을 작성해 주세요"></textarea>
+										<textarea name="qna_content" id="popCont" rows="10" cols="80" placeholder="답변 내용을 작성해 주세요"></textarea>
 									</td>
 								</tr>
 							</tbody>
@@ -50,9 +59,11 @@
 				
 			<!-- 버튼 -->
 				<div class="btn_wrap">
-					<input type="hidden" name="writer" value="${member.nickname}">
-					<input type="hidden" name="ref" value="${answer.num}">
-					<input type="hidden" name="secret" value="${answer.secret}">
+					<input type="hidden" name="qna_writer" value="${member.mem_id}">
+					<input type="hidden" name="qna_memnum" value="${member.mem_num}">
+					<input type="hidden" name="qna_title" value="${question.qna_title}">
+					<input type="hidden" name="qna_ref" value="${question.qna_num}">
+					<input type="hidden" name="qna_sec" value="${question.qna_sec}">
 					<button id="btnSave" class="popbtn popbtn1" title="등록"><span>등록</span></button>
 					<button id="btnClose" class="popbtn popbtn2" title="취소"><span>취소</span></button>
 				</div>
@@ -63,36 +74,38 @@
 
 	//등록 버튼
 	$('#btnSave').click(function(){
-		var writer = $('input[name="writer"]').val();
-		var contents = $('#popCont').val();
-		var ref = $('input[name="ref"]').val();
-		var secret = $('input[name="secret"]').val();
+		var title = $('input[name="qna_title"]').val();
+		var memnum = $('input[name="qna_memnum"]').val();
+		var writer = $('input[name="qna_writer"]').val();
+		var content = $('#popCont').val();
+		var ref = $('input[name="qna_ref"]').val();
+		var secret = $('input[name="qna_sec"]').val();
 
 		if(writer == null || writer == ""){
 			alert("로그인 후 이용하세요");
 			self.close();
 		}else {
 		
-			if (contents != "") {
+			if (content != "") {
 		
 				$.ajax({
 					type : "POST",
-					url : "./qnaAnswer",
+					url : "./qnaAnswer.qna",
 					data : {
-						writer : writer,
-						contents : contents,
-						ref : ref,
-						step : 1,
-						secret : secret,
-						acheck : 1
+						qna_title: title,
+						qna_memnum: memnum,
+						qna_writer : writer,
+						qna_content : content,
+						qna_ref : ref,
+						qna_sec : secret
 					},
 					success : function(data) {
-						if (data > 0) {
+						//if (data > 0) {
 							opener.location.reload();
 							self.close();
-						} else {
-							alert("잠시 후에 다시 시도해주세요.");
-						}
+						//} else {
+						//	alert("잠시 후에 다시 시도해주세요.");
+						//}
 					},
 					error : function() {
 						alert("잠시 후에 다시 시도해주세요.");

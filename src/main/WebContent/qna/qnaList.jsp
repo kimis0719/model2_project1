@@ -202,14 +202,14 @@
 		//답변
 		function openAnswer(num) {
 			openWin = window
-					.open("qnaAnswer.qna?qna_num=" + num, "answerForm",
+					.open("qnaAnswerForm.qna?qna_num=" + num, "answerForm",
 							"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 		}
 		
 		//답변 수정
 		function openAnswerUpdate(num) {
 			openWin = window
-					.open("qnaAnswerUpdate.qna?qna_num=" + num, "answerUpdateForm",
+					.open("qnaAnswerUpdateForm.qna?qna_num=" + num, "answerUpdateForm",
 							"top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 		}
 ///////////////////////
