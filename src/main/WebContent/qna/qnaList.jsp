@@ -53,10 +53,10 @@
 				</thead>
 
 				<tbody>
-					<c:forEach items="${lists}" var="list">
+					<c:forEach items="${lists}" var="list" varStatus="i">
 						<c:if test="${list.qna_step == 0}">
 							<tr class="${list.qna_ref}">
-								<td class="td_num">${list.qna_ref}</td>
+								<td class="td_num">${i.count}</td>
 								<td class="td_view">
 									<c:if test="${list.qna_check eq 0}">
 										<span class="state">미완료</span>
