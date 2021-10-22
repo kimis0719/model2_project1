@@ -18,7 +18,7 @@
 
 </head>
 <body>
-<div class="container" style="padding: 230px;">
+<div class="container" style="padding: 270px;">
 <div class="jumbotron">
   <h2>Password 찾기</h2>
   <form method="post" action="<%=request.getContextPath()%>/FindPw.member">

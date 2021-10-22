@@ -279,7 +279,7 @@ String sql="update member set mem_nick=?,mem_pass=?,mem_email=?,mem_img=?,mem_ph
 			return mem_id;
 		}
 		//비밀번호 찾기
-		public String searchPw(String mem_id,String mem_nick ) {
+		public String searchPw(String mem_id, String mem_nick ) {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;

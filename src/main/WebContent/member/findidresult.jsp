@@ -21,14 +21,14 @@
 <div class="container" style="padding: 350px;">
 <div class="jumbotron">
   <h2>ID 찾기</h2>
-  <form action="<%=request.getContextPath()%>/">
-    <div class="form-group">
-      <label for="email"><h5>회원님의 ID는: ${mem_id} 입니다.</h5></label>
+  <form action="<%=request.getContextPath()%>/SearchId.">
+    <div>
+      <h5>회원님의 ID는: ${mem_id} 입니다.</h5>
       			
     </div>
   </form>
   <div>
-  <input type="button" class="btn btn-default" value="비번찾기" onClick="location.href='searchpw.jsp'">
+  <input type="button" class="btn btn-default" value="비번찾기" onClick="location.href='<%=request.getContextPath() %>/member/searchpw.jsp'">
   </div>
   </div>
 </div>

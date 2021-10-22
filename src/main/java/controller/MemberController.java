@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.Action;
 import service.ActionForward;
 import service.FindId;
+import service.FindPw;
 import service.Idcheck;
 import service.Login;
 import service.Member;
@@ -107,7 +108,7 @@ public class MemberController extends HttpServlet {
 		//비번 찾기	
 		}else if(command.equals("/FindPw.member")) {
 			try {
-				action = new FindId();
+				action = new FindPw();
 				forward = action.execute(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();

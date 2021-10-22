@@ -21,9 +21,9 @@
 <div class="container" style="padding: 350px;">
 <div class="jumbotron">
   <h2>Password 찾기</h2>
-  <form action="<%=request.getContextPath()%>/">
+  <form method="post" action="<%=request.getContextPath()%>/">
     <div class="form-group">
-      <label for="email"><h5>회원님의 Password는: ${mem_pass} 입니다.</h5></label>
+      <h5>회원님의 Password는: ${mem_pass} 입니다.</h5>
     </div>
   </form>
   <div style="text-align:center">

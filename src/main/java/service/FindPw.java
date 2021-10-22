@@ -24,11 +24,11 @@ public class FindPw implements Action {
 
 		MemberDAO dao = MemberDAO.getInstance();
 		String mem_pass = dao.searchPw(mem_id, mem_nick);
-		if (mem_pass != null)
+		System.out.println(mem_pass);
+		if (mem_pass != null) {
 			System.out.println("비밀번호찾기 성공");		
-
-		if (mem_pass != null) { // 비밀번호 찾기 성공
 			request.setAttribute("mem_pass",mem_pass);
+	
 		} else { // 비밀번호 찾기 실패
 			out.println("<script>");
 			out.println("alert('잘못된 정보 입니다.');");
