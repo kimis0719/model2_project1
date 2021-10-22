@@ -224,7 +224,7 @@ input[id=totalfind]:focus {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="./CateListAction.do">홈</a>
+      <a class="navbar-brand" href="./MainPageAction.board">홈</a>
     </div>
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">

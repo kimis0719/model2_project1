@@ -198,16 +198,11 @@ input[type=text]:focus {
 	}
 }
 
-table {
-	border-collapse: collapse;
-	width: 100%;
-}
 
 
 
-tr:hover {
-	background-color: #ffffff;
-}
+
+
 </style>
 <link href="${pageContext.request.contextPath}/css/boardList.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/boardDetail.css" rel="stylesheet">
@@ -265,8 +260,8 @@ tr:hover {
 					</td>
 				</tr>
 				<!--  -->
-				<tr class="buttonlist">
-					<td colspan="3" align="center">
+				<tr style="text-align:center">
+					<td class="buttonlist" colspan="3" >
 					
 						<c:if test="${board.board_nick == sessionScope.member.mem_nick}" >
 							<input type="button" value="수정"
@@ -286,9 +281,10 @@ tr:hover {
 			<!-- 댓글 출력 부분 -->
 			<form method="post" class="replywrite" accept-charset="utf-8" action="./ReplyWriteAction.reply?cate_num=${currentCate}&board_num=${board.board_num}&page=${page}">
 				<table id="reply" class="reply">
-					<tr>
+					<tbody class="rtbody">
+					<tr class= replysec>
 						<c:forEach var="r" items="${replylist}">
-							<tr>
+							<tr class= replylist>
 								<c:choose>
 									<c:when test="${r.re_yn == 'y'}">
 										<td>
@@ -297,7 +293,7 @@ tr:hover {
 												(작성자)
 											</c:if>
 										</td>
-										<td style="text-align:left">&nbsp;&nbsp;${r.re_content}<br>
+										<td class="replycontent" >&nbsp;&nbsp;${r.re_content}<br>
 
 										</td>
 										<td><fmt:formatDate value="${r.re_date}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
@@ -325,7 +321,7 @@ tr:hover {
 										${sessionScope.member.mem_nick}
 								</td>
 								<td colspan="3">
-									<textarea rows="4" cols="170" style="resize: none;" id="re_content" name="re_content"></textarea>
+									<textarea rows="4" cols="120" style="resize: none;" id="re_content" name="re_content"></textarea>
 									<input type="submit" value="댓글작성" >
 								</td>	
 							</c:when>
@@ -335,6 +331,7 @@ tr:hover {
 						
 						</c:choose>
 					</tr>
+					</tbody>
 				</table>
 			</form>
 			
