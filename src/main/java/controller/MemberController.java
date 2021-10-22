@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.Action;
 import service.ActionForward;
+import service.FindId;
+import service.FindPw;
 import service.Idcheck;
 import service.Login;
 import service.Member;
@@ -89,8 +92,28 @@ public class MemberController extends HttpServlet {
 		}else if(command.equals("/Logout.member")){
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("./member/logout.jsp");	
-		}
+			forward.setPath("/member/logout.jsp");	
+	
+		//아이디 찾기	
+		}else if(command.equals("/FindId.member")) {
+			try {
+				action = new FindId();
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+				
+		//비번 찾기	
+		}else if(command.equals("/FindPw.member")) {
+			try {
+				action = new FindPw();
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+
+	}	
+		
 
 		//포워딩 처리
 		if(forward != null) {
