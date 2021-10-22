@@ -10,15 +10,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<style>
-<c:import url="../css/header.css" /> 
-</style>
+<link href="${pageContext.request.contextPath}/css/header.css"
+	rel="stylesheet">
 </head>
 <body>
-
-
-
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
 	<script>
 		//Get the button
@@ -46,7 +42,7 @@
 	</script>
 
 	<div class="footer">
-		<a href="#">문의사항</a>
+		<a href="<%=request.getContextPath()%>/qnaList.qna">문의사항</a>
 		<p>Copyright© All rights reserved.</p>
 		<dl>
 			<dt>주소: 서울특별시</dt>

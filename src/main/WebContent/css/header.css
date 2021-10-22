@@ -28,12 +28,15 @@ body {
 	font-size: 40px;
 }
 
+.UnifiedSearch{
+	align: "center";
+}
 
-input[type=text] {
+input[id=UnifiedSearch] {
 	width: 130px;
 	box-sizing: border-box;
 	border: 5px solid #EC5E5E;
-	border-radius: 4px;
+	border-radius: 2px;
 	font-size: 15px;
 	background-color: white;
 	background-position: 10px 10px;
@@ -44,7 +47,25 @@ input[type=text] {
 	outline: none;
 }
 
-input[type=text]:focus {
+input[id=UnifiedSearch]:focus {
+	width: 50%;
+}
+input[id=find] {
+	width: 130px;
+	box-sizing: border-box;
+	border: 5px solid #EC5E5E;
+	border-radius: 2px;
+	font-size: 15px;
+	background-color: white;
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 12px 20px 12px 40px;
+	-webkit-transition: width 0.4s ease-in-out;
+	transition: width 0.4s ease-in-out;
+	outline: none;
+}
+
+input[id=find]:focus {
 	width: 50%;
 }
 
@@ -98,6 +119,7 @@ input[type=text]:focus {
 	padding: 14px 28px;
 	font-size: 16px;
 	cursor: pointer;
+	outline: none;
 }
 
 .login {
@@ -116,12 +138,35 @@ input[type=text]:focus {
 .sign-up:hover {
 	background: #ddd;
 }
+.logout {
+	background-color: #EC5E5E;
+}
+
+.logout:hover {
+	background-color: #EC5E5E;
+}
+
+.mypage {
+	background-color: #eeeeee;
+	color: black;
+}
+
+.mypage:hover {
+	background: #ddd;
+}
 
 .btn-info {
 	background-color: #EC5E5E;
 }
 
 .btn-info:hover {
+	background-color: #EC5E5E;
+}
+.btn-info2 {
+	background-color: #EC5E5E;
+}
+
+.btn-info2:hover {
 	background-color: #EC5E5E;
 }
 
@@ -196,7 +241,21 @@ tr:hover {
 	background-color: #ffffff;
 }
 
+
+ .btn-default {
+      background: #EC5E5E;
+      color: #fff;
+   }
+  .btn-default:hover {
+      background: #EC5E5E;
+      color: #000;
+   }
+   thead th{
+	background-color :#EC5E5E;
+	color: white;
+	text-align: center;
 }
 
 
 
+}

@@ -52,7 +52,7 @@ public class CateListAction implements Action{
 		
 		// 게시판정보 공유설정
 		request.setAttribute("catelist", catelist);
-		
+		request.setAttribute("bdao", bdao);
 		request.setAttribute("noticelist", noticelist);
 		request.setAttribute("freelist", freelist);
 		request.setAttribute("dailylist", dailylist);
@@ -68,7 +68,7 @@ public class CateListAction implements Action{
 		ActionForward forward = new ActionForward();
 		
 		forward.setRedirect(false);  // dispatcher 방식으로 포워딩
-		forward.setPath("/board/mainPage.jsp");
+		forward.setPath("/mainpage.jsp");
 		
 		
 		return forward;

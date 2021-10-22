@@ -10,19 +10,27 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
 <style>
-<c:import url="../css/header.css" /> 
 </style>
 </head>
 <div class="header">
-	<a href="./CateListAction.board"><img class="logo" src="./layout/img/logo.png" width="100" height="100"></a>
+
+	<a href="./MainPageAction.board"><img class="logo" src="${pageContext.request.contextPath}/layout/img/logo.png" width="40" height="55"></a>
 	<h1>중앙 커뮤니티</h1>
-		<form action="BoardSearchAction.board" method=get>
-			<input type="text" id="cate_num"  value="${currentCate }" placeholder="통합검색...">
+		<div class="UnifiedSearch"> 
+		<form action="BoardSearchAction.board?cate_num=${currentCate}" method=post accept-charset="utf-8">
+			<select name="sel" id="sel">
+								<option value="board_title">제목</option>
+								<option value="board_content">내용</option>
+								<option value="board_nick">작성자</option>
+							</select> 
+			<input type="text" name="UnifiedSearch" id="UnifiedSearch" placeholder="검색...">
 			<button type="submit" class="btn btn-info">
 			<span class="glyphicon glyphicon-search"></span> 검색
 			</button>
 	</form>
+	</div>
 </div>
 
 
@@ -34,7 +42,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="./CateListAction.board">홈</a>
+      <a class="navbar-brand" href="./MainPageAction.board">홈</a>
     </div>
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
@@ -81,6 +89,5 @@
       </div>
     </div>
   </div>
+
 </nav>  
-
-
