@@ -1,12 +1,15 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CateDAO;
 import dao.QnaDAO;
 import dto.BoardDTO;
+import dto.CateDTO;
 import dto.MemberDTO;
 import dto.QnaDTO;
 import util.Pager;
@@ -17,7 +20,25 @@ public class QnaService {
 	public ActionForward qnaList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("QnaList 들어왔냐");
-		
+///////////////////////////////////////////////////////////////////////		
+		// 게시판 정보를 받을 리스트 생성
+		List<CateDTO> catelist = new ArrayList<CateDTO>();
+
+		// cate_code 1 ~ 5 까지의 게시판 정보 가져오기
+		for (int i = 1; i <= 5; i++) {
+			CateDAO catedao = CateDAO.getInstance();
+			int cate = i;
+
+			// 게시판정보(게시판 번호, 카테고리번호, 게시판 이름) 받아올 리스트 생성
+			List<CateDTO> list = catedao.getcatelist(cate);
+
+			// 게시판정보 catelist에 추가
+			catelist.addAll(list);
+		}
+
+		// 게시판정보 공유설정
+		request.setAttribute("catelist", catelist);
+/////////////////////////////////////////////////////////////////////////////		
 		ActionForward actionForward = new ActionForward();
 		QnaDAO qnaDAO = QnaDAO.getInstance();
 		MemberDTO memberDTO = (MemberDTO)request.getSession().getAttribute("member");

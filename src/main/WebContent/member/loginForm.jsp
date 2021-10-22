@@ -108,6 +108,7 @@
 
 	<div class="footer">
 		<!-- 로고 추가 -->
+		<a href="${pageContext.request.contextPath}/qna/qnaList.qna">문의사항</a>
 		<p>Copyright© All rights reserved.</p>
 		<dl>
 			<dt>주소: 서울특별시</dt>
@@ -119,8 +120,6 @@
 			접근할 수 없도록 청소년취급방침을 마련하여 시행하고 있습니다. 또한 청소년의 건전한 성장을 저해하는 음란 · 불법 등의
 			유해정보와 비윤리적 · 반사회적 행위에 대해서는 엄격하게 제재하고 있습니다.</h6>
 	</div>
-	<jsp:include page="../layout/rightcolumn.jsp" />
-	<jsp:include page="../layout/footer.jsp" />
 
 </body>
 
