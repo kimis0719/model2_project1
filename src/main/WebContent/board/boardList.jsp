@@ -102,7 +102,7 @@
 					</td>
 					<td class="boardWrite">
 						<!-- 글쓰기 -->
-						<c:if test="${currentCate != 1 }">
+						<c:if test="${sessionScope.member.mem_grade=='99' }">
 							<!-- <a class="boardWrite" align="right"> -->
 							<input type="button" value="글쓰기"
 								onclick="location.href='./BoardWriteAction.board?cate_num=${currentCate}'">
