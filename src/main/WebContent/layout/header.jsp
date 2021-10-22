@@ -52,7 +52,7 @@
               <c:forEach var="c" items="${catelist}">
             	<!-- cate_code가 2(일상취미)에 해당하는 게시판 정보중 이름을 가져온다. -->
 				<c:if test="${c.cate_code == 2}">	
-					<li><a href="./BoardListAction.board?cate_num=${c.cate_num}"> ${c.cate_name}</a></li>
+					<li><a href="${pageContext.request.contextPath}/BoardListAction.board?cate_num=${c.cate_num}"> ${c.cate_name}</a></li>
 				</c:if>
 			  </c:forEach>
             </ul>
@@ -61,7 +61,7 @@
             <ul class="dropdown-menu">
                <c:forEach var="c" items="${catelist}">
 				<c:if test="${c.cate_code == 3}">	
-					<li><a href="./BoardListAction.board?cate_num=${c.cate_num}"> ${c.cate_name}</a></li>
+					<li><a href="${pageContext.request.contextPath}/BoardListAction.board?cate_num=${c.cate_num}"> ${c.cate_name}</a></li>
 				</c:if>
 			  </c:forEach>
             </ul>
@@ -70,7 +70,7 @@
             <ul class="dropdown-menu">
                <c:forEach var="c" items="${catelist}">
 				<c:if test="${c.cate_code == 4}">	
-					<li><a href="./BoardListAction.board?cate_num=${c.cate_num}"> ${c.cate_name}</a></li>
+					<li><a href="${pageContext.request.contextPath}/BoardListAction.board?cate_num=${c.cate_num}"> ${c.cate_name}</a></li>
 				</c:if>
 			  </c:forEach>
             </ul>
@@ -79,7 +79,7 @@
             <ul class="dropdown-menu">
                <c:forEach var="c" items="${catelist}">
 				<c:if test="${c.cate_code == 5}">	
-					<li><a href="./BoardListAction.board?cate_num=${c.cate_num}"> ${c.cate_name}</a></li>
+					<li><a href="${pageContext.request.contextPath}/BoardListAction.board?cate_num=${c.cate_num}"> ${c.cate_name}</a></li>
 				</c:if>
 			  </c:forEach>
             </ul>
@@ -87,7 +87,7 @@
           <!-- 게시판추가 -->
            <c:if test="${sessionScope.member.mem_grade == '99' }">
           <li>
-          	<a class="cateadd" href="./BoardAddForm.board">게시판 관리<span class="cateadd"></span></a>
+          	<a class="cateadd" href="${pageContext.request.contextPath}/BoardAddForm.board">게시판 관리<span class="cateadd"></span></a>
           </li>	
           </c:if>
         </ul>

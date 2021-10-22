@@ -21,6 +21,7 @@ public class BoardWriteAction implements Action{
 		
 		// 공유 설정
 		request.setAttribute("member", memberDTO);
+		request.setAttribute("cate_num", Integer.parseInt(request.getParameter("cate_num")));
 		request.setAttribute("boardName", cateDAO.getCateName(Integer.parseInt(request.getParameter("cate_num"))));
 		
 		ActionForward forward = new ActionForward();

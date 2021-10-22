@@ -54,7 +54,7 @@
 				<input type="button" id="btn_add" class="btn_add" value="Add File">
 				<div id="files"></div>
 			</form>
-			<a class="listgo" href="./boardList.jsp">목록으로..</a>
+			<a class="listgo" href="./BoardListAction.board?cate_num=${cate_num}">목록으로..</a>
 			<c:import url="../layout/footer.jsp" />
 		</div>
 		<script type="text/javascript">
