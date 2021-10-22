@@ -125,11 +125,11 @@
 				</tbody>
 			</table>
 
-			<%-- <c:if test="${member.grade ne 99}"> --%>
-			<div class="btn_wrap">
-				<input type="button" value="문의하기" class="btn_write">
-			</div>
-			<%-- </c:if> --%>
+			<c:if test="${member.grade eq 1}">
+				<div class="btn_wrap">
+					<input type="button" value="문의하기" class="btn_write">
+				</div>
+			</c:if>
 
 			<ul class="pagination">
 				<c:if test="${pager.curBlock gt 1}">

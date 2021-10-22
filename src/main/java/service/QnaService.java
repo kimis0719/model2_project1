@@ -196,7 +196,13 @@ public class QnaService {
 		
 		QnaDAO qnaDAO = QnaDAO.getInstance();
 		int result = qnaDAO.answer(qnaDTO);
-		if(result == 1) System.out.println("답변작성 성공");
+		if(result == 1) {
+			System.out.println("답변작성 성공");
+			qnaDTO.setQna_check(1);
+			qnaDTO.setQna_num(ref);
+			int result2 = qnaDAO.answerCheck(qnaDTO);
+			if(result ==1) System.out.println("답변완료");
+		}
 		
 		ActionForward actionForward = new ActionForward();
 		actionForward.setRedirect(false);
@@ -262,9 +268,17 @@ public class QnaService {
 		QnaDAO qnaDAO = QnaDAO.getInstance();
 		
 		int num = Integer.parseInt(request.getParameter("qna_num"));
+		int ref = Integer.parseInt(request.getParameter("qna_ref"));
 		
 		int result = qnaDAO.answerDelete(num);
-		if(result == 1) System.out.println("답변 삭제 성공");
+		if(result == 1) {
+			System.out.println("답변 삭제 성공");
+			QnaDTO qnaDTO = new QnaDTO();
+			qnaDTO.setQna_check(0);
+			qnaDTO.setQna_num(ref);
+			int result2 = qnaDAO.answerCheck(qnaDTO);
+			if(result ==1) System.out.println("미답변");
+		}
 		
 		ActionForward actionForward = new ActionForward();
 		actionForward.setRedirect(true);

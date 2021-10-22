@@ -207,7 +207,7 @@ public class QnaDAO {
 		}//answer end
 	
 	//답변 여부
-	public int answerCheck() {
+	public int answerCheck(QnaDTO qnaDTO) {
 		System.out.println("AnswerCheck Method");
 		
 		int result = 0;
@@ -215,14 +215,21 @@ public class QnaDAO {
 		PreparedStatement ps = null;
 		
 		try {
+			con = getConnection();
 			
+			String sql = "update qna set qna_check=? where qna_num=?";
+			
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, qnaDTO.getQna_check());
+			ps.setInt(2, qnaDTO.getQna_num());
+			
+			result = ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			if (ps != null) try { ps.close(); } catch (Exception e) { }
 			if (con != null) try { con.close(); } catch (Exception e) { }
 		}
-		String sql = "update qna set qna_check=1 where qna_num=?";
 		
 		return result;
 	}
