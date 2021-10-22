@@ -28,6 +28,12 @@
 
 </head>
 <body>
+
+<jsp:include page="../layout/header.jsp" />
+
+<div class="row">
+		<div class="leftcolumn">
+		<div class="card">
 <div class="container" style="padding: 270px;">
 <div class="jumbotron">
   <h2>ID 찾기</h2>
@@ -47,6 +53,11 @@
   </div>
   </div>
 </div>
+ </div>
+ </div>
+ <jsp:include page="../layout/rightcolumn.jsp" />
+ </div>
 
+<jsp:include page="../layout/footer.jsp" />
 </body>
 </html> 

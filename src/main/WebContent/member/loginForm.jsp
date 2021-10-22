@@ -39,7 +39,7 @@
       <label for="mem_pass">Password:</label>
       <input type="password" class="form-control" id="mem_pass" name="mem_pass" placeholder="비밀번호" maxlength="20">
     </div>
-      <a href="">ID/PW찾기</a>
+      <a href="<%=request.getContextPath() %>/member/searchId.jsp">ID/PW찾기</a>
       
       <div style="text-align:right">
     <button type="submit" class="btn login">로그인</button>
