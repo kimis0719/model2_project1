@@ -25,7 +25,7 @@
 								<option value="board_content">내용</option>
 								<option value="board_nick">작성자</option>
 							</select> 
-			<input type="text" name="find" id="find" placeholder="검색...">
+			<input type="text" name="UnifiedSearch" id="UnifiedSearch" placeholder="검색...">
 			<button type="submit" class="btn btn-info">
 			<span class="glyphicon glyphicon-search"></span> 검색
 			</button>

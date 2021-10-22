@@ -32,7 +32,7 @@ body {
 	align: "center";
 }
 
-input[type=text] {
+input[id=UnifiedSearch] {
 	width: 130px;
 	box-sizing: border-box;
 	border: 5px solid #EC5E5E;
@@ -47,7 +47,25 @@ input[type=text] {
 	outline: none;
 }
 
-input[type=text]:focus {
+input[id=UnifiedSearch]:focus {
+	width: 50%;
+}
+input[id=find] {
+	width: 130px;
+	box-sizing: border-box;
+	border: 5px solid #EC5E5E;
+	border-radius: 2px;
+	font-size: 15px;
+	background-color: white;
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 12px 20px 12px 40px;
+	-webkit-transition: width 0.4s ease-in-out;
+	transition: width 0.4s ease-in-out;
+	outline: none;
+}
+
+input[id=find]:focus {
 	width: 50%;
 }
 
@@ -223,7 +241,21 @@ tr:hover {
 	background-color: #ffffff;
 }
 
+
+ .btn-default {
+      background: #EC5E5E;
+      color: #fff;
+   }
+  .btn-default:hover {
+      background: #EC5E5E;
+      color: #000;
+   }
+   thead th{
+	background-color :#EC5E5E;
+	color: white;
+	text-align: center;
 }
 
 
 
+}
