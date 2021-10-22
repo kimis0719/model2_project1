@@ -22,8 +22,14 @@
 			<%-- <c:import url="../layout/rightcolumn.jsp" /> --%>
 			<div class="subTitle_inner">
 				<h2>문의사항
-				<a href="../Join.member"><button class="btn sing-up" style="float: right;">회원가입</button></a>
-				<a href="../LoginForm.member"><button class="btn login" style="float: right; right: 100px;">로그인</button></a>
+					<% if(session.getAttribute("member")==null){ %>
+					<a href="../Join.member"><button class="btn sing-up" style="float: right;">회원가입</button></a>
+					<a href="../LoginForm.member"><button class="btn login" style="float: right; right: 100px;">로그인</button></a>
+					<% }else{ %>
+					<%-- <h6><%=session.getAttribute("mem_id") %>님 로그인 되었습니다.</h6> --%>
+					<a href="Update.do"><button class="btn mypage" style="float: right;">마이페이지</button></a>
+					<a href="Logout.member"><button class="btn logout" style="float: right;">로그아웃</button></a>
+					<% }%>
 				</h2>
 			</div>
 		</div>
@@ -128,7 +134,7 @@
 				</tbody>
 			</table>
 
-			<c:if test="${member.grade eq 1}">
+			<c:if test="${member.mem_grade eq 1}">
 				<div class="btn_wrap">
 					<input type="button" value="문의하기" class="btn_write">
 				</div>
