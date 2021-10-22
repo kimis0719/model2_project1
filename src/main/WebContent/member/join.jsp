@@ -21,27 +21,7 @@
 </head>
 <body>
 
-	<%-- <jsp:include page="../layout/header.jsp" /> --%>
-			
-			<div class="card">
-				<h3>Popular Post</h3>
-				<div class="fakeimg">
-					<p>Image</p>
-				</div>
-				<div class="fakeimg">
-					<p>Image</p>
-				</div>
-				<div class="fakeimg">
-					<p>Image</p>
-				</div>
-			</div>
-			<div class="card">
-				<h3>Follow Me</h3>
-				<p>Some text..</p>
-			</div>
-			
-		</div>
-	</div>
+	<jsp:include page="../layout/header.jsp" />
 
 	<div class="row">
 		<div class="leftcolumn">
