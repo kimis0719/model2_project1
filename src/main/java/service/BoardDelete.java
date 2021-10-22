@@ -7,25 +7,31 @@ import dao.BoardDAO;
 import dto.BoardDTO;
 import dto.MemberDTO;
 
-public class BoardUpdateAction implements Action {
+public class BoardDelete implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("BoardUpdateAction 왔다");
+		System.out.println("BoardDelete 왔다");
 		MemberDTO memberDTO = (MemberDTO)request.getSession().getAttribute("member");
+		
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		int cate_num = Integer.parseInt(request.getParameter("cate_num"));
+		
+		String path = request.getRealPath("boardupload");
+		System.out.println("path:" + path);
 		
 		BoardDAO boardDAO = BoardDAO.getInstance();
-		BoardDTO boardDTO = boardDAO.getBoardDetail(cate_num, board_num);
+		BoardDTO boardDTO = new BoardDTO();
+		boardDTO.setBoard_num(board_num);
+		System.out.println("memberDTO.memnum: "+memberDTO.getMem_num());
+		boardDTO.setBoard_up_memnum(memberDTO.getMem_num());
 		
-		request.setAttribute("board", boardDTO);
-		request.setAttribute("member", memberDTO);
+		int result = boardDAO.delete(boardDTO);
+		if(result == 1) System.out.println("삭제 성공");
 		
 		ActionForward forward = new ActionForward();
-		forward.setRedirect(false); 	// dispatcher 방식으로 포워딩
-		forward.setPath("./board/boardUpdate.jsp"); // 글 작성폼
+		forward.setRedirect(false);
+		forward.setPath("/BoardListAction.board?cate_num="+request.getParameter("cate_num"));
 		
 		return forward;
 	}

@@ -78,29 +78,6 @@ table.tbl textarea {
     resize: none;
 }
 
-/* captcha */
-p.cap_wrap {
-	display: block;
-    margin-top: 5px;
-}
-#captcha {
-	width: 160px;
-	height: 18px;
-    line-height: 20px;
-    padding: 2px 4px;
-    border: 1px solid #d5d5d5;
-    color: #353535;
-    font-size: 12px;
-    vertical-align: middle;
-}
-span.cap_help {
-	margin: 2px 9px;
-    padding: 1px 0 1px 20px;
-    line-height: 1.4;
-    background: url(../../images/board/ico_info.gif) no-repeat 0 2px;
-    color: #707070;
-}
-
 /* 비밀글 */
 div.chk_wrap {
 	margin: 10px 0 0 10px;
@@ -134,7 +111,6 @@ div.notice_box ul {
 div.notice_box ul li {
 	padding-left: 6px;
     margin-bottom: 5px;
-    background: url(../../images/board/bul_squ2px_666.gif) no-repeat 0 4px;
     color: #4d4d4d;
 }
 div.notice_box ul ul {

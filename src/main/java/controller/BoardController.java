@@ -14,12 +14,17 @@ import service.ActionForward;
 import service.BoardAddAction;
 import service.BoardAddForm;
 import service.BoardBadAction;
+import service.BoardDelete;
 import service.BoardDetailAction;
 import service.BoardGoodAction;
 import service.BoardKillAction;
 import service.BoardListAction;
 import service.BoardOrderListAction;
 import service.BoardSearchAction;
+import service.BoardUpdate;
+import service.BoardUpdateAction;
+import service.BoardWrite;
+import service.BoardWriteAction;
 import service.CateListAction;
 
 /**
@@ -31,7 +36,8 @@ public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// doGet(), doPost() 메소드에서 공통적인 작업을 처리하는 메소드
-	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void doProcess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
@@ -43,9 +49,6 @@ public class BoardController extends HttpServlet {
 
 		Action action = null;
 		ActionForward forward = null;
-		
-		
-	
 
 		// 메뉴 : 메인페이지로 이동 - 카테고리출력
 		if (command.equals("/MainPageAction.board")) {
@@ -82,40 +85,54 @@ public class BoardController extends HttpServlet {
 				e.printStackTrace();
 			}
 	
-		// 글목록 : 게시판별 목록 출력
-		}else if (command.equals("/BoardListAction.board")) {
+			// 글목록 : 게시판별 목록 출력
+		} else if (command.equals("/BoardListAction.board")) {
 			try {
 				action = new BoardListAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
-		// 글목록 : 정렬 - 게시판별 정렬조건으로 정렬한 목록 출력
-		}else if (command.equals("/BoardOrderListAction.board")) {
+
+			// 글목록 : 정렬 - 게시판별 정렬조건으로 정렬한 목록 출력
+		} else if (command.equals("/BoardOrderListAction.board")) {
 			try {
 				action = new BoardOrderListAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-		
-		// 글목록 : 검색 - 게시판별 검색결과 출력
-		}else if (command.equals("/BoardSearchAction.board")) {
+
+			// 글목록 : 검색 - 게시판별 검색결과 출력
+		} else if (command.equals("/BoardSearchAction.board")) {
 			try {
 				action = new BoardSearchAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-		// 글상세 : 글 상세페이지 출력
-		}else if (command.equals("/BoardDetailAction.board")) {
+
+		} else if (command.equals("/BoardDetailAction.board")) {
 			try {
 				action = new BoardDetailAction();
 				forward = action.execute(request, response);
-				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// 글작성 폼
+		} else if (command.equals("/BoardWriteAction.board")) {
+			try {
+				action = new BoardWriteAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			// 글작성(원문작성)
+		} else if (command.equals("/BoardWrite.board")) {
+			try {
+				action = new BoardWrite();
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -135,7 +152,33 @@ public class BoardController extends HttpServlet {
 			try {
 				action = new BoardBadAction();
 				forward = action.execute(request, response);
-				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			// 글수정 폼
+		} else if (command.equals("/BoardUpdateAction.board")) {
+			try {
+				action = new BoardUpdateAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			// 글수정
+		} else if (command.equals("/BoardUpdate.board")) {
+			try {
+				action = new BoardUpdate();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			// 글삭제
+		} else if (command.equals("/BoardDelete.board")) {
+			try {
+				action = new BoardDelete();
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

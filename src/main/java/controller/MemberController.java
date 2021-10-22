@@ -69,7 +69,6 @@ public class MemberController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("./member/join.jsp");
-			
 					
 		//로그인(회원인증)	
 		}else if(command.equals("/Login.member")) {
@@ -86,30 +85,13 @@ public class MemberController extends HttpServlet {
 			forward.setRedirect(false);
 			forward.setPath("./member/loginForm.jsp");
 			
-		
 		//로그아웃	
 		}else if(command.equals("/Logout.member")){
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("./member/logout.jsp");	
-	
 		}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		//포워딩 처리
 		if(forward != null) {
 			if(forward.isRedirect()) {	//redirect 방식으로 포워딩
@@ -121,7 +103,6 @@ public class MemberController extends HttpServlet {
 			}
 		}
 
-		
 	}  // do process end
 	
 	/**

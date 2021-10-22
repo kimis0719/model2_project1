@@ -6,16 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>BoardWrite</title>
-<!-- Latest compiled and minified CSS -->
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-	rel="stylesheet">
-<!-- jQuery library -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<%-- <c:import url="../layout/header.jsp" /> --%>
+<c:import url="../layout/boot.jsp" />
+<c:import url="../layout/header.jsp" />
 <link href="${pageContext.request.contextPath}/css/reset.css"
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/boardWrite.css"
@@ -33,28 +25,29 @@
 		<!-- 서브 타이틀 -->
 		<div class="subTitle_wrap">
 			<div class="subTitle_inner">
-				<h2>${boardName}글쓰기</h2>
+				<h2>${boardName}게시판 글쓰기</h2>
 			</div>
 		</div>
 		<div class="container">
-			<form action="${pageContext.request.contextPath}/BoardWrite.do"
+			<form action="${pageContext.request.contextPath}/BoardWrite.board"
 				method="post" enctype="multipart/form-data">
+				<input type="hidden" value="${param.cate_num}" name="cate_num">
 				<div class="form-group">
 					<label for="title">제목</label> <input type="text"
 						class="form-control" id="title" placeholder="제목을 입력하세요."
-						name="title">
+						name="board_title">
 				</div>
-				<input type="hidden" value="${member.mem_num}">
+				<input type="hidden" value="${member.mem_num}" name="board_memnum">
 				<div class="form-group">
 					<label for="writer">작성자</label> <input type="text"
-						class="form-control" id="writer" readonly="readonly" name="writer"
+						class="form-control" id="writer" readonly="readonly" name="board_nick"
 						value="${member.mem_nick}">
 				</div>
 
 				<div class="form-group">
-					<label for="contents">Contents:</label>
+					<label for="contents">내용</label>
 					<textarea rows="20" cols="50" class="form-control" id="contents"
-						placeholder="내용을 입력하세요." name="contents"></textarea>
+						placeholder="내용을 입력하세요." name="board_content"></textarea>
 				</div>
 
 				<button class="btngo">등록</button>
@@ -62,6 +55,7 @@
 				<div id="files"></div>
 			</form>
 			<a class="listgo" href="./boardList.jsp">목록으로..</a>
+			<c:import url="../layout/footer.jsp" />
 		</div>
 		<script type="text/javascript">
 		 var files = ' <div class="form-group tt">     <label for="file"></label>      <br>       <div class="col-sm-11">          <input type="file" class="form-control" id="file" name="files">       </div>       <div class="col-sm-1">          <input type="button" class="del" value="X">       </div>     </div>';

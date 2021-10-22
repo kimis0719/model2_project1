@@ -12,7 +12,7 @@ import dto.BoardDTO;
 import dto.CateDTO;
 import dto.ReplyDTO;
 
-public class BoardDetailAction  implements Action{
+public class BoardDetailAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

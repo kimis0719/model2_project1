@@ -10,9 +10,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
-
 </head>
 <body>
 	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
@@ -43,7 +41,7 @@
 	</script>
 
 	<div class="footer">
-		<a href="<%=request.getContextPath()%>/qnaList.qna">문의사항</a>
+		<a href="${pageContext.request.contextPath}/qna/qnaList.qna">문의사항</a>
 		<p>Copyright© All rights reserved.</p>
 		<dl>
 			<dt>주소: 서울특별시</dt>

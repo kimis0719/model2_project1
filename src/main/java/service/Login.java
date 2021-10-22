@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import dao.MemberDAO;
 import dto.MemberDTO;
 
-public class Login implements Action{
+public class Login implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -18,10 +18,9 @@ public class Login implements Action{
 		System.out.println("Login");
 		response.setContentType("text/html; charset=utf-8");
 		request.setCharacterEncoding("utf-8");
-	
+
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
-		
 		String mem_id =request.getParameter("mem_id");
 		String mem_pass =request.getParameter("mem_pass");
 		
@@ -39,16 +38,14 @@ public class Login implements Action{
 			out.println("history.go(-1);");
 			out.println("</script>");
 			out.close();
-			
+
 			return null;
 		}
-		
+
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-
 		forward.setPath("/MainPageAction.board");
 
-		
 		return forward;
 	}
 

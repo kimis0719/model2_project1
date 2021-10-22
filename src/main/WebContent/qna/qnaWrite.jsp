@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Qna Write</title>
+<title>Qna Write Form</title>
 <c:import url="../layout/boot.jsp" />
 <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/qnaWrite.css" rel="stylesheet">
@@ -27,34 +27,24 @@
 								<col style="width:75%">
 							</colgroup>
 							<tbody>
+							<!-- 제목 -->
+								<tr>
+									<th scope="row" class="first alignL">
+										<label for="popCont">제목</label>
+									</th>
+									<td class="alignL">
+										<input type="text" name="qna_title" placeholder="제목을 작성해 주세요" maxlength="60" size="79">
+										<!-- <textarea name="qna_title" id="popTitle" rows="1" cols="80" placeholder="제목을 작성해 주세요"></textarea> -->
+									</td>
+								</tr>
+							
+							<!-- 내용 -->
 								<tr>
 									<th scope="row" class="first alignL">
 										<label for="popCont">내용</label>
 									</th>
 									<td class="alignL">
-										<textarea name="contents" id="popCont" rows="10" cols="80" placeholder="궁금하신 내용을 작성해 주세요"></textarea>
-									</td>
-								</tr>
-							<!-- captcha -->
-								<tr>
-									<th scope="row" class="first alignL">
-										<label for="popCont">보안문자</label>
-									</th>
-									<td class="alignL">
-										<div style="overflow:hidden">
-											<img id="ccimage" alt="캡차이미지" src="./captchaImg"">
-											<div id="ccaudio" style="display:none"></div>
-											<button id="reload" type="button" onclick="javaScript:getImage()"></button>
-											<!-- <input id="reload" type="button" onclick="javaScript:getImage()" value="새로고침"> -->
-											<!-- <input id="soundOn" type="button" onclick="audio()" value="음성듣기"> -->
-										</div>
-										
-										
-										
-										<p class="cap_wrap">
-											<input type="text" id="captcha" name="captcha" placeholder="보안문자를 입력해 주세요.">
-											<span class="cap_help">영문, 숫자 조합을 공백없이 입력하세요(대소문자구분)</span>
-										</p>
+										<textarea name="qna_content" id="popCont" rows="10" cols="80" placeholder="궁금하신 내용을 작성해 주세요"></textarea>
 									</td>
 								</tr>
 							</tbody>
@@ -63,7 +53,7 @@
 				<!-- 비밀글 -->
 					<div class="chk_wrap">
 						<label for="secret">
-							<input type="checkbox" checked="checked" name="secret" id="secret" value="0" class="chk"> 비밀글로 문의하기
+							<input type="checkbox" name="qna_sec" id="secret" value="0" class="chk"> 비밀글로 문의하기
 						</label>
 					</div>
 				<!-- 공지사항 -->
@@ -79,13 +69,14 @@
 									<li>- 다만 상품에 대한 단순 불만, 판매자에게 불리한 내용이라는 이유만으로는 삭제하지 않습니다.</li>
 								</ul>
 							</li>
-							<li>게시글에 회원님의 이메일, 휴대폰번호와 같은 개인 정보의 입력은 금지되어 있으며, 발생하는 모든 피해에 대해 Cookie Order는 책임지지 않습니다.</li>
+							<li>게시글에 회원님의 이메일, 휴대폰번호와 같은 개인 정보의 입력은 금지되어 있으며, 발생하는 모든 피해에 대해 중앙Community는 책임지지 않습니다.</li>
 						</ul>
 					</div>
 				</div>
 			<!-- 버튼 -->
 				<div class="btn_wrap">
-					<input type="hidden" name="writer" value="${writer}">
+					<input type="hidden" name="qna_memnum" value="${member.mem_num}">
+					<input type="hidden" name="qna_writer" value="${member.mem_id}">
 					<button id="btnSave" class="popbtn popbtn1" title="등록"><span>등록</span></button>
 					<button id="btnClose" class="popbtn popbtn2" title="취소"><span>취소</span></button>
 				</div>
@@ -93,110 +84,52 @@
 	</div>
 <script type="text/javascript">
 
-///captcha/////////////////////////////////////////////////////////////
-	getImage(); //이미지 가져오기
-
-	//매번 랜덤값을 파라미터로 전달하는 이유 : IE의 경우 매번 다른 임의 값을 전달하지 않으면 '새로고침'을 클릭해도 정상 호출되지 않아 이미지가 변경되지 않는 문제가 발생된다
-	function audio(){
-		var rand = Math.random();
-		var uAgent = navigator.userAgent;
-		var soundUrl = './captchaAudio?rand='+rand;
-
-		if(uAgent.indexOf('Trident') > -1 || uAgent.indexOf('MSIE') > -1){
-			//IE 경우
-			audioPlayer(soundUrl);
-		}else if(!!document.createElement('audio').canPlayType){
-			//Chrome 경우
-			try {
-				new Audio(soundUrl).play();
-			} catch (e) {
-				audioPlayer(soundUrl);
-			}
-		}else {
-			window.open(soundUrl, '', 'width=1, height=1');
-		}
-	}
-
-	function getImage(){
-		var rand = Math.random();
-		var url = './captchaImg?rand='+rand;
-
-		$('#ccimage').attr('src', url);
-	}
-
-	function audioPlayer(objUrl){
-		$('#ccaudio').html('<bgsoun src="'+objUrl+'">');
-	}
-
-//////////////////////////////////////////////////////////////////////////////////
-	
 	//등록 버튼
 	$('#btnSave').click(function(){
-		if($('input[name="secret"]').is(":checked")){
-			$('input[name="secret"]').val(1);
+		if($('input[name="qna_sec"]').is(":checked")){
+			$('input[name="qna_sec"]').val(1);
 		}else {
-			$('input[name="secret"]').val(0);
+			$('input[name="qna_sec"]').val(0);
 		}
 		
-		var writer = $('input[name="writer"]').val();
-		var contents = $('#popCont').val();
-		var secret = $('input[name="secret"]').val();
-
+		var memnum = $('input[name="qna_memnum"]').val();
+		var writer = $('input[name="qna_writer"]').val();
+		var title = $('input[name="qna_title"]').val();
+		var content = $('#popCont').val();
+		var secret = $('input[name="qna_sec"]').val();
+		//alert(secret);
+		
 		if(writer == null || writer == ""){
 			alert("로그인 후 이용하세요");
 			self.close();
 		}else {
 			
-			if(contents != ""){
-				var params = $('#captcha').val();
+			if(content != ""){
 				
-				if(params != null && params!=""){
-				
-					$.ajax({
-						type: 'POST',
-						url: 'chkAnswer',
-						data: {
-							answer: params
-						},
-						success: function(data){
-							//alert(data);
-							if(data == 200){
-								alert('입력값이 일치합니다.');
-	
-								$.ajax({
-									type: "POST",
-									url: "./qnaWrite",
-									data: {
-										writer: writer,
-										contents: contents,
-										step: 0,
-										secret: secret
-									},
-									success: function(data){
-										if(data > 0){
-											opener.location.reload();
-											self.close();
-										}else{
-											alert("잠시 후에 다시 시도해주세요.");
-										}
-									},
-									error: function(){
-										alert("잠시 후에 다시 시도해주세요.");
-									}
-								});
-							}else {
-								alert('보안문자 입력값이 일치하지 않습니다.\n다시 입력해주세요.');
-								getImage();
-								$('#captcha').val('');
-							}
-						},
-						error: function() {
-							alert("error");
-						}
-					});
-				}else {
-					alert("보안문자를 입력해주세요.");
-				}
+				$.ajax({
+					type: "POST",
+					url: "./qnaWrite.qna",
+					data: {
+						qna_memnum: memnum,
+						qna_writer: writer,
+						qna_title: title,
+						qna_content: content,
+						qna_sec: secret
+					},
+					success: function(data){
+						//alert(data);
+						/* if(data > 0){  */
+							opener.location.reload();
+							self.close();
+						/* }else{
+							alert("s잠시 후에 다시 시도해주세요.");
+						} */
+					},
+					error: function(){
+						alert("e잠시 후에 다시 시도해주세요.");
+					}
+				});
+						
 			}else {
 				alert("문의내용을 입력해주세요.");
 			}

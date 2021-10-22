@@ -221,7 +221,7 @@ tr:hover {
 </head>
 <body>
 		<!-- header -->
-
+<%-- 	<c:import url="/layout/header.jsp" /> --%>
 	<jsp:include page="./layout/header.jsp" />
 
 	<div class="row">
@@ -483,7 +483,7 @@ tr:hover {
 	<jsp:include page="./layout/rightcolumn.jsp" />
 		
 	</div>
-		
+	<%-- <c:import url="../layout/footer.jsp" /> --%>
 	<jsp:include page="./layout/footer.jsp" />
 
 </body>
