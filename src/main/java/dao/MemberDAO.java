@@ -249,6 +249,64 @@ String sql="update member set mem_nick=?,mem_pass=?,mem_email=?,mem_img=?,mem_ph
 			
 			return result;
 		}
+		//아이디 찾기
+		public String searchId(String mem_nick, String mem_email) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String mem_id = null;
+			
+			try {
+				con = getConnection();
+				
+				String sql=" select * from member where mem_nick = ? and mem_email = ?";
+				pstmt =con.prepareStatement(sql);
+				pstmt.setString(1, mem_nick);
+				pstmt.setString(2, mem_email);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {				
+					mem_id = rs.getString("mem_id"); 
+				}
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(rs != null) try {rs.close();}catch(Exception e) {}
+				if(pstmt != null)try{pstmt.close();}catch(Exception e) {}
+				if(con != null)try {con.close();}catch(Exception e) {}
+			}
+			return mem_id;
+		}
+		//비밀번호 찾기
+		public String searchPw(String mem_id,String mem_nick ) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String mem_pass = null;
+			
+			try {
+				con = getConnection();
+				
+				String sql=" select * from member where mem_id = ? and mem_nick = ? ";
+				pstmt =con.prepareStatement(sql);
+				pstmt.setString(1, mem_id);
+				pstmt.setString(2, mem_nick);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {				
+					mem_pass = rs.getString("mem_pass"); 
+				}
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(rs != null) try {rs.close();}catch(Exception e) {}
+				if(pstmt != null)try{pstmt.close();}catch(Exception e) {}
+				if(con != null)try {con.close();}catch(Exception e) {}
+			}
+			return mem_pass;
+		}
 		
 }
 
