@@ -2,13 +2,15 @@
 	pageEncoding="UTF-8"%>
 
 	<%
+
 	if(session.getAttribute("member")==null){
 	       %>
 	       <div class="rightcolumn">
 			<div class="card">
-			<a href="Login.member"><button class="btn login">로그인</button></a>
+			<a href="LoginForm.member"><button class="btn login">로그인</button></a>
 
 			<a href="Join.member"><button class="btn sing-up">회원가입</button></a>
+
 			</div>
 		</div>
 <% 		
@@ -24,6 +26,4 @@
 		</div>
 <% }%>	
 	
-
-
 

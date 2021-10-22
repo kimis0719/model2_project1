@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.Action;
 import service.ActionForward;
-import service.CateListAction;
+import service.ReplyDeleteAction;
+import service.ReplyWriteAction;
 
 /**
  * Servlet implementation class replyController
@@ -35,14 +36,23 @@ public class ReplyController extends HttpServlet {
 		ActionForward forward = null;
 
 		// 댓글 : 댓글 작성
-		if (command.equals("/replyWriteAction.board")) {
+		if (command.equals("/ReplyWriteAction.reply")) {
 			try {
-				action = new CateListAction();
+				action = new ReplyWriteAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		
+		// 댓글 : 댓글 삭제
+		}else if(command.equals("/ReplyDeleteAction.reply")){
+			try {
+				action = new ReplyDeleteAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 
 		// 포워딩처리

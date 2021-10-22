@@ -7,14 +7,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.BoardDAO;
 import dao.CateDAO;
+import dao.ReplyDAO;
 import dto.BoardDTO;
 import dto.CateDTO;
+import dto.ReplyDTO;
 
 public class BoardDetailAction  implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
+		
+		request.setCharacterEncoding("utf-8");
 
 		System.out.println("BoardDetailAction");
 		
@@ -72,6 +76,13 @@ public class BoardDetailAction  implements Action{
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		
+		// 댓글 정보 가져오기
+		ReplyDAO ldao = ReplyDAO.getInstance();
+		List<ReplyDTO> replylist = ldao.getReplyListAction(board_num);
+		System.out.println("replylist : " + replylist);
+		
+		request.setAttribute("replylist", replylist);
+		
 		// 게시판 정보를 받을 리스트 생성
 		List<CateDTO> catelist = new ArrayList<CateDTO>();
 
@@ -86,16 +97,22 @@ public class BoardDetailAction  implements Action{
 			// 게시판정보 catelist에 추가
 			catelist.addAll(list);
 		}
+		// 게시판 이름을 구함
+		CateDAO caten = CateDAO.getInstance();
+		String cateName = caten.getBoardName(currentCate);
+		
 		System.out.println("catelist : " + catelist);
+		System.out.println("cateName : " + cateName);
 		// 게시판정보 공유설정
 		request.setAttribute("catelist", catelist);
+		request.setAttribute("cateName", cateName);
 
 		ActionForward forward = new ActionForward();
 
 		// request 객체로 공유를 한 경우에는 dispatcher 방식으로 포워딩이 되어야,
 		// view 페이지에서 공유한 값에 접근이 가능하다.
 		forward.setRedirect(false); // dispatcher 방식으로 포워딩
-		forward.setPath("/board/BoardDetail.jsp");
+		forward.setPath("/board/boardDetail.jsp"); 
 		
 		return forward;
 

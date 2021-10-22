@@ -17,6 +17,7 @@
 <div class="header">
 
 	<a href="./MainPageAction.board"><img class="logo" src="${pageContext.request.contextPath}/layout/img/logo.png" width="40" height="55"></a>
+
 	<h1>중앙 커뮤니티</h1>
 		<div class="UnifiedSearch"> 
 		<form action="BoardSearchAction.board?cate_num=${currentCate}" method=post accept-charset="utf-8">
@@ -85,6 +86,12 @@
 			  </c:forEach>
             </ul>
           </li>
+          <!-- 게시판추가 -->
+           <c:if test="${sessionScope.member.mem_grade == '99' }">
+          <li>
+          	<a class="cateadd" href="./BoardAddForm.board">게시판 관리<span class="cateadd"></span></a>
+          </li>	
+          </c:if>
         </ul>
       </div>
     </div>

@@ -81,17 +81,17 @@ public class MemberController extends HttpServlet {
 			}
 					
 		//로그인 폼	
-		}else if(command.equals("/Login.member")){
+		}else if(command.equals("/LoginForm.member")){
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("./member/login.jsp");
+			forward.setPath("./member/loginForm.jsp");
 			
 		
 		//로그아웃	
 		}else if(command.equals("/Logout.member")){
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/member/logout.jsp");	
+			forward.setPath("./member/logout.jsp");	
 	
 		}
 

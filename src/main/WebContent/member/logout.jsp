@@ -7,6 +7,6 @@
 
 <script>
 	alert("로그 아웃");
-	location.href="./LoginForm.do";
+	location.href="./LoginForm.member";
 	
 </script>

@@ -6,7 +6,7 @@ function orderListToURL(url) {
 }
 
 $(document).ready(function() {
-	$("form").submit(function() {
+	$("#search").submit(function() {
 		if ($("#sel").val() == "") {
 			alert("검색할 항목을 선택하세요.");
 			return false;

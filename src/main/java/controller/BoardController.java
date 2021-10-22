@@ -11,7 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.Action;
 import service.ActionForward;
+import service.BoardAddAction;
+import service.BoardAddForm;
+import service.BoardBadAction;
 import service.BoardDetailAction;
+import service.BoardGoodAction;
+import service.BoardKillAction;
 import service.BoardListAction;
 import service.BoardOrderListAction;
 import service.BoardSearchAction;
@@ -38,7 +43,9 @@ public class BoardController extends HttpServlet {
 
 		Action action = null;
 		ActionForward forward = null;
-
+		
+		
+	
 
 		// 메뉴 : 메인페이지로 이동 - 카테고리출력
 		if (command.equals("/MainPageAction.board")) {
@@ -48,7 +55,33 @@ public class BoardController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
+			
+		// 메뉴 : 게시판 추가 픔으로 이동
+		}else if (command.equals("/BoardAddForm.board")) {
+			try {
+				action = new BoardAddForm();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		// 메뉴 : 게시판 추가 
+		}else if (command.equals("/BoardAdd.board")) {
+			try {
+				action = new BoardAddAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}else if (command.equals("/BoardKillAction.board")) {
+			try {
+				action = new BoardKillAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	
 		// 글목록 : 게시판별 목록 출력
 		}else if (command.equals("/BoardListAction.board")) {
 			try {
@@ -77,7 +110,7 @@ public class BoardController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-
+		// 글상세 : 글 상세페이지 출력
 		}else if (command.equals("/BoardDetailAction.board")) {
 			try {
 				action = new BoardDetailAction();
@@ -86,7 +119,26 @@ public class BoardController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
+			
+		// 글상세 : 추천
+		}else if(command.equals("/BoardGoodAction.board")){
+			try {
+				action = new BoardGoodAction();
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		// 글상세 : 비추
+		}else if(command.equals("/BoardBadAction.board")){
+			try {
+				action = new BoardBadAction();
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		// 포워딩처리

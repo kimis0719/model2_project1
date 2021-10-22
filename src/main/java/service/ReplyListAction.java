@@ -7,12 +7,10 @@ import dao.ReplyDAO;
 import dto.MemberDTO;
 import dto.ReplyDTO;
 
-public class ReplyWriteAction implements Action {
+public class ReplyListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("ReplyWriteAction");
-		
-		request.setCharacterEncoding("utf-8");
+		System.out.println("ReplyListAction");
 		
 		MemberDTO memberDTO = (MemberDTO)request.getSession().getAttribute("member");
 		
@@ -33,19 +31,16 @@ public class ReplyWriteAction implements Action {
 		
 		ReplyDAO dao = ReplyDAO.getInstance();
 		int result = dao.replyWrite(reply);
-		if(result == 1) System.out.println("댓글 작성 성공");
+		if(result == 1) System.out.println("글작성 성공");
 		
 		// 대댓글 : 댓글을 작성한 댓글의 정보를 가져옴
 		
-		request.setAttribute("currentCate", currentCate);
-		request.setAttribute("board_num", board_num);
-		request.setAttribute("page", page);
-
+		
 
 		ActionForward forward = new ActionForward();
 
 		forward.setRedirect(false); // dispatcher 방식으로 포워딩
-		forward.setPath("/BoardDetailAction.board?cate_num="+currentCate+"&board_num="+board_num+"&page="+page);
+		forward.setPath("./BoardDetailAction.board?cate_num=$"+currentCate+"&board_num="+board_num+"&page="+page);
 		
 		return forward;
 	}
