@@ -209,12 +209,12 @@ input[id=totalfind]:focus {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="./CateListAction.do">홈</a>
+      <a class="navbar-brand" href="<%=request.getContextPath() %>/MainPageAction.board">홈</a>
     </div>
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a href="./BoardListAction.do?cate_num=${c.cate_num}">공지</a></li>
+          <li><a href="./BoardListAction.board?cate_num=${c.cate_num}">공지</a></li>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">일상●취미 <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <c:forEach var="c" items="${catelist}">

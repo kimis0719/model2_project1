@@ -19,7 +19,7 @@
 	%>
 		<div class="rightcolumn">
 			<div class="card">
-			<h2><%=session.getAttribute("mem_id") %>님 로그인 되었습니다.</h2>
+			<h4><%=session.getAttribute("mem_id") %>님 로그인 되었습니다.</h4>
 			<a href="Logout.member"><button class="btn logout">로그아웃</button></a>
 			<a href="./member/mypage.jsp"><button class="btn mypage">마이페이지</button></a>
 			</div>

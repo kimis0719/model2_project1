@@ -39,7 +39,7 @@
 						</form>
 						<div style="text-align: center">
 							<input type="button" class="btn btn-default" value="로그인"
-								onClick="location.href='loginForm.jsp'">
+								onClick="location.href='<%=request.getContextPath()%>/member/loginForm.jsp'">
 						</div>
 					</div>
 				</div>
