@@ -10,6 +10,7 @@
 <title>상세 페이지</title>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="<%=request.getContextPath() %>/board/boardFind.js"></script>
+	<script src="<%=request.getContextPath() %>/board/boardDetail.js"></script>
 	<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script
@@ -241,11 +242,11 @@ input[type=text]:focus {
 										추천 : ${board.board_good} 비추 : ${board.board_bad}
 										<span class="rec_count"></span>					
 									</c:when>
-									<%-- <c:when test="${ sessionScope.member.mem_nick == board.board_nick }">
-										추천 및 비추 기능은 로그인 후 사용 가능합니다.<br />
+									<c:when test="${ sessionScope.member.mem_nick == board.board_nick }">
+										<br />
 										추천 : ${board.board_good} 비추 : ${board.board_bad}
 										<span class="rec_count"></span>					
-									</c:when> --%>
+									</c:when>
 									
 									<c:otherwise>
 										<input type="button" value="추천 : ${board.board_good}" 
@@ -296,7 +297,7 @@ input[type=text]:focus {
 										<td class="replycontent" >&nbsp;&nbsp;${r.re_content}<br>
 
 										</td>
-										<td><fmt:formatDate value="${r.re_date}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+										<td class="replydate"><fmt:formatDate value="${r.re_date}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 										<td>
 											<c:if test="${sessionScope.member.mem_nick == r.re_writer}" >
 												<input type="button" value="삭제"
@@ -321,8 +322,9 @@ input[type=text]:focus {
 										${sessionScope.member.mem_nick}
 								</td>
 								<td colspan="3">
+
 									<textarea rows="4" cols="120" style="resize: none;" id="re_content" name="re_content"></textarea>
-									<input type="submit" value="댓글작성" >
+									<input type="submit" id="writereply" name="writereply" value="댓글작성" >
 								</td>	
 							</c:when>
 							<c:otherwise>

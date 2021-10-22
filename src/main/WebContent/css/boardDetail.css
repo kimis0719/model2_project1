@@ -9,8 +9,6 @@ table.detail {
 	
 }
 
-
-
 table.detail th.detailtitle {
 	padding: 8px;
 	background: #fbfbfb;
@@ -35,8 +33,6 @@ table.detail td.detailcontent {
 	vertical-align : top;
 }
 
-
-
 table.boardtable {
 	border-collapse: collapse;
 	width: 1100px;
@@ -59,7 +55,12 @@ table.detail td.buttonlist {
 	text-align:center;
 }
 
-table.reply tbody{
+form.replywrite{
+	width:1200px;
+	
+}
+
+table#reply,reply {
 	width:1200px;
 	border-collapse: collapse;
 	margin-left: 20px;
@@ -70,13 +71,13 @@ table.reply tr.replysec{
 	margin-left: 20px;
 }
 
-
-
-
-
-
 table.reply td.replycontent {
 	text-align:left;
+	width: 500px;
+}
+
+table.reply td.replydate {
+	width: 300px;
 }
 
 
