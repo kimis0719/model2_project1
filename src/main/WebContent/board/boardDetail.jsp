@@ -1,21 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>상세 페이지</title>
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="<%=request.getContextPath() %>/board/boardFind.js"></script>
-	<script src="<%=request.getContextPath() %>/board/boardDetail.js"></script>
-	<link rel="stylesheet"
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="<%=request.getContextPath()%>/board/boardFind.js"></script>
+<script src="<%=request.getContextPath()%>/board/boardDetail.js"></script>
+<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<script
+<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script
+<script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <meta charset="utf-8">
@@ -192,22 +192,23 @@ input[type=text]:focus {
 
 
 
+
+
+
+
 @media screen and (max-width: 800px) {
 	.leftcolumn, .rightcolumn {
 		width: 100%;
 		padding: 0;
 	}
 }
-
-
-
-
-
-
 </style>
-<link href="${pageContext.request.contextPath}/css/boardList.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/boardDetail.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/boardList.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/boardDetail.css"
+	rel="stylesheet">
 </head>
+
 <body>
 	<jsp:include page="../layout/header.jsp" />
 
@@ -330,11 +331,6 @@ input[type=text]:focus {
 				</table>
 			</form>
 
-			<%-- <!-- 첨부파일이 있을때만 첨부파일 출력 -->
-			<c:if test="${board.board_file != null}">
-				<a href="./board/file_down.jsp?file_name=${board.board_file}">
-					${board.board_file} </a>
-			</c:if> --%>
 
 			<div>
 				<ul>
@@ -413,53 +409,53 @@ input[type=text]:focus {
 						</div>
 					</td>
 					<!-- 글쓰기 -->
-					<c:if test="${currentCate != 1 }">
-						<a class="boardWrite" align="right"> <input type="button"
-							value="글쓰기"
-							onclick="location.href='./BoardWriteAction.board?cate_num=${currentCate}'">
-						</a>
-					</c:if>
+					<td><c:if test="${currentCate != 1 }">
+							<a class="boardWrite" align="right"> <input type="button"
+								value="글쓰기"
+								onclick="location.href='./BoardWriteAction.board?cate_num=${currentCate}'">
+							</a>
+						</c:if></td>
 				</tr>
 			</table>
-		</div>
 
-		<br>
-		<div style="" align="center">
-			<c:if test="${listcount > 0 }">
-				<!-- 1페이지로 이동 -->
-				<a href="./BoardListAction.board?cate_num=${currentCate}&page=1"
-					style="text-decoration: none"> << </a>
 
-				<!-- 이전블럭으로 이동 -->
-				<c:if test="${startPage > 10 }">
-					<a
-						href="./BoardListAction.board?cate_num=${currentCate}&page=${startPage - 10 }">[이전]</a>
-				</c:if>
+			<br>
+			<div style="" align="center">
+				<c:if test="${listcount > 0 }">
+					<!-- 1페이지로 이동 -->
+					<a href="./BoardListAction.board?cate_num=${currentCate}&page=1"
+						style="text-decoration: none"> << </a>
 
-				<!-- 각 블럭에 10개의 페이지 출력 -->
-				<c:forEach var="i" begin="${startPage}" end="${endPage}">
-					<c:if test="${i == page }">
+					<!-- 이전블럭으로 이동 -->
+					<c:if test="${startPage > 10 }">
+						<a
+							href="./BoardListAction.board?cate_num=${currentCate}&page=${startPage - 10 }">[이전]</a>
+					</c:if>
+
+					<!-- 각 블럭에 10개의 페이지 출력 -->
+					<c:forEach var="i" begin="${startPage}" end="${endPage}">
+						<c:if test="${i == page }">
 							[${i}]
 						</c:if>
-					<c:if test="${i != page }">
+						<c:if test="${i != page }">
+							<a
+								href="./BoardListAction.board?cate_num=${currentCate}&page=${i}">[${i}]</a>
+						</c:if>
+					</c:forEach>
+
+					<!-- 다음블럭으로 이동 -->
+					<c:if test="${endPage < pageCount }">
 						<a
-							href="./BoardListAction.board?cate_num=${currentCate}&page=${i}">[${i}]</a>
+							href="./BoardListAction.board?cate_num=${currentCate}&page=${startPage + 10 }">[다음]</a>
 					</c:if>
-				</c:forEach>
 
-				<!-- 다음블럭으로 이동 -->
-				<c:if test="${endPage < pageCount }">
+					<!-- 마지막 페이지로 이동 -->
 					<a
-						href="./BoardListAction.board?cate_num=${currentCate}&page=${startPage + 10 }">[다음]</a>
+						href="./BoardListAction.board?cate_num=${currentCate}&page=${pageCount}"
+						style="text-decoration: none"> >> </a>
 				</c:if>
-
-				<!-- 마지막 페이지로 이동 -->
-				<a
-					href="./BoardListAction.board?cate_num=${currentCate}&page=${pageCount}"
-					style="text-decoration: none"> >> </a>
-			</c:if>
+			</div>
 		</div>
-
 		<jsp:include page="../layout/rightcolumn.jsp" />
 	</div>
 

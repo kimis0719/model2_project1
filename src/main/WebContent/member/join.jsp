@@ -16,7 +16,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<!-- 외부파일 불러오기 -->
-<script src="<%=request.getContextPath() %>/member/join.js"></script>
+<script src="<%=request.getContextPath()%>/member/join.js"></script>
 
 </head>
 <body>

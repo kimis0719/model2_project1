@@ -8,7 +8,7 @@
 <head>
 <title>게시판 페이지</title>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="<%=request.getContextPath() %>/board/boardFind.js"></script>
+	<script src="<%=request.getContextPath()%>/board/boardFind.js"></script>
 <meta charset="utf-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -102,7 +102,7 @@
 					</td>
 					<td class="boardWrite">
 						<!-- 글쓰기 -->
-						<c:if test="${currentCate != 1 }">
+						<c:if test="${sessionScope.member.mem_grade=='99' }">
 							<!-- <a class="boardWrite" align="right"> -->
 							<input type="button" value="글쓰기"
 								onclick="location.href='./BoardWriteAction.board?cate_num=${currentCate}'">
