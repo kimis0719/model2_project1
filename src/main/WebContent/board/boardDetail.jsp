@@ -208,6 +208,7 @@ input[type=text]:focus {
 <link href="${pageContext.request.contextPath}/css/boardDetail.css"
 	rel="stylesheet">
 </head>
+
 <body>
 	<jsp:include page="../layout/header.jsp" />
 

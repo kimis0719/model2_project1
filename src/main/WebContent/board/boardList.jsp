@@ -8,7 +8,7 @@
 <head>
 <title>게시판 페이지</title>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="<%=request.getContextPath() %>/board/boardFind.js"></script>
+	<script src="<%=request.getContextPath()%>/board/boardFind.js"></script>
 <meta charset="utf-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
