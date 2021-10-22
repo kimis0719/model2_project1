@@ -64,7 +64,7 @@
 					<input type="hidden" name="qna_memnum" value="${member.mem_num}">
 					<input type="hidden" name="qna_title" value="${question.qna_title}">
 					<input type="hidden" name="qna_sec" value="${question.qna_sec}">
-					<button id="btnSave" class="popbtn popbtn1" title="등록"><span>등록</span></button>
+					<button id="btnSave" class="popbtn popbtn1" title="수정"><span>수정</span></button>
 					<button id="btnClose" class="popbtn popbtn2" title="취소"><span>취소</span></button>
 				</div>
 			</div>

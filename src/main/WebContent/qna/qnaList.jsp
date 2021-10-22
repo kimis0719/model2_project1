@@ -27,8 +27,8 @@
 					<a href="../LoginForm.member"><button class="btn login" style="float: right; right: 100px;">로그인</button></a>
 					<% }else{ %>
 					<%-- <h6><%=session.getAttribute("mem_id") %>님 로그인 되었습니다.</h6> --%>
-					<a href="Update.do"><button class="btn mypage" style="float: right;">마이페이지</button></a>
-					<a href="Logout.member"><button class="btn logout" style="float: right;">로그아웃</button></a>
+					<a href="../Update.do"><button class="btn mypage" style="float: right;">마이페이지</button></a>
+					<a href="../Logout.member"><button class="btn logout" style="float: right;">로그아웃</button></a>
 					<% }%>
 				</h2>
 			</div>
