@@ -23,7 +23,7 @@ public class UpdateMember implements Action {
 		System.out.println("수정폼:"+member);
 		
 		// 공유 설정
-		request.setAttribute("member", member);
+		request.setAttribute("member1", member);
 		
 		ActionForward forward = new ActionForward();
 		

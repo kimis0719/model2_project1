@@ -227,28 +227,29 @@ String sql="update member set mem_nick=?,mem_pass=?,mem_email=?,mem_img=?,mem_ph
 		}
 		
 		// 회원 탈퇴
-		public int delete(String mem_yn) {
-			int result = 0;
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			
-			try {
-				con = getConnection();
+		// 회원 탈퇴
+			public int delete(String mem_yn) {
+				int result = 0;
+				Connection con = null;
+				PreparedStatement pstmt = null;
 				
-	String sql="update member set use_yn=? where id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mem_yn);
-			result = pstmt.executeUpdate();
-						
-			}catch(Exception e) {
-				e.printStackTrace();
-			}finally {
-				if(pstmt != null)try { pstmt.close();}catch(Exception e) {};
-				if(con != null)try { con.close();}catch(Exception e) {};
+				try {
+					con = getConnection();
+					
+					String sql="update member set use_yn='n' where id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, mem_yn);
+				result = pstmt.executeUpdate();
+							
+				}catch(Exception e) {
+					e.printStackTrace();
+				}finally {
+					if(pstmt != null)try { pstmt.close();}catch(Exception e) {};
+					if(con != null)try { con.close();}catch(Exception e) {};
+				}
+				
+				return result;
 			}
-			
-			return result;
-		}
 		//아이디 찾기
 		public String searchId(String mem_nick, String mem_email) {
 			Connection con = null;
