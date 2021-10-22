@@ -21,7 +21,7 @@
 </head>
 <body>
 
-	<jsp:include page="../layout/header.jsp" />
+	<%-- <jsp:include page="../layout/header.jsp" /> --%>
 		
 	<div class="header">
 		<h1>중앙 커뮤니티</h1>

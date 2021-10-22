@@ -5,7 +5,7 @@
 
 	if(session.getAttribute("member")==null){
 	       %>
-	       <div class="rightcolumn">
+	       <div class="rightcolumn" >
 			<div class="card">
 			<a href="LoginForm.member"><button class="btn login">로그인</button></a>
 

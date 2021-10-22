@@ -19,11 +19,14 @@
 		<div class="b"></div>
 		<!-- 서브 타이틀 -->
 		<div class="subTitle_wrap">
+			<%-- <c:import url="../layout/rightcolumn.jsp" /> --%>
 			<div class="subTitle_inner">
-				<h2>문의사항</h2>
+				<h2>문의사항
+				<a href="../Join.member"><button class="btn sing-up" style="float: right;">회원가입</button></a>
+				<a href="../LoginForm.member"><button class="btn login" style="float: right; right: 100px;">로그인</button></a>
+				</h2>
 			</div>
 		</div>
-
 		<!-- container -->
 		<div class="container">
 			<div class="qna_filter"></div>
