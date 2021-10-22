@@ -12,7 +12,7 @@ $(document).ready(function(){
 			
 			$.ajax({
 				type:"post",
-				url:"/projectb/Idcheck.member",
+				url:"/model2_project1/Idcheck.member",
 				data:{"mem_id": mem_id},
 				datatype:"text",
 				success:function(data){
@@ -41,7 +41,7 @@ $(document).ready(function(){
 			
 			$.ajax({
 				type:"post",
-				url:"/projectb/Nickcheck.member",
+				url:"/model2_project1/Nickcheck.member",
 				data:{"mem_nick":mem_nick},
 				datatype:"text",
 				success:function(data){

@@ -24,6 +24,7 @@
 
 </head>
 <body>
+
 	<jsp:include page="../layout/header.jsp" />
 	<div class="row">
 		<div class="leftcolumn">
@@ -46,6 +47,7 @@
 		</div>
 		<jsp:include page="../layout/rightcolumn.jsp" />
 	</div>
+
 
 	<jsp:include page="../layout/footer.jsp" />
 </body>
